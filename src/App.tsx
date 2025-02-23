@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Keyboard from "./components/Keyboard";
 import { WORD_LIST } from "./assets/WordList";
+import { Link } from "react-router-dom";
 
 const App = () => {
   const today = WORD_LIST[0];
@@ -60,9 +61,9 @@ const App = () => {
 
       <footer className="w-full text-center text-gray-600 text-sm mt-4 pb-2">
         <div className="flex justify-center gap-4">
-          <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
-          <a href="/terms-of-service" className="hover:underline">Terms of Service</a>
-          <a href="/contact" className="hover:underline">Contact</a>
+          <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+          <Link to="/terms-of-service" className="hover:underline">Terms of Service</Link>
+          <Link to="/contact" className="hover:underline">Contact</Link>
         </div>
       </footer>
     </div>
