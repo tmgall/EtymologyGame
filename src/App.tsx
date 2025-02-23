@@ -1,45 +1,60 @@
 import { useState } from "react";
 import Keyboard from "./components/Keyboard";
-import AnswerSquares from "./components/AnswerSquares";
+import { WORD_LIST } from "./assets/WordList";
 
 const App = () => {
-  const clue = "\"far sight\""; // Placeholder clue text
-  const [showOrigin, setShowOrigin] = useState(false); // Toggle for language origin
-  const languageOrigin = "Greek, Latin"; // Placeholder language origin
-  const firstRoot = "tele"; // Placeholder first root
-  const [showRoot1, setShowRoot1] = useState(false); // Toggle for first root
-  const secondRoot = "visio"; // Placeholder first root
-  const [showRoot2, setShowRoot2] = useState(false); // Toggle for first root
+  const today = WORD_LIST[0];
+  const [showOrigin, setShowOrigin] = useState(false);
+  const [showRoot1, setShowRoot1] = useState(false);
+  const [showRoot2, setShowRoot2] = useState(false);
+  const [guess, setGuess] = useState<string[]>(Array(8).fill(""));
+  const [selectedIndex, setSelectedIndex] = useState<number>();
 
   return (
     <div className="flex flex-col items-center justify-between min-h-dvh w-full p-4">
-      {/* Title */}
-      <h1 className="text-5xl font-bold mt-4">Name Placeholder</h1>
+      <h1 className="text-6xl font-bold mt-4 max-w-96 mb-4">Lexicon</h1>
 
-      <p className="text-3xl text-gray-700 mt-2 text-center max-w-md">{clue}</p>
+      <p className="font-bold text-3xl text-gray-700 mt-2 text-center max-w-md mb-4">{"Clue: literally, " + today.clue}</p>
+
+      <div className="flex w-full max-w-96 gap-2 mb-4">
+            {Array.from({ length: today.answer.length }).map((_, index) => (
+                <button 
+                  key={index} 
+                  className={selectedIndex == index ? "answerLetterTileSelected" : "answerLetterTile"}
+                  onClick={() => setSelectedIndex(index)}
+                >
+                    {guess[index]}  
+                </button>
+            ))}
+        </div>
 
       <button
-        className="mt-2 px-4 py-2 border-2 border-gray-500 rounded text-gray-700 hover:bg-gray-100 active:bg-gray-200"
+        className="hintButton"
         onClick={() => setShowOrigin(!showOrigin)}
       >
-        {showOrigin ? languageOrigin : "Language(s) of origin"}
+        {showOrigin ? "Language(s) of origin: " + today.rootLanguages : "Hint 1: language(s) of origin"}
       </button>
 
       <button
-        className="mt-2 px-4 py-2 border-2 border-gray-500 rounded text-gray-700 hover:bg-gray-100 active:bg-gray-200"
+        className="hintButton"
         onClick={() => setShowRoot1(!showRoot1)}
       >
-        {showRoot1 ? firstRoot : "First root"}
+        {showRoot1 ? "First root: " + today.firstRoot : "Hint 2: first root"}
       </button>
 
       <button
-        className="mt-2 px-4 py-2 border-2 border-gray-500 rounded text-gray-700 hover:bg-gray-100 active:bg-gray-200"
+        className="hintButton"
         onClick={() => setShowRoot2(!showRoot2)}
       >
-        {showRoot2 ? secondRoot : "Second root"}
+        {showRoot2 ? "Second root: " + today.secondRoot : "Hint 3: second root"}
       </button>
-
-      <AnswerSquares />
+      
+      <button
+        className="hintButton"
+        onClick={() => {}}
+      >
+        {"Reveal answer"}
+      </button>
 
       <Keyboard />
 
