@@ -3,6 +3,8 @@ import Keyboard from "./Keyboard";
 import { WORD_LIST } from "../assets/WordList";
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import Header from "./Header";
+import HelpModal from "./HelpModal";
 
 const Puzzle = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -12,6 +14,7 @@ const Puzzle = () => {
     const [showRoot2, setShowRoot2] = useState(false);
     const [guess, setGuess] = useState<string[]>(Array(today.answer.length).fill(""));
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleKeyPress = (key: string) => {
         const newGuess = [...guess];
@@ -48,8 +51,7 @@ const Puzzle = () => {
     return (
         <>
             <div className="flex flex-col items-center justify-between w-full p-4">
-                <h1 className="text-6xl font-bold mt-4 max-w-96 mb-4 self-start">lexicon</h1>
-
+                <Header setIsModalOpen={setIsModalOpen} />
                 <p className="font-bold text-3xl text-gray-700 mt-2 self-start max-w-md mb-4">{"clue: " + today.clue}</p>
 
                 <div className="flex w-full max-w-96 gap-2 mb-4">
@@ -101,6 +103,7 @@ const Puzzle = () => {
                     <Link to="/contact" className="hover:underline">Contact</Link>
                     </div>
                 </footer>
+                {isModalOpen && <HelpModal onClose={() => setIsModalOpen(false)} />}
             </div>
             <input
                 ref={inputRef}
