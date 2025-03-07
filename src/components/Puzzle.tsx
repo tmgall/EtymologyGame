@@ -7,6 +7,8 @@ import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
 
+const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "recent";
+
 const Puzzle = () => {
     const today = WORD_LIST[0];
     const [showOrigin, setShowOrigin] = useState(false);
@@ -44,6 +46,7 @@ const Puzzle = () => {
             return;
         }
         if (guess.join("").toLocaleLowerCase() === today.answer) {
+            localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.answer)
             setIsSuccessModalOpen(true);
         }
     }
@@ -66,7 +69,13 @@ const Puzzle = () => {
       
       useEffect(() => {
         window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown); 
+        const mostRecentPuzzleFinished = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
+        if (mostRecentPuzzleFinished === null || mostRecentPuzzleFinished !== today.answer) {
+            setIsSuccessModalOpen(false);
+        } else {
+            setIsSuccessModalOpen(true);
+        }
+        return () => window.removeEventListener("keydown", handleKeyDown);
       }, [selectedIndex]);
       
 
