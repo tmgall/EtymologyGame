@@ -1,3 +1,5 @@
+import { getFormattedDate, getPuzzleNumber } from "../util/Date";
+
 export interface HeaderProps {
     setIsModalOpen: (isModalOpen: boolean) => void;
 }
@@ -5,7 +7,10 @@ export interface HeaderProps {
 const Header = ({ setIsModalOpen }: HeaderProps) => {
     return (
         <div className="flex justify-between items-center w-full">
-            <h1 className="text-6xl font-bold mt-4 max-w-96 mb-4 self-start">lexicon</h1>
+            <div>
+                <div className="text-4xl font-bold max-w-96 self-start">lexicon</div>
+                <div className="max-w-96 self-start">{getFormattedDate()}: Puzzle #{getPuzzleNumber()}</div>
+            </div>
             <button
                 className="text-xl font-bold bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-300"
                 onClick={() => setIsModalOpen(true)}

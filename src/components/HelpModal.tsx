@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 export default function HelpModal({ onClose }: { onClose: () => void }) {
-  // Close modal on Escape key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();

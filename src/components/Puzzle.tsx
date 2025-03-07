@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import Header from "./Header";
 import HelpModal from "./HelpModal";
+import SuccessModal from "./SuccessModal";
 
 const Puzzle = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -14,7 +15,8 @@ const Puzzle = () => {
     const [showRoot2, setShowRoot2] = useState(false);
     const [guess, setGuess] = useState<string[]>(Array(today.answer.length).fill(""));
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
     const handleKeyPress = (key: string) => {
         const newGuess = [...guess];
@@ -36,6 +38,15 @@ const Puzzle = () => {
         setGuess(newGuess);
     }
 
+    const handleSubmit = () => {
+        if (guess.includes("")) {
+            return;
+        }
+        if (guess.join("").toLocaleLowerCase() === today.answer) {
+            setIsSuccessModalOpen(true);
+        }
+    }
+
     const refocusInput = () => {
         if (inputRef.current) {
           inputRef.current.focus();
@@ -51,8 +62,8 @@ const Puzzle = () => {
     return (
         <>
             <div className="flex flex-col items-center justify-between w-full p-4">
-                <Header setIsModalOpen={setIsModalOpen} />
-                <p className="font-bold text-3xl text-gray-700 mt-2 self-start max-w-md mb-4">{"clue: " + today.clue}</p>
+                <Header setIsModalOpen={setIsHelpModalOpen} />
+                <p className="font-bold text-2xl text-gray-700 mt-2 self-start max-w-md mb-4">{"literal meaning: " + today.clue}</p>
 
                 <div className="flex w-full max-w-96 gap-2 mb-4">
                     {Array.from({ length: today.answer.length }).map((_, index) => (
@@ -94,7 +105,7 @@ const Puzzle = () => {
                     {"Reveal answer"}
                 </button>
 
-                <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={() => {}}/>
+                <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
                 <footer className="w-full text-center text-gray-600 text-sm mt-4 pb-2">
                     <div className="flex justify-center gap-4">
@@ -103,7 +114,8 @@ const Puzzle = () => {
                     <Link to="/contact" className="hover:underline">Contact</Link>
                     </div>
                 </footer>
-                {isModalOpen && <HelpModal onClose={() => setIsModalOpen(false)} />}
+                {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}
+                {isSuccessModalOpen && <SuccessModal onClose={() => setIsSuccessModalOpen(false)} />}
             </div>
             <input
                 ref={inputRef}
@@ -116,6 +128,12 @@ const Puzzle = () => {
                         handleKeyPress(e.key.toUpperCase());
                     } else if (e.key === "Backspace") {
                         handleBackspace();
+                    } else if (e.key === "ArrowRight") {
+                        setSelectedIndex(Math.min(today.answer.length - 1, selectedIndex + 1));
+                    } else if (e.key === "ArrowLeft") {
+                        setSelectedIndex(Math.max(0, selectedIndex - 1));
+                    } else if (e.key === "Enter") {
+                        handleSubmit();
                     }
                     e.preventDefault();
                 }}
