@@ -2,13 +2,12 @@ import { useState } from "react";
 import Keyboard from "./Keyboard";
 import { WORD_LIST } from "../assets/WordList";
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
 
 const Puzzle = () => {
-    const inputRef = useRef<HTMLInputElement>(null);
     const today = WORD_LIST[0];
     const [showOrigin, setShowOrigin] = useState(false);
     const [showRoot1, setShowRoot1] = useState(false);
@@ -21,7 +20,9 @@ const Puzzle = () => {
     const handleKeyPress = (key: string) => {
         const newGuess = [...guess];
         newGuess[selectedIndex] = key;
-        setSelectedIndex(Math.min(selectedIndex + 1, guess.length - 1));
+        console.log(key);
+        console.log(selectedIndex);
+        setSelectedIndex(Math.min(selectedIndex + 1, today.answer.length - 1));
         setGuess(newGuess);
     };
 
@@ -47,21 +48,27 @@ const Puzzle = () => {
         }
     }
 
-    const refocusInput = (event?: Event) => {
-        if (event) event.preventDefault();
-        if (inputRef.current) {
-          inputRef.current.focus();
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.ctrlKey || e.altKey || e.metaKey) return; 
+        if (e.key.match(/^[a-zA-Z]$/)) {
+            handleKeyPress(e.key.toUpperCase());
+        } else if (e.key === "Backspace") {
+            handleBackspace();
+        } else if (e.key === "ArrowRight") {
+            setSelectedIndex(Math.min(today.answer.length - 1, selectedIndex + 1));
+        } else if (e.key === "ArrowLeft") {
+            setSelectedIndex(Math.max(0, selectedIndex - 1));
+        } else if (e.key === "Enter") {
+            handleSubmit();
         }
+        e.preventDefault();
     };
-    
-    useEffect(() => {
-        document.addEventListener("click", refocusInput);
-        document.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
-
-        return () => {
-            document.removeEventListener("click", refocusInput);
-            document.removeEventListener("touchstart", (e) => e.preventDefault());        };
-    }, []);
+      
+      useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown); 
+      }, [selectedIndex]);
+      
 
     return (
         <>
@@ -121,28 +128,6 @@ const Puzzle = () => {
                 {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}
                 {isSuccessModalOpen && <SuccessModal onClose={() => setIsSuccessModalOpen(false)} />}
             </div>
-            <input
-                onFocus={(e) => e.target.blur()} // Prevents focus
-                ref={inputRef}
-                type="text"
-                className="absolute opacity-0"
-                autoFocus
-                onKeyDown={(e) => {
-                    if (e.ctrlKey || e.altKey || e.metaKey) return; 
-                    if (e.key.match(/^[a-zA-Z]$/)) {
-                        handleKeyPress(e.key.toUpperCase());
-                    } else if (e.key === "Backspace") {
-                        handleBackspace();
-                    } else if (e.key === "ArrowRight") {
-                        setSelectedIndex(Math.min(today.answer.length - 1, selectedIndex + 1));
-                    } else if (e.key === "ArrowLeft") {
-                        setSelectedIndex(Math.max(0, selectedIndex - 1));
-                    } else if (e.key === "Enter") {
-                        handleSubmit();
-                    }
-                    e.preventDefault();
-                }}
-            />
         </>
     );
 };
