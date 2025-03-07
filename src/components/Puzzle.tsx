@@ -118,7 +118,7 @@ const Puzzle = () => {
                 {isSuccessModalOpen && <SuccessModal onClose={() => setIsSuccessModalOpen(false)} />}
             </div>
             <input
-                contentEditable
+                onFocus={(e) => e.target.blur()} // Prevents focus
                 ref={inputRef}
                 type="text"
                 className="absolute opacity-0"
