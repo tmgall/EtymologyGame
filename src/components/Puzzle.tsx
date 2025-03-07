@@ -47,16 +47,20 @@ const Puzzle = () => {
         }
     }
 
-    const refocusInput = () => {
+    const refocusInput = (event?: Event) => {
+        if (event) event.preventDefault();
         if (inputRef.current) {
           inputRef.current.focus();
         }
     };
     
     useEffect(() => {
-        refocusInput(); 
         document.addEventListener("click", refocusInput);
-        return () => document.removeEventListener("click", refocusInput);
+        document.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
+
+        return () => {
+            document.removeEventListener("click", refocusInput);
+            document.removeEventListener("touchstart", (e) => e.preventDefault());        };
     }, []);
 
     return (
