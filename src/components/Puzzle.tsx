@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Keyboard from "./Keyboard";
 import { WORD_LIST } from "../assets/WordList";
 import { Link } from "react-router-dom";
