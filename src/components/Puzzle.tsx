@@ -118,6 +118,7 @@ const Puzzle = () => {
                 {isSuccessModalOpen && <SuccessModal onClose={() => setIsSuccessModalOpen(false)} />}
             </div>
             <input
+                contentEditable
                 ref={inputRef}
                 type="text"
                 className="absolute opacity-0"
