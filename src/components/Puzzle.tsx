@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Keyboard from "./Keyboard";
 import { WORD_LIST } from "../assets/WordList";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
 
-const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "recent";
+const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 
 const Puzzle = () => {
     const today = WORD_LIST[0];
@@ -22,8 +22,6 @@ const Puzzle = () => {
     const handleKeyPress = (key: string) => {
         const newGuess = [...guess];
         newGuess[selectedIndex] = key;
-        console.log(key);
-        console.log(selectedIndex);
         setSelectedIndex(Math.min(selectedIndex + 1, today.answer.length - 1));
         setGuess(newGuess);
     };
@@ -39,44 +37,54 @@ const Puzzle = () => {
             newGuess[selectedIndex] = "";
         }
         setGuess(newGuess);
-    }
+    };
 
     const handleSubmit = () => {
         if (guess.includes("")) {
             return;
         }
         if (guess.join("").toLocaleLowerCase() === today.answer) {
-            localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.answer)
+            localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.answer);
+            setSelectedIndex(-1);
             setIsSuccessModalOpen(true);
         }
-    }
+    };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.ctrlKey || e.altKey || e.metaKey) return; 
-        if (e.key.match(/^[a-zA-Z]$/)) {
-            handleKeyPress(e.key.toUpperCase());
-        } else if (e.key === "Backspace") {
-            handleBackspace();
-        } else if (e.key === "ArrowRight") {
+        const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.answer;
+        if (e.ctrlKey || e.altKey || e.metaKey || isComplete) {
+            return;
+        }
+        if (e.key === "ArrowRight") {
             setSelectedIndex(Math.min(today.answer.length - 1, selectedIndex + 1));
         } else if (e.key === "ArrowLeft") {
             setSelectedIndex(Math.max(0, selectedIndex - 1));
+        } else if (e.key.match(/^[a-zA-Z]$/)) {
+            handleKeyPress(e.key.toUpperCase());
+        } else if (e.key === "Backspace") {
+            handleBackspace();
         } else if (e.key === "Enter") {
             handleSubmit();
         }
         e.preventDefault();
     };
-      
-      useEffect(() => {
+
+    useEffect(() => {
         window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedIndex, guess]);
+      
+    useEffect(() => {
+        console.log("jlfkdsj");
         const mostRecentPuzzleFinished = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
         if (mostRecentPuzzleFinished === null || mostRecentPuzzleFinished !== today.answer) {
             setIsSuccessModalOpen(false);
         } else {
+            setSelectedIndex(-1);
+            setGuess(today.answer.toUpperCase().split(''));
             setIsSuccessModalOpen(true);
         }
-        return () => window.removeEventListener("keydown", handleKeyDown);
-      }, [selectedIndex]);
+    }, []);
       
 
     return (
@@ -90,7 +98,11 @@ const Puzzle = () => {
                         <button 
                         key={index} 
                         className={selectedIndex == index ? "answerLetterTileSelected" : "answerLetterTile"}
-                        onClick={() => setSelectedIndex(index)}
+                        onClick={() => {
+                            if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) !== today.answer) {
+                                setSelectedIndex(index);
+                            }
+                        }}
                         >
                             {guess[index]}  
                         </button>
