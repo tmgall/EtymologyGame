@@ -6,11 +6,12 @@ import { useEffect } from "react";
 import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
+import { getPuzzleNumber } from "../util/Date";
 
 const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 
 const Puzzle = () => {
-    const today = WORD_LIST[0];
+    const today = WORD_LIST[getPuzzleNumber() - 1];
     const [showOrigin, setShowOrigin] = useState(false);
     const [showRoot1, setShowRoot1] = useState(false);
     const [showRoot2, setShowRoot2] = useState(false);
