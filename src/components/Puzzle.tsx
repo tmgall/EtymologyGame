@@ -20,6 +20,7 @@ const Puzzle = () => {
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
     const handleKeyPress = (key: string) => {
+        if (isComplete) return;
         const newGuess = [...guess];
         newGuess[selectedIndex] = key;
         setSelectedIndex(Math.min(selectedIndex + 1, today.answer.length - 1));
@@ -27,6 +28,7 @@ const Puzzle = () => {
     };
 
     const handleBackspace = () => {
+        if (isComplete) return;
         const newGuess = [...guess];
         if (selectedIndex === 0) {
             newGuess[0] = "";
@@ -40,6 +42,7 @@ const Puzzle = () => {
     };
 
     const handleSubmit = () => {
+        if (isComplete) return;
         if (guess.includes("")) {
             return;
         }
@@ -50,8 +53,9 @@ const Puzzle = () => {
         }
     };
 
+    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.answer;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-        const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.answer;
         if (e.ctrlKey || e.altKey || e.metaKey || isComplete) {
             return;
         }
@@ -75,13 +79,12 @@ const Puzzle = () => {
     }, [selectedIndex, guess]);
       
     useEffect(() => {
-        const mostRecentPuzzleFinished = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
-        if (mostRecentPuzzleFinished === null || mostRecentPuzzleFinished !== today.answer) {
-            setIsSuccessModalOpen(false);
-        } else {
+        if (isComplete) {
             setSelectedIndex(-1);
             setGuess(today.answer.toUpperCase().split(''));
             setIsSuccessModalOpen(true);
+        } else {
+            setIsSuccessModalOpen(false);
         }
     }, []);
 
@@ -108,9 +111,7 @@ const Puzzle = () => {
                 <div className="userInput">
                     {"\""}
                     {guess.join("")}
-                    {localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.answer.toLocaleLowerCase() 
-                        ? "" 
-                        : showCursor ? "|" : "\u00A0"}
+                    {isComplete ? "" : showCursor ? "|" : "\u00A0"}
                     {"\""}
                 </div>
 
