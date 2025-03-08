@@ -122,28 +122,28 @@ const Puzzle = () => {
                 </div>
 
                 <button
-                    className="hintButton"
-                    onClick={() => setShowOrigin(!showOrigin)}
+                    className={showOrigin ? "hintButtonRevealed" : "hintButton"}
+                    onClick={() => setShowOrigin(true)}
                 >
-                    {showOrigin ? "Language(s) of origin: " + today.rootLanguages : "Hint 1: language(s) of origin"}
+                    {showOrigin ? "Comes from " + today.rootLanguages : "Reveal language(s) of origin"}
                 </button>
 
                 <button
-                    className="hintButton"
-                    onClick={() => setShowRoot1(!showRoot1)}
+                    className={showRoot1 ? "hintButtonRevealed" : showOrigin ? "hintButton" : "hintButtonDisabled"}
+                    onClick={() => { if (showOrigin) setShowRoot1(true)}}
                 >
-                    {showRoot1 ? "First root: " + today.firstRoot : "Hint 2: first root"}
+                    {showRoot1 ? "First root: " + today.firstRoot : "Reveal first root"}
                 </button>
 
                 <button
-                    className="hintButton"
-                    onClick={() => setShowRoot2(!showRoot2)}
+                    className={showRoot2 ? "hintButtonRevealed" : showOrigin && showRoot1 ? "hintButton" : "hintButtonDisabled"}
+                    onClick={() => { if (showOrigin && showRoot1) setShowRoot2(!showRoot2)}}
                 >
-                    {showRoot2 ? "Second root: " + today.secondRoot : "Hint 3: second root"}
+                    {showRoot2 ? "Second root: " + today.secondRoot : "Reveal second root"}
                 </button>
                 
                 <button
-                    className="hintButton"
+                    className={showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
                     onClick={() => {}}
                 >
                     {"Reveal answer"}

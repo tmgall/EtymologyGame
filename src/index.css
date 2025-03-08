@@ -1,7 +1,15 @@
 @import "tailwindcss";
 
 .hintButton {
-    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-200 rounded text-sky-200 hover:bg-sky-700 active:bg-sky-600 hover:cursor-pointer max-w-96 w-full
+    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-200 bg-sky-800 rounded text-sky-200 hover:bg-sky-700 active:bg-sky-600 hover:cursor-pointer max-w-96 w-full
+}
+
+.hintButtonRevealed {
+    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-200 bg-sky-800 rounded text-sky-200 max-w-96 w-full
+}
+
+.hintButtonDisabled {
+    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-300 bg-sky-950 rounded text-sky-300 max-w-96 w-full
 }
 
 .keyboardButton {
