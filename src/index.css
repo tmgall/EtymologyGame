@@ -7,11 +7,3 @@
 .keyboardButton {
     @apply flex-1 h-12 text-sky-200 bg-sky-900 border-sky-200 border-2 rounded-md text-center text-lg font-semibold hover:bg-sky-700 active:bg-sky-600
 }
-
-/* .answerLetterTile {
-    @apply flex-1 w-full h-10 border-b-4 border-black flex items-center justify-center text-lg font-bold hover:cursor-pointer
-}
-
-.answerLetterTileSelected {
-    @apply flex-1 w-full h-10 border-b-4 border-black flex items-center justify-center text-lg font-bold hover:cursor-pointer bg-blue-300 
-} */

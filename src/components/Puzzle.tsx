@@ -108,7 +108,9 @@ const Puzzle = () => {
                 <div className="text-2xl mt-2 max-w-md font-mono text-sky-200">
                     {"\""}
                     {guess.join("")}
-                    {showCursor ? "|" : "\u00A0"}
+                    {localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.answer.toLocaleLowerCase() 
+                        ? "" 
+                        : showCursor ? "|" : "\u00A0"}
                     {"\""}
                 </div>
 
