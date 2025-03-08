@@ -26,7 +26,7 @@ const Keyboard = ({ onKeyPress, onBackspace, onSubmit }: KeyboardProps) => {
         {keys.map((row, rowIndex) => (
           <div
             key={rowIndex}
-            className="flex w-full justify-center gap-1"
+            className="flex w-full justify-center gap-1 text-sky-950 "
           >
             {row.map((key, index) => (
               <button

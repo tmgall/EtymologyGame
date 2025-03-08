@@ -75,7 +75,6 @@ const Puzzle = () => {
     }, [selectedIndex, guess]);
       
     useEffect(() => {
-        console.log("jlfkdsj");
         const mostRecentPuzzleFinished = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
         if (mostRecentPuzzleFinished === null || mostRecentPuzzleFinished !== today.answer) {
             setIsSuccessModalOpen(false);
@@ -85,28 +84,37 @@ const Puzzle = () => {
             setIsSuccessModalOpen(true);
         }
     }, []);
+
+    const [showCursor, setShowCursor] = useState(true);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setShowCursor((prev) => !prev);
+      }, 500);
+      return () => clearInterval(interval);
+    }, []);
       
 
     return (
         <>
             <div className="flex flex-col items-center justify-between w-full p-4">
                 <Header setIsModalOpen={setIsHelpModalOpen} />
-                <p className="font-bold text-2xl text-gray-700 mt-2 self-start max-w-md mb-4">{"literal meaning: " + today.clue}</p>
+                <hr className="w-full border-t border-sky-200" />
 
-                <div className="flex w-full max-w-96 gap-2 mb-4">
-                    {Array.from({ length: today.answer.length }).map((_, index) => (
-                        <button 
-                        key={index} 
-                        className={selectedIndex == index ? "answerLetterTileSelected" : "answerLetterTile"}
-                        onClick={() => {
-                            if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) !== today.answer) {
-                                setSelectedIndex(index);
-                            }
-                        }}
-                        >
-                            {guess[index]}  
-                        </button>
-                    ))}
+                <div className="text-xl mt-2 self-start max-w-md font-mono text-sky-200">
+                    {"the literal meaning of the " + today.answer.length + "-letter word"}
+                </div>
+
+                <div className="text-2xl mt-2 max-w-md font-mono text-sky-200">
+                    {"\""}
+                    {guess.join("")}
+                    {showCursor ? "|" : "\u00A0"}
+                    {"\""}
+                </div>
+
+
+                <div className="text-xl self-start mt-2 font-mono w-fit text-sky-200">
+                    is "{<span className="font-bold">{today.clue}</span>}"
                 </div>
 
                 <button
@@ -139,7 +147,7 @@ const Puzzle = () => {
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
-                <footer className="w-full text-center text-gray-600 text-sm mt-4 pb-2">
+                <footer className="w-full text-center text-sky-200 text-sm mt-4 pb-2">
                     <div className="flex justify-center gap-4">
                     <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
                     <Link to="/terms-of-service" className="hover:underline">Terms of Service</Link>

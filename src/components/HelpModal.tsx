@@ -26,7 +26,7 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
         </p>
         <p className="text-gray-700 mb-2 text-sm">
             Your goal is to guess the secret word. The clue is the literal meaning of the word based on its etymology, i.e. its root words. 
-            For example, the clue "far sight" would mean the answer is television, since "television" comes from the Greek and Latin "tele" (meaning "far") and "visio" (meaning "vision").
+            For example, the clue "far vision" would mean the answer is television, since "television" comes from the Greek and Latin "tele" (meaning "far") and "visio" (meaning "vision").
         </p>
         <p></p>
         <p className="text-gray-700 mb-2 text-sm">

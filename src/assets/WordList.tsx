@@ -7,5 +7,5 @@ export interface WordData {
 }
 
 export const WORD_LIST: WordData[] = [
-    { clue: "\"far sight\"", answer: "television", rootLanguages: "Greek, Latin", firstRoot: "tele", secondRoot: "visio" }
+    { clue: "far sight", answer: "television", rootLanguages: "Greek, Latin", firstRoot: "tele", secondRoot: "visio" }
 ];

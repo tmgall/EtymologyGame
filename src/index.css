@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 .hintButton {
-    @apply font-bold mt-2 px-4 py-2 border-2 border-gray-500 rounded text-gray-700 hover:bg-gray-100 active:bg-gray-200 hover:cursor-pointer max-w-96 w-full
+    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-200 rounded text-sky-200 hover:bg-sky-700 active:bg-sky-600 hover:cursor-pointer max-w-96 w-full
 }
 
 .keyboardButton {
-    @apply flex-1 h-12 bg-gray-200 rounded-md text-center text-lg font-semibold hover:bg-gray-300 active:bg-gray-400
+    @apply flex-1 h-12 text-sky-200 bg-sky-900 border-sky-200 border-2 rounded-md text-center text-lg font-semibold hover:bg-sky-700 active:bg-sky-600
 }
 
-.answerLetterTile {
-    @apply flex-1 w-full h-10 border-2 border-gray-500 rounded flex items-center justify-center text-lg font-bold hover:cursor-pointer
+/* .answerLetterTile {
+    @apply flex-1 w-full h-10 border-b-4 border-black flex items-center justify-center text-lg font-bold hover:cursor-pointer
 }
 
 .answerLetterTileSelected {
-    @apply bg-blue-300 flex-1 w-full h-10 border-2 border-gray-500 rounded flex items-center justify-center text-lg font-bold hover:cursor-pointer
-}
+    @apply flex-1 w-full h-10 border-b-4 border-black flex items-center justify-center text-lg font-bold hover:cursor-pointer bg-blue-300 
+} */
