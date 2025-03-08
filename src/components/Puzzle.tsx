@@ -99,13 +99,13 @@ const Puzzle = () => {
         <>
             <div className="flex flex-col items-center justify-between w-full p-4">
                 <Header setIsModalOpen={setIsHelpModalOpen} />
-                <hr className="w-full border-t border-sky-200" />
+                <hr className="divider" />
 
-                <div className="text-xl mt-2 self-start max-w-md font-mono text-sky-200">
+                <div className="promptText">
                     {"the literal meaning of the " + today.answer.length + "-letter word"}
                 </div>
 
-                <div className="text-2xl mt-2 max-w-md font-mono text-sky-200">
+                <div className="userInput">
                     {"\""}
                     {guess.join("")}
                     {localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.answer.toLocaleLowerCase() 
@@ -115,7 +115,7 @@ const Puzzle = () => {
                 </div>
 
 
-                <div className="text-xl self-start mt-2 font-mono w-fit text-sky-200">
+                <div className="clue">
                     is "{<span className="font-bold">{today.clue}</span>}"
                 </div>
 
@@ -149,11 +149,11 @@ const Puzzle = () => {
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
-                <footer className="w-full text-center text-sky-200 text-sm mt-4 pb-2">
+                <footer className="footer">
                     <div className="flex justify-center gap-4">
-                    <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
-                    <Link to="/terms-of-service" className="hover:underline">Terms of Service</Link>
-                    <Link to="/contact" className="hover:underline">Contact</Link>
+                        <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+                        <Link to="/terms-of-service" className="hover:underline">Terms of Service</Link>
+                        <Link to="/contact" className="hover:underline">Contact</Link>
                     </div>
                 </footer>
                 {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}

@@ -7,3 +7,23 @@
 .keyboardButton {
     @apply flex-1 h-12 text-sky-200 bg-sky-900 border-sky-200 border-2 rounded-md text-center text-lg font-semibold hover:bg-sky-700 active:bg-sky-600
 }
+
+.promptText {
+    @apply text-xl mt-2 self-start max-w-md font-mono text-sky-200
+}
+
+.userInput {
+    @apply text-2xl mt-2 max-w-md font-mono text-sky-200
+}
+
+.clue {
+    @apply text-xl self-start mt-2 font-mono w-fit text-sky-200
+}
+
+.divider {
+    @apply w-full border-t border-sky-200
+}
+
+.footer {
+    @apply w-full text-center text-sky-200 text-sm mt-4 pb-2
+}
