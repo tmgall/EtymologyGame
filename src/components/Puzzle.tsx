@@ -9,6 +9,10 @@ import SuccessModal from "./SuccessModal";
 import { getPuzzleNumber } from "../util/Date";
 
 const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
+const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
+const LAST_FIRST_ROOT_HINT_KEY = "last-first-root-hint";
+const LAST_SECOND_ROOT_HINT_KEY = "last-second-root-hint";
+const LAST_REVEAL_HINT_KEY = "last-reveal-hint";
 
 const Puzzle = () => {
     const today = WORD_LIST[getPuzzleNumber() - 1];
@@ -53,7 +57,11 @@ const Puzzle = () => {
         }
     };
 
-    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.answer;
+    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.number;
+    const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === today.number;
+    const isFirstRootShown = localStorage.getItem(LAST_FIRST_ROOT_HINT_KEY) === today.number;
+    const isSecondRootShown = localStorage.getItem(LAST_SECOND_ROOT_HINT_KEY) === today.number;
+    const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === today.number;
 
     const handleKeyDown = (e: KeyboardEvent) => {
         if (e.ctrlKey || e.altKey || e.metaKey || isComplete) {
@@ -74,7 +82,7 @@ const Puzzle = () => {
     };
 
     const handleRevealAnswer = () => {
-        localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.answer);
+        localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.number);
         setSelectedIndex(-1);
         setGuess(today.answer.toUpperCase().split(''));
         setIsSuccessModalOpen(true);
@@ -88,6 +96,18 @@ const Puzzle = () => {
     useEffect(() => {
         if (isComplete) {
             handleRevealAnswer();
+        } 
+        if (isOriginShown) {
+            setShowOrigin(true);
+        }
+        if (isFirstRootShown) {
+            setShowRoot1(true);
+        }
+        if (isSecondRootShown) {
+            setShowRoot2(true);
+        }
+        if (isRevealShown) {
+            setShowRevealAnswer(true);
         }
     }, []);
 
@@ -124,23 +144,36 @@ const Puzzle = () => {
 
                 <button
                     className={showOrigin ? "hintButtonRevealed" : "hintButton"}
-                    onClick={() => setShowOrigin(true)}
+                    onClick={() => {
+                        setShowOrigin(true);
+                        localStorage.setItem(LAST_ORIGIN_HINT_KEY, today.number); 
+                    }}
                 >
-                    {showOrigin ? "Comes from " + today.rootLanguages : "Reveal language(s) of origin"}
+                    {showOrigin ? "origins in " + today.rootLanguages : "Reveal language(s) of origin"}
                 </button>
 
                 <button
                     className={showRoot1 ? "hintButtonRevealed" : showOrigin ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => { if (showOrigin) setShowRoot1(true)}}
+                    onClick={() => { 
+                        if (showOrigin) {
+                            setShowRoot1(true);
+                        }
+                        localStorage.setItem(LAST_FIRST_ROOT_HINT_KEY, today.number);
+                    }}
                 >
-                    {showRoot1 ? "First root: " + today.firstRoot : "Reveal first root"}
+                    {showRoot1 ? today.firstRoot : "Reveal first root"}
                 </button>
 
                 <button
                     className={showRoot2 ? "hintButtonRevealed" : showOrigin && showRoot1 ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => { if (showOrigin && showRoot1) setShowRoot2(true)}}
+                    onClick={() => { 
+                        if (showOrigin && showRoot1) {
+                            setShowRoot2(true)
+                        }
+                        localStorage.setItem(LAST_SECOND_ROOT_HINT_KEY, today.number);
+                    }}
                 >
-                    {showRoot2 ? "Second root: " + today.secondRoot : "Reveal second root"}
+                    {showRoot2 ? today.secondRoot : "Reveal second root"}
                 </button>
                 
                 <button
@@ -148,9 +181,10 @@ const Puzzle = () => {
                     onClick={() => { if (showOrigin && showRoot1 && showRoot2) 
                         setShowRevealAnswer(true);
                         handleRevealAnswer();
+                        localStorage.setItem(LAST_REVEAL_HINT_KEY, today.number);
                     }}
                 >
-                    {showRevealAnswer ? "<answer>" : "Reveal answer"}
+                    {showRevealAnswer ? today.shortExplanation : "Reveal answer"}
                 </button>
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
