@@ -13,24 +13,23 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose} />
 
-      <div className="relative bg-white p-6 rounded-lg shadow-xl max-w-xs w-full h-auto border">
+      <div className="helpModal">
         <button
           className="absolute top-4 right-6 text-3xl font-bold text-gray-600 hover:text-gray-900"
           onClick={onClose}
         >
           &times;
         </button>
-        <h2 className="text-xl font-bold mb-2">How to Play</h2>
-        <p className="text-gray-700 mb-2 text-sm">
+        <h2 className="helpModalHeaderText">How to Play</h2>
+        <p className="helpModalText">   
             Welcome to Lexicon! 
         </p>
-        <p className="text-gray-700 mb-2 text-sm">
+        <p className="helpModalText">
             Your goal is to guess the secret word. The clue is the literal meaning of the word based on its etymology, i.e. its root words. 
-            For example, the clue "far vision" would mean the answer is television, since "television" comes from the Greek and Latin "tele" (meaning "far") and "visio" (meaning "vision").
+            For example, the clue "far vision" would mean the answer is television, since "television" comes from the Greek "tele" (meaning "far") and Latin "visio" (meaning "vision").
         </p>
         <p></p>
-        <p className="text-gray-700 mb-2 text-sm">
-            After each guess, you'll get to see if you have any letters correct, so you know if you're on the right track.
+        <p className="helpModalText">
             If you're stuck, you can use the available hints.
         </p>
       </div>

@@ -15,6 +15,7 @@ const Puzzle = () => {
     const [showOrigin, setShowOrigin] = useState(false);
     const [showRoot1, setShowRoot1] = useState(false);
     const [showRoot2, setShowRoot2] = useState(false);
+    const [showRevealAnswer, setShowRevealAnswer] = useState(false);
     const [guess, setGuess] = useState<string[]>(Array(today.answer.length).fill(""));
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
@@ -48,9 +49,7 @@ const Puzzle = () => {
             return;
         }
         if (guess.join("").toLocaleLowerCase() === today.answer) {
-            localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.answer);
-            setSelectedIndex(-1);
-            setIsSuccessModalOpen(true);
+            handleRevealAnswer();
         }
     };
 
@@ -74,6 +73,13 @@ const Puzzle = () => {
         e.preventDefault();
     };
 
+    const handleRevealAnswer = () => {
+        localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.answer);
+        setSelectedIndex(-1);
+        setGuess(today.answer.toUpperCase().split(''));
+        setIsSuccessModalOpen(true);
+    }
+
     useEffect(() => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
@@ -81,11 +87,7 @@ const Puzzle = () => {
       
     useEffect(() => {
         if (isComplete) {
-            setSelectedIndex(-1);
-            setGuess(today.answer.toUpperCase().split(''));
-            setIsSuccessModalOpen(true);
-        } else {
-            setIsSuccessModalOpen(false);
+            handleRevealAnswer();
         }
     }, []);
 
@@ -116,7 +118,6 @@ const Puzzle = () => {
                     {"\""}
                 </div>
 
-
                 <div className="clue">
                     is "{<span className="font-bold">{today.clue}</span>}"
                 </div>
@@ -137,16 +138,19 @@ const Puzzle = () => {
 
                 <button
                     className={showRoot2 ? "hintButtonRevealed" : showOrigin && showRoot1 ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => { if (showOrigin && showRoot1) setShowRoot2(!showRoot2)}}
+                    onClick={() => { if (showOrigin && showRoot1) setShowRoot2(true)}}
                 >
                     {showRoot2 ? "Second root: " + today.secondRoot : "Reveal second root"}
                 </button>
                 
                 <button
-                    className={showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => {}}
+                    className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
+                    onClick={() => { if (showOrigin && showRoot1 && showRoot2) 
+                        setShowRevealAnswer(true);
+                        handleRevealAnswer();
+                    }}
                 >
-                    {"Reveal answer"}
+                    {showRevealAnswer ? "<answer>" : "Reveal answer"}
                 </button>
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
