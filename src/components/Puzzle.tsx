@@ -147,8 +147,10 @@ const Puzzle = () => {
                 <button
                     className={showOrigin ? "hintButtonRevealed" : "hintButton"}
                     onClick={() => {
+                        if (!isComplete) {
+                            localStorage.setItem(LAST_ORIGIN_HINT_KEY, today.number); 
+                        }
                         setShowOrigin(true);
-                        localStorage.setItem(LAST_ORIGIN_HINT_KEY, today.number); 
                     }}
                 >
                     {showOrigin ? "origins in " + today.rootLanguages : "Reveal language(s) of origin"}
@@ -160,7 +162,9 @@ const Puzzle = () => {
                         if (showOrigin) {
                             setShowRoot1(true);
                         }
-                        localStorage.setItem(LAST_FIRST_ROOT_HINT_KEY, today.number);
+                        if (!isComplete) {
+                            localStorage.setItem(LAST_FIRST_ROOT_HINT_KEY, today.number);
+                        }
                     }}
                 >
                     {showRoot1 ? today.firstRoot : "Reveal first root"}
@@ -172,7 +176,9 @@ const Puzzle = () => {
                         if (showOrigin && showRoot1) {
                             setShowRoot2(true)
                         }
-                        localStorage.setItem(LAST_SECOND_ROOT_HINT_KEY, today.number);
+                        if (!isComplete) {
+                            localStorage.setItem(LAST_SECOND_ROOT_HINT_KEY, today.number);
+                        }
                     }}
                 >
                     {showRoot2 ? today.secondRoot : "Reveal second root"}
@@ -182,9 +188,11 @@ const Puzzle = () => {
                     className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
                     onClick={() => { if (showOrigin && showRoot1 && showRoot2) 
                         setShowRevealAnswer(true);
-                        updateStreak(true, today.number);
-                        handleRevealAnswer();
-                        localStorage.setItem(LAST_REVEAL_HINT_KEY, today.number);
+                        if (!isComplete) {
+                            updateStreak(true, today.number);
+                            localStorage.setItem(LAST_REVEAL_HINT_KEY, today.number);
+                            handleRevealAnswer();
+                        }
                     }}
                 >
                     {showRevealAnswer ? today.shortExplanation : "Reveal answer"}
