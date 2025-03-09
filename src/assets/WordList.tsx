@@ -6,6 +6,7 @@ export interface WordData {
     firstRoot: string;
     secondRoot: string;
     shortExplanation: string;
+    longExplanation: string;
 }
 
 export const WORD_LIST: WordData[] = [
@@ -16,7 +17,8 @@ export const WORD_LIST: WordData[] = [
         rootLanguages: "Greek, Latin", 
         firstRoot: "\"tele-\" is Greek for \"far\"", 
         secondRoot: "\"visio\" is Latin for \"vision\"",
-        shortExplanation: "\"tele-\" + \"visio\" = \"television\""
+        shortExplanation: "\"tele-\" + \"visio\" = \"television\"",
+        longExplanation: "The word \"television\" comes from the Greek and Latin for \"far vision\", since \"tele-\" means \"far\" and \"visio\" means \"vision\"."
     },
     { 
         number: "2", 
@@ -25,7 +27,8 @@ export const WORD_LIST: WordData[] = [
         rootLanguages: "Greek", 
         firstRoot: "\"bios\" is Greek for \"life\"", 
         secondRoot: "\"-graphia\" is Greek for \"writing\"",
-        shortExplanation: "\"bios\" + \"-graphia\" = \"biography\""
+        shortExplanation: "\"bios\" + \"-graphia\" = \"biography\"",
+        longExplanation: "The word \"biography\" comes from the Greek for \"life writing\", since \"bios\" means \"life\" and \"-graphia\" means \"writing\"."
     },
     { 
         number: "3", 
@@ -34,7 +37,8 @@ export const WORD_LIST: WordData[] = [
         rootLanguages: "Greek", 
         firstRoot: "\"helix\" is Greek for \"spiral\"", 
         secondRoot: "\"pteron\" is Greek for \"wing\"",
-        shortExplanation: "\"helix\" + \"pteron\" = \"helicopter\""
+        shortExplanation: "\"helix\" + \"pteron\" = \"helicopter\"",
+        longExplanation: "The word \"helicopter\" comes from the Greek for \"spiral wing\", since \"helix\" means \"spiral\" and \"pteron\" means \"wing\"."
     },
     { 
         number: "4", 
@@ -43,6 +47,7 @@ export const WORD_LIST: WordData[] = [
         rootLanguages: "Sanskrit", 
         firstRoot: "\"jagat\" is Sanskrit for \"the world\"", 
         secondRoot: "\"natha\" is Sanskrit for \"lord\"",
-        shortExplanation: "\"jagat\" + \"natha\" = \"juggernaut\""
+        shortExplanation: "\"jagat\" + \"natha\" = \"juggernaut\"",
+        longExplanation: "The word \"juggernaut\" comes from the Sanskrit for \"lord of the world\", since \"jagat\" means \"world\" and \"natha\" means \"lord\"."
     }
 ];

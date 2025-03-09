@@ -7,8 +7,9 @@ import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
 import { getPuzzleNumber } from "../util/Date";
+import { updateStreak } from "../util/Streak";
 
-const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
+export const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
 const LAST_FIRST_ROOT_HINT_KEY = "last-first-root-hint";
 const LAST_SECOND_ROOT_HINT_KEY = "last-second-root-hint";
@@ -53,6 +54,7 @@ const Puzzle = () => {
             return;
         }
         if (guess.join("").toLocaleLowerCase() === today.answer) {
+            updateStreak(false, today.number);
             handleRevealAnswer();
         }
     };
@@ -180,6 +182,7 @@ const Puzzle = () => {
                     className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
                     onClick={() => { if (showOrigin && showRoot1 && showRoot2) 
                         setShowRevealAnswer(true);
+                        updateStreak(true, today.number);
                         handleRevealAnswer();
                         localStorage.setItem(LAST_REVEAL_HINT_KEY, today.number);
                     }}
@@ -197,7 +200,12 @@ const Puzzle = () => {
                     </div>
                 </footer>
                 {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}
-                {isSuccessModalOpen && <SuccessModal onClose={() => setIsSuccessModalOpen(false)} />}
+                {isSuccessModalOpen && 
+                    <SuccessModal 
+                        onClose={() => setIsSuccessModalOpen(false)} 
+                        hintsUsed={(isOriginShown ? 1 : 0) + (isFirstRootShown ? 1 : 0) + (isSecondRootShown ? 1 : 0) + (isRevealShown ? 1 : 0)}
+                        today={today}
+                    />}
             </div>
         </>
     );
