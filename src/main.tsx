@@ -7,6 +7,7 @@ import PrivacyPolicy from './support/PrivacyPolicy.tsx';
 import TermsOfService from './support/TermsOfService.tsx';
 import Contact from './support/Contact.tsx';
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,5 +20,6 @@ createRoot(document.getElementById('root')!).render(
       </Routes>
     </Router>
     <Analytics />
+    <SpeedInsights />
   </StrictMode>,
 )
