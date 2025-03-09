@@ -15,7 +15,7 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
 
       <div className="helpModal">
         <button
-          className="absolute top-4 right-6 text-3xl font-bold text-gray-600 hover:text-gray-900"
+          className="absolute top-4 right-6 text-3xl font-bold text-gray-600 hover:text-gray-900 cursor-pointer"
           onClick={onClose}
         >
           &times;
