@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { WordData } from "../assets/WordList";
 import { getStreak } from "../util/Streak";
+import { getStats } from "../util/Stats";
 
 export interface SuccessModalProps {
   onClose: () => void;
@@ -32,6 +33,9 @@ export default function SuccessModal(props: SuccessModalProps) {
         </div>
         <div className="helpModelText">
           {"Streak: " + getStreak(props.today.number)}
+        </div>
+        <div>
+          {JSON.stringify(getStats())}
         </div>
       </div>
     </div>

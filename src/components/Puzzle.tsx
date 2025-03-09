@@ -8,6 +8,7 @@ import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
 import { getPuzzleNumber } from "../util/Date";
 import { updateStreak } from "../util/Streak";
+import { updateStats } from "../util/Stats";
 
 export const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
@@ -55,6 +56,7 @@ const Puzzle = () => {
         }
         if (guess.join("").toLocaleLowerCase() === today.answer) {
             updateStreak(false, today.number);
+            updateStats((isOriginShown ? 1 : 0) + (isFirstRootShown ? 1 : 0) + (isSecondRootShown ? 1 : 0) + (isRevealShown ? 1 : 0));
             handleRevealAnswer();
         }
     };
@@ -190,6 +192,7 @@ const Puzzle = () => {
                         setShowRevealAnswer(true);
                         if (!isComplete) {
                             updateStreak(true, today.number);
+                            updateStats(4);
                             localStorage.setItem(LAST_REVEAL_HINT_KEY, today.number);
                             handleRevealAnswer();
                         }
