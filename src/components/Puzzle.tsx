@@ -71,11 +71,7 @@ const Puzzle = () => {
         if (e.ctrlKey || e.altKey || e.metaKey || isComplete) {
             return;
         }
-        if (e.key === "ArrowRight") {
-            setSelectedIndex(Math.min(today.answer.length - 1, selectedIndex + 1));
-        } else if (e.key === "ArrowLeft") {
-            setSelectedIndex(Math.max(0, selectedIndex - 1));
-        } else if (e.key.match(/^[a-zA-Z]$/)) {
+        if (e.key.match(/^[a-zA-Z]$/)) {
             handleKeyPress(e.key.toUpperCase());
         } else if (e.key === "Backspace") {
             handleBackspace();

@@ -11,7 +11,6 @@ This is an etymology word game, where your goal is to guess the word that has th
 ## To-do
 
 * Come up with many more words
-* Fix arrow key bug
 * Real privacy policy, terms of service, and contact
 * Add share + stats
 * Bug test
