@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { WordData } from "../assets/WordList";
-import { getStreak } from "../util/Streak";
+import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
 
 export interface SuccessModalProps {
@@ -50,6 +50,10 @@ export default function SuccessModal(props: SuccessModalProps) {
 
         <div className="helpModalText">
           {"Streak: " + getStreak(props.today.number)}
+        </div>
+
+        <div className="helpModalText">
+          {"Best streak: " + getBestStreak()}
         </div>
 
         <div className="helpModalText">
