@@ -15,12 +15,14 @@ const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
 const LAST_FIRST_ROOT_HINT_KEY = "last-first-root-hint";
 const LAST_SECOND_ROOT_HINT_KEY = "last-second-root-hint";
 const LAST_REVEAL_HINT_KEY = "last-reveal-hint";
+const LAST_DEFINITION_KEY = "last-definition-hint";
 
 const Puzzle = () => {
     const today = WORD_LIST[getPuzzleNumber() - 1];
     const [showOrigin, setShowOrigin] = useState(false);
     const [showRoot1, setShowRoot1] = useState(false);
     const [showRoot2, setShowRoot2] = useState(false);
+    const [showDefinition, setShowDefinition] = useState(false);
     const [showRevealAnswer, setShowRevealAnswer] = useState(false);
     const [guess, setGuess] = useState<string[]>(Array(today.answer.length).fill(""));
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
@@ -65,6 +67,7 @@ const Puzzle = () => {
     const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === today.number;
     const isFirstRootShown = localStorage.getItem(LAST_FIRST_ROOT_HINT_KEY) === today.number;
     const isSecondRootShown = localStorage.getItem(LAST_SECOND_ROOT_HINT_KEY) === today.number;
+    const isDefinitionShown = localStorage.getItem(LAST_DEFINITION_KEY) === today.number;
     const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === today.number;
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -106,6 +109,9 @@ const Puzzle = () => {
         if (isSecondRootShown) {
             setShowRoot2(true);
         }
+        if (isDefinitionShown) {
+            setShowDefinition(true);
+        }
         if (isRevealShown) {
             setShowRevealAnswer(true);
         }
@@ -128,7 +134,7 @@ const Puzzle = () => {
                 <hr className="divider" />
 
                 <div className="promptText">
-                    {"the literal meaning of the " + today.answer.length + "-letter word"}
+                    {"the literal root meaning of the " + today.answer.length + "-letter word"}
                 </div>
 
                 <div className="userInput">
@@ -183,12 +189,28 @@ const Puzzle = () => {
                 </button>
                 
                 <button
-                    className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => { if (showOrigin && showRoot1 && showRoot2) 
-                        setShowRevealAnswer(true);
+                    className={showDefinition ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
+                    onClick={() => { 
+                        if (showOrigin && showRoot1 && showRoot2) {
+                            setShowDefinition(true)
+                        }
+                        if (!isComplete) {
+                            localStorage.setItem(LAST_DEFINITION_KEY, today.number);
+                        }
+                    }}
+                >
+                    {showDefinition ? today.definition : "Reveal English definition hint"}
+                </button>
+
+                <button
+                    className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 && showDefinition ? "hintButton" : "hintButtonDisabled"}
+                    onClick={() => { 
+                        if (showOrigin && showRoot1 && showRoot2 && showDefinition) {
+                            setShowRevealAnswer(true);
+                        }
                         if (!isComplete) {
                             updateStreak(true, today.number);
-                            updateStats(4);
+                            updateStats(5);
                             localStorage.setItem(LAST_REVEAL_HINT_KEY, today.number);
                             handleRevealAnswer();
                         }

@@ -7,7 +7,7 @@ export const STATS_KEY = "stats";
 export const updateStats = (hintsUsed: number) => {
     const previousStats = localStorage.getItem(STATS_KEY);
     if (previousStats === null) {
-        const hintsStats = Array(5).fill(0);
+        const hintsStats = Array(6).fill(0);
         hintsStats[hintsUsed] = 1;
         const newStats: Stats = {
             hintsStats: hintsStats

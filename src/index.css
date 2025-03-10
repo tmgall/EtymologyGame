@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 .hintButton {
-    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-100 bg-sky-800 rounded text-sky-100 hover:bg-sky-700 active:bg-sky-600 hover:cursor-pointer max-w-96 w-full
+    @apply font-bold mt-2 px-4 py-0.5 border-2 border-sky-100 bg-sky-800 rounded text-sky-100 hover:bg-sky-700 active:bg-sky-600 hover:cursor-pointer max-w-96 w-full
 }
 
 .hintButtonRevealed {
-    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-100 bg-sky-800 rounded text-sky-100 max-w-96 w-full
+    @apply font-bold mt-2 px-4 py-0.5 border-2 border-sky-100 bg-sky-800 rounded text-sky-100 max-w-96 w-full
 }
 
 .hintButtonDisabled {
-    @apply font-bold mt-2 px-4 py-2 border-2 border-sky-200 bg-sky-950 rounded text-sky-200 max-w-96 w-full
+    @apply font-bold mt-2 px-4 py-0.5 border-2 border-sky-200 bg-sky-950 rounded text-sky-200 max-w-96 w-full
 }
 
 .keyboardButton {
@@ -17,7 +17,7 @@
 }
 
 .promptText {
-    @apply text-xl mt-2 self-start max-w-md font-mono text-sky-100
+    @apply text-xl mt-2 flex items-center justify-center text-center w-full font-mono text-sky-100
 }
 
 .userInput {
@@ -25,7 +25,7 @@
 }
 
 .clue {
-    @apply text-xl self-start mt-2 font-mono w-fit text-sky-100
+    @apply text-xl mt-2 flex items-center justify-center text-center w-full font-mono text-sky-100
 }
 
 .divider {
