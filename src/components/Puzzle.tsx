@@ -97,9 +97,12 @@ const Puzzle = () => {
     }, [selectedIndex, guess]);
       
     useEffect(() => {
+        if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === null) {
+            setIsHelpModalOpen(true);
+        }
         if (isComplete) {
             handleRevealAnswer();
-        } 
+        }
         if (isOriginShown) {
             setShowOrigin(true);
         }
