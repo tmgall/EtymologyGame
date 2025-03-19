@@ -13,7 +13,7 @@
 }
 
 .keyboardButton {
-    @apply flex-1 h-12 text-sky-100 bg-sky-800 border-sky-100 border-2 rounded-md text-center text-lg font-semibold hover:bg-sky-700 active:bg-sky-600
+    @apply flex-1 h-12 text-sky-100 bg-sky-800 border-sky-100 border-2 rounded-md text-center hover:cursor-pointer text-lg font-semibold hover:bg-sky-700 active:bg-sky-600
 }
 
 .promptText {
@@ -46,4 +46,8 @@
 
 .helpModalText {
     @apply text-sky-950 mb-2 text-sm
+}
+
+.successModalText {
+    @apply text-sky-950 mb-2 text-sm font-bold
 }

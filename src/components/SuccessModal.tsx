@@ -37,31 +37,44 @@ export default function SuccessModal(props: SuccessModalProps) {
       <div className="absolute inset-0" onClick={props.onClose} />
 
       <div className="helpModal">
-        <div className="helpModalText">
-          {hintMessages[props.hintsUsed]}
+      <button
+          className="absolute top-4 right-6 text-3xl font-bold text-gray-600 hover:text-gray-900 cursor-pointer"
+          onClick={props.onClose}
+        >
+          &times;
+        </button>
+        <div className="w-full max-w-md justify-center items-center flex">
+          <div className="helpModalHeaderText">
+            {hintMessages[props.hintsUsed]}
+          </div>
         </div>
 
-        <div className="helpModalText">
-          {props.today.longExplanation}
+        <div className="w-full max-w-md justify-center items-center flex">
+          <div className="helpModalText">
+            {props.today.longExplanation}
+          </div>
         </div>
 
-        <div className="helpModalText">
-          Stats
+        <div className="w-full max-w-md justify-center items-center flex">
+          <div className="helpModalHeaderText">
+            Stats
+          </div>
         </div>
 
-        <div className="helpModalText">
-          {"Streak: " + getStreak(props.today.number)}
-        </div>
-
-        <div className="helpModalText">
-          {"Best streak: " + getBestStreak()}
+        <div className="flex gap-2 justify-center items-center">
+          <div className="successModalText">
+            {"Streak: " + getStreak(props.today.number)}
+          </div>
+          <div className="successModalText">
+            {"Best streak: " + getBestStreak()}
+          </div>
         </div>
 
         <div className="helpModalText">
           Hints distribution
         </div>
 
-        <div className="w-full max-w-md space-y-2">
+        <div className="w-full max-w-md space-y-2 mb-2">
           {stats.map((value, index) => (
             <div key={index} className="flex items-center">
               <span className="w-2 text-right text-sm font-bold text-sky-900">{index}</span>
@@ -77,9 +90,12 @@ export default function SuccessModal(props: SuccessModalProps) {
           ))}
         </div>
 
-        <div className="helpModalText">
-          {`Next puzzle in: ${hours}:${minutes}:${seconds}`}
+        <div className="w-full flex items-center justify-center">
+          <div className="successModalText">
+            {`Next puzzle in: ${hours}:${minutes}:${seconds}`}
+          </div>
         </div>
+
         <div className="w-full flex items-center justify-center">
           <ShareTextButtonProps text="testing"/>
         </div>
