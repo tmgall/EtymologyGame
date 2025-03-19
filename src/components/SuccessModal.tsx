@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { WordData } from "../assets/WordList";
 import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
+import ShareTextButtonProps from "./Share";
 
 export interface SuccessModalProps {
   onClose: () => void;
@@ -63,7 +64,7 @@ export default function SuccessModal(props: SuccessModalProps) {
         <div className="w-full max-w-md space-y-2">
           {stats.map((value, index) => (
             <div key={index} className="flex items-center">
-              <span className="w-2 text-right text-sm font-bold text-sky-900">{index}</span>              
+              <span className="w-2 text-right text-sm font-bold text-sky-900">{index}</span>
               <div className="ml-2 flex-1 bg-sky-100 overflow-hidden">
                 <div
                   className="bg-sky-900 text-sky-100 text-xs font-bold h-6 flex items-center justify-end pr-2" 
@@ -78,6 +79,9 @@ export default function SuccessModal(props: SuccessModalProps) {
 
         <div className="helpModalText">
           {`Next puzzle in: ${hours}:${minutes}:${seconds}`}
+        </div>
+        <div className="w-full flex items-center justify-center">
+          <ShareTextButtonProps text="testing"/>
         </div>
       </div>
     </div>
