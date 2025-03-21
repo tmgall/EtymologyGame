@@ -3,6 +3,7 @@ import { WordData } from "../assets/WordList";
 import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
 import ShareTextButtonProps from "./Share";
+import { MOST_RECENTLY_COMPLETED_PUZZLE_KEY } from "./Puzzle";
 
 export interface SuccessModalProps {
   onClose: () => void;
@@ -49,30 +50,36 @@ export default function SuccessModal(props: SuccessModalProps) {
   const link = `Play today's puzzle: https://lexicon-pi.vercel.app/`;
   const shareText: string = `${dayLine}\n\n${props.hintsUsed === 0 ? noHints : someHints}\n${streak}\n${link}`;
 
-  console.log(shareText)
+  const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) 
+  const explanationSection = (
+    <div>
+      <div className="w-full max-w-md justify-center items-center flex">
+        <div className="helpModalHeaderText">
+          {hintMessages[props.hintsUsed]}
+        </div>
+      </div>
+
+      <div className="w-full max-w-md justify-center items-center flex">
+        <div className="helpModalText">
+          {props.today.longExplanation}
+        </div>
+      </div>
+    </div>
+    );
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
       <div className="absolute inset-0" onClick={props.onClose} />
 
       <div className="helpModal">
-      <button
+        <button
           className="absolute top-4 right-6 text-3xl font-bold text-gray-600 hover:text-gray-900 cursor-pointer"
           onClick={props.onClose}
         >
           &times;
         </button>
-        <div className="w-full max-w-md justify-center items-center flex">
-          <div className="helpModalHeaderText">
-            {hintMessages[props.hintsUsed]}
-          </div>
-        </div>
 
-        <div className="w-full max-w-md justify-center items-center flex">
-          <div className="helpModalText">
-            {props.today.longExplanation}
-          </div>
-        </div>
+        {shouldShowExplanationSection && explanationSection}
 
         <div className="w-full max-w-md justify-center items-center flex">
           <div className="helpModalHeaderText">

@@ -12,7 +12,8 @@ This is an etymology word game, where your goal is to guess the word that has th
 
 * Come up with many more words
 * Real privacy policy and terms of service
-* Add real sharing
+* Finalize sharing text
+* Properly space stats button and get icon 
 * Make sure iPad works
 * Add animations
 * Bug test

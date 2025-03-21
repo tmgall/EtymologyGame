@@ -133,7 +133,7 @@ const Puzzle = () => {
     return (
         <>
             <div className="flex flex-col items-center justify-between w-full p-4">
-                <Header setIsModalOpen={setIsHelpModalOpen} />
+                <Header setIsHelpModalOpen={setIsHelpModalOpen} setIsSuccessModalOpen={setIsSuccessModalOpen} />
                 <hr className="divider" />
 
                 <div className="promptText">
