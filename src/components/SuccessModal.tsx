@@ -46,7 +46,7 @@ export default function SuccessModal(props: SuccessModalProps) {
   const noHints = `I solved today's Lexicon with 0 hints!`;
   const someHints = `I solved today\'s Lexicon with ${props.hintsUsed + 1} hints: ${emojis[props.hintsUsed]}` 
   const streak = `I'm on a streak of ${fire}${getStreak(props.today.number)}${fire}`
-  const link = `Play today's puzzle: lexicon-pi.vercel.app`;
+  const link = `Play today's puzzle: https://lexicon-pi.vercel.app/`;
   const shareText: string = `${dayLine}\n\n${props.hintsUsed === 0 ? noHints : someHints}\n${streak}\n${link}`;
 
   console.log(shareText)
