@@ -32,15 +32,24 @@ export default function SuccessModal(props: SuccessModalProps) {
   const minutes = String(Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
   const seconds = String(Math.floor((diffMs % (1000 * 60)) / 1000)).padStart(2, "0");
 
-  const emojis = '🌎1️⃣2️⃣📖⚡';
+  const emojis = [
+    "\u{1F30D}", 
+    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3}", 
+    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3} \u{0032}\u{FE0F}\u{20E3}",
+    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3} \u{0032}\u{FE0F}\u{20E3} \u{1F4D6}",
+    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3} \u{0032}\u{FE0F}\u{20E3} \u{1F4D6} \u{26A1}"
+  ];
+
   const fire = '🔥'
   const dateFormatted = `${now.getMonth() + 1}/${now.getDate()}`;
   const dayLine = `Lexicon ${dateFormatted}: Puzzle #${props.today.number}`
   const noHints = `I solved today's Lexicon with 0 hints!`;
-  const someHints = `I solved today\'s Lexicon with ${props.hintsUsed} hints: ${emojis.slice(0, props.hintsUsed)}` 
-  const streak = `I'm on a streak${fire} of ${getStreak(props.today.number)}!`
-  const link = `Play: lexicon-pi.vercel.app`;
+  const someHints = `I solved today\'s Lexicon with ${props.hintsUsed + 1} hints: ${emojis[props.hintsUsed]}` 
+  const streak = `I'm on a streak of ${fire}${getStreak(props.today.number)}${fire}`
+  const link = `Play today's puzzle: lexicon-pi.vercel.app`;
   const shareText: string = `${dayLine}\n\n${props.hintsUsed === 0 ? noHints : someHints}\n${streak}\n${link}`;
+
+  console.log(shareText)
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
