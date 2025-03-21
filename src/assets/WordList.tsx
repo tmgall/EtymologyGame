@@ -54,5 +54,16 @@ export const WORD_LIST: WordData[] = [
         definition: "a huge or overwhelming force",
         shortExplanation: "\"jagat\" + \"natha\" = \"juggernaut\"",
         longExplanation: "The word \"juggernaut\" comes from the Sanskrit for \"lord of the world\", since \"jagat\" means \"world\" and \"natha\" means \"lord\"."
+    },
+    {
+        number: "5",
+        clue: "instrument for seeing the small",
+        answer: "microscopic", 
+        rootLanguages: "Latin", 
+        firstRoot: "\"micro-\" is Latin for \"small\"", 
+        secondRoot: "\"-scopium\" is Latin for \"instrument for seeing\"",
+        definition: "an instrument to see very small objects",
+        shortExplanation: "\"micro-\" + \"-scopium\" = \"microscope\"",
+        longExplanation: "The word \"microscope\" comes from the Latin for \"instrument for seeing the small\", since \"micro-\" means \"the small\" and \"-scopium\" means \"an instrument for seeing\""
     }
 ];
