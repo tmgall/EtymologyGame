@@ -44,11 +44,13 @@ export default function SuccessModal(props: SuccessModalProps) {
   const fire = '🔥'
   const dateFormatted = `${now.getMonth() + 1}/${now.getDate()}`;
   const dayLine = `Lexicon ${dateFormatted}: Puzzle #${props.today.number}`
-  const noHints = `I solved today's Lexicon with 0 hints!`;
-  const someHints = `I solved today\'s Lexicon with ${props.hintsUsed + 1} hints: ${emojis[props.hintsUsed]}` 
-  const streak = `I'm on a streak of ${fire}${getStreak(props.today.number)}${fire}`
-  const link = `Play today's puzzle: https://lexicon-pi.vercel.app/`;
-  const shareText: string = `${dayLine}\n\n${props.hintsUsed === 0 ? noHints : someHints}\n${streak}\n${link}`;
+  const noHints = `I solved it without any hints!`;
+  const someHints = `I solved it with ${props.hintsUsed + 1} hints: ${emojis[props.hintsUsed]}`;
+  const streak = getStreak(props.today.number); 
+  const noStreak = 'I had to reveal it today — see if you can beat me!'
+  const someStreak = `I'm on a streak of ${fire}${streak}${fire}`
+  const link = `https://lexicon-pi.vercel.app/`;
+  const shareText: string = `${dayLine}\n\n${props.hintsUsed === 0 ? noHints : someHints}\n${streak === 0 ? noStreak : someStreak}\n${link}`;
 
   const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) 
   const explanationSection = (
