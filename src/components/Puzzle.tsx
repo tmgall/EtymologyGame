@@ -9,6 +9,7 @@ import SuccessModal from "./SuccessModal";
 import { getPuzzleNumber } from "../util/Date";
 import { updateStreak } from "../util/Streak";
 import { updateStats } from "../util/Stats";
+import HintButton from "./HintButton";
 
 export const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
@@ -132,7 +133,7 @@ const Puzzle = () => {
 
     return (
         <>
-            <div className="flex flex-col items-center justify-between w-full p-4">
+            <div className="puzzle">
                 <Header setIsHelpModalOpen={setIsHelpModalOpen} setIsSuccessModalOpen={setIsSuccessModalOpen} />
                 <hr className="divider" />
 
@@ -148,62 +149,52 @@ const Puzzle = () => {
                 </div>
 
                 <div className="clue">
-                    is "{<span className="font-bold">{today.clue}</span>}"
+                    is "{<span style={{ fontWeight: 700 }}>{today.clue}</span>}"
                 </div>
 
-                <button
-                    className={showOrigin ? "hintButtonRevealed" : "hintButton"}
-                    onClick={() => {
-                        if (!isComplete) {
-                            localStorage.setItem(LAST_ORIGIN_HINT_KEY, today.number); 
-                        }
-                        setShowOrigin(true);
-                    }}
-                >
-                    {showOrigin ? "origins in " + today.rootLanguages : "Reveal language(s) of origin"}
-                </button>
+                <HintButton 
+                    number={today.number} 
+                    hint={today.rootLanguages} 
+                    hintText={"Reveal language(s) of origin"} 
+                    storageKey={LAST_ORIGIN_HINT_KEY} 
+                    puzzleIsComplete={isComplete} 
+                    revealed={showOrigin} 
+                    disabled={false} 
+                    setShowHint={setShowOrigin} 
+                />
 
-                <button
-                    className={showRoot1 ? "hintButtonRevealed" : showOrigin ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => { 
-                        if (showOrigin) {
-                            setShowRoot1(true);
-                        }
-                        if (!isComplete) {
-                            localStorage.setItem(LAST_FIRST_ROOT_HINT_KEY, today.number);
-                        }
-                    }}
-                >
-                    {showRoot1 ? today.firstRoot : "Reveal first root"}
-                </button>
+                <HintButton 
+                    number={today.number} 
+                    hint={today.firstRoot} 
+                    hintText={"Reveal first root"} 
+                    storageKey={LAST_FIRST_ROOT_HINT_KEY} 
+                    puzzleIsComplete={isComplete} 
+                    revealed={showRoot1} 
+                    disabled={!showOrigin} 
+                    setShowHint={setShowRoot1} 
+                />
 
-                <button
-                    className={showRoot2 ? "hintButtonRevealed" : showOrigin && showRoot1 ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => { 
-                        if (showOrigin && showRoot1) {
-                            setShowRoot2(true)
-                        }
-                        if (!isComplete) {
-                            localStorage.setItem(LAST_SECOND_ROOT_HINT_KEY, today.number);
-                        }
-                    }}
-                >
-                    {showRoot2 ? today.secondRoot : "Reveal second root"}
-                </button>
-                
-                <button
-                    className={showDefinition ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 ? "hintButton" : "hintButtonDisabled"}
-                    onClick={() => { 
-                        if (showOrigin && showRoot1 && showRoot2) {
-                            setShowDefinition(true)
-                        }
-                        if (!isComplete) {
-                            localStorage.setItem(LAST_DEFINITION_KEY, today.number);
-                        }
-                    }}
-                >
-                    {showDefinition ? today.definition : "Reveal English definition hint"}
-                </button>
+                <HintButton 
+                    number={today.number} 
+                    hint={today.secondRoot} 
+                    hintText={"Reveal second root"} 
+                    storageKey={LAST_SECOND_ROOT_HINT_KEY} 
+                    puzzleIsComplete={isComplete} 
+                    revealed={showRoot2} 
+                    disabled={!showRoot1} 
+                    setShowHint={setShowRoot2} 
+                />
+
+                <HintButton 
+                    number={today.number} 
+                    hint={today.definition} 
+                    hintText={"Reveal English definition hint"} 
+                    storageKey={LAST_DEFINITION_KEY} 
+                    puzzleIsComplete={isComplete} 
+                    revealed={showDefinition} 
+                    disabled={!showRoot2} 
+                    setShowHint={setShowDefinition} 
+                />
 
                 <button
                     className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 && showDefinition ? "hintButton" : "hintButtonDisabled"}
@@ -225,7 +216,7 @@ const Puzzle = () => {
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
                 <footer className="footer">
-                    <div className="flex justify-center gap-4">
+                    <div className="footerSpacing">
                         <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
                         <Link to="/terms-of-service" className="hover:underline">Terms of Service</Link>
                         <Link to="/contact" className="hover:underline">Contact</Link>

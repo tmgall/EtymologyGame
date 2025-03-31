@@ -57,11 +57,11 @@ export const WORD_LIST: WordData[] = [
     },
     {
         number: "5",
-        clue: "instrument for seeing the small",
-        answer: "microscopic", 
+        clue: "small-seeing instrument",
+        answer: "microscope", 
         rootLanguages: "Latin", 
         firstRoot: "\"micro-\" is Latin for \"small\"", 
-        secondRoot: "\"-scopium\" is Latin for \"instrument for seeing\"",
+        secondRoot: "\"-scopium\" is Latin for \"seeing instrument\"",
         definition: "an instrument to see very small objects",
         shortExplanation: "\"micro-\" + \"-scopium\" = \"microscope\"",
         longExplanation: "The word \"microscope\" comes from the Latin for \"instrument for seeing the small\", since \"micro-\" means \"the small\" and \"-scopium\" means \"an instrument for seeing\""

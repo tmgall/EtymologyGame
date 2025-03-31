@@ -23,7 +23,7 @@ export default function ShareTextButtonProps({ text }: ShareTextButtonProps) {
   return (
     <button
       onClick={handleShare}
-      className="px-4 py-2 bg-sky-900 text-sky-50 rounded-lg hover:cursor-pointer"
+      className="shareButton"
     >
       Share!
     </button>

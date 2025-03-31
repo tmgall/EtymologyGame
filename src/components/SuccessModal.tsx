@@ -55,13 +55,13 @@ export default function SuccessModal(props: SuccessModalProps) {
   const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) 
   const explanationSection = (
     <div>
-      <div className="w-full max-w-md justify-center items-center flex">
+      <div className="successModalBoxes">
         <div className="helpModalHeaderText">
           {hintMessages[props.hintsUsed]}
         </div>
       </div>
 
-      <div className="w-full max-w-md justify-center items-center flex">
+      <div className="successModalBoxes">
         <div className="helpModalText">
           {props.today.longExplanation}
         </div>
@@ -70,30 +70,25 @@ export default function SuccessModal(props: SuccessModalProps) {
     );
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
-      <div className="absolute inset-0" onClick={props.onClose} />
-
-      <div className="helpModal">
-        <button
-          className="absolute top-4 right-6 text-3xl font-bold text-gray-600 hover:text-gray-900 cursor-pointer"
-          onClick={props.onClose}
-        >
+    <div className="helpModalOverlay" onClick={props.onClose}>
+      <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
+        <button className="closeButton" onClick={props.onClose}>
           &times;
         </button>
 
         {shouldShowExplanationSection && explanationSection}
 
-        <div className="w-full max-w-md justify-center items-center flex">
+        <div className="successModalBoxes">
           <div className="helpModalHeaderText">
             Stats
           </div>
         </div>
 
-        <div className="flex gap-2 justify-center items-center">
-          <div className="successModalText">
+        <div className="streakBox">
+          <div className="helpModalText">
             {"Streak: " + getStreak(props.today.number)}
           </div>
-          <div className="successModalText">
+          <div className="helpModalText">
             {"Best streak: " + getBestStreak()}
           </div>
         </div>
@@ -102,13 +97,13 @@ export default function SuccessModal(props: SuccessModalProps) {
           Hints distribution
         </div>
 
-        <div className="w-full max-w-md space-y-2 mb-2">
+        <div className="statsBox">
           {stats.map((value, index) => (
-            <div key={index} className="flex items-center">
-              <span className="w-2 text-right text-sm font-bold text-sky-900">{index}</span>
-              <div className="ml-2 flex-1 bg-sky-100 overflow-hidden">
+            <div key={index} className="statsRow">
+              <span className="statsIndex">{index}</span>
+              <div className="statsBar">
                 <div
-                  className="bg-sky-900 text-sky-100 text-xs font-bold h-6 flex items-center justify-end pr-2" 
+                  className="statsBarBox" 
                   style={{ width: `${Math.max((value / maxValue) * 100, 9)}%` }}
                 >
                   {value}
@@ -118,13 +113,13 @@ export default function SuccessModal(props: SuccessModalProps) {
           ))}
         </div>
 
-        <div className="w-full flex items-center justify-center">
-          <div className="successModalText">
+        <div className="successModalBoxes">
+          <div className="helpModalText">
             {`Next puzzle in: ${hours}:${minutes}:${seconds}`}
           </div>
         </div>
 
-        <div className="w-full flex items-center justify-center">
+        <div className="successModalBoxes">
           <ShareTextButtonProps text={shareText}/>
         </div>
       </div>
