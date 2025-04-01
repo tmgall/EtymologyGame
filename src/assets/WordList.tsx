@@ -7,7 +7,6 @@ export interface WordData {
     secondRoot: string;
     definition: string;
     shortExplanation: string;
-    longExplanation: string;
 }
 
 export const WORD_LIST: WordData[] = [
@@ -15,12 +14,11 @@ export const WORD_LIST: WordData[] = [
         number: "1", 
         clue: "far vision", 
         answer: "television", 
-        rootLanguages: "Greek, Latin", 
+        rootLanguages: "Greek and Latin", 
         firstRoot: "\"tele-\" is Greek for \"far\"", 
         secondRoot: "\"visio\" is Latin for \"vision\"",
         definition: "technology with a screen",
         shortExplanation: "\"tele-\" + \"visio\" = \"television\"",
-        longExplanation: "The word \"television\" comes from the Greek and Latin for \"far vision\", since \"tele-\" means \"far\" and \"visio\" means \"vision\"."
     },
     { 
         number: "2", 
@@ -31,7 +29,6 @@ export const WORD_LIST: WordData[] = [
         secondRoot: "\"-graphia\" is Greek for \"writing\"",
         definition: "an account of someone's life",
         shortExplanation: "\"bios\" + \"-graphia\" = \"biography\"",
-        longExplanation: "The word \"biography\" comes from the Greek for \"life writing\", since \"bios\" means \"life\" and \"-graphia\" means \"writing\"."
     },
     { 
         number: "3", 
@@ -42,7 +39,6 @@ export const WORD_LIST: WordData[] = [
         secondRoot: "\"pteron\" is Greek for \"wing\"",
         definition: "a type of aircraft",
         shortExplanation: "\"helix\" + \"pteron\" = \"helicopter\"",
-        longExplanation: "The word \"helicopter\" comes from the Greek for \"spiral wing\", since \"helix\" means \"spiral\" and \"pteron\" means \"wing\"."
     },
     { 
         number: "4", 
@@ -53,7 +49,6 @@ export const WORD_LIST: WordData[] = [
         secondRoot: "\"natha\" is Sanskrit for \"lord\"",
         definition: "a huge or overwhelming force",
         shortExplanation: "\"jagat\" + \"natha\" = \"juggernaut\"",
-        longExplanation: "The word \"juggernaut\" comes from the Sanskrit for \"lord of the world\", since \"jagat\" means \"world\" and \"natha\" means \"lord\"."
     },
     {
         number: "5",
@@ -64,6 +59,55 @@ export const WORD_LIST: WordData[] = [
         secondRoot: "\"-scopium\" is Latin for \"seeing instrument\"",
         definition: "an instrument to see very small objects",
         shortExplanation: "\"micro-\" + \"-scopium\" = \"microscope\"",
-        longExplanation: "The word \"microscope\" comes from the Latin for \"instrument for seeing the small\", since \"micro-\" means \"the small\" and \"-scopium\" means \"an instrument for seeing\""
-    }
+    },
+    {
+        number: "6",
+        clue: "harbor wave",
+        answer: "tsunami", 
+        rootLanguages: "Japanese", 
+        firstRoot: "\"tsu\" is Japanese for \"harbor\"", 
+        secondRoot: "\"nami\" is Japanese for \"wave\"",
+        definition: "a big wave",
+        shortExplanation: "\"tsu\" + \"nami\" = \"tsunami\"",
+    },
+    {
+        number: "7",
+        clue: "joy from harm",
+        answer: "Schadenfreude", 
+        rootLanguages: "German", 
+        firstRoot: "\"Schaden\" is German for \"harm\"", 
+        secondRoot: "\"Freude\" is German for \"joy\"",
+        definition: "joy from harm to others",
+        shortExplanation: "\"Schaden\" + \"Freude\" = \"Schadenfreude\"",
+    },
+    {
+        number: "8",
+        clue: "two wheels",
+        answer: "bicycle", 
+        rootLanguages: "Greek", 
+        firstRoot: "\"bi-\" is Greek for \"two\"", 
+        secondRoot: "\"kyklos\" is Greek for \"wheel\"",
+        definition: "a two-wheeled transport",
+        shortExplanation: "\"bi-\" + \"kyklos\" = \"bicycle\"",
+    },
+    {
+        number: "9",
+        clue: "flesh devourer",
+        answer: "carnivore",
+        rootLanguages: "Latin", 
+        firstRoot: "\"carni\" is Latin for \"flesh\"", 
+        secondRoot: "\"vore\" is Latin for \"devour\"",
+        definition: "one that eats meat",
+        shortExplanation: "\"carni\" + \"vore\" = \"carnivore\"",
+    },
+    {
+        number: "10",
+        clue: "beyond reality",
+        answer: "surrealism", 
+        rootLanguages: "French", 
+        firstRoot: "\"sur\" is French for \"beyond\"", 
+        secondRoot: "\"realisme\" is French for \"reality\"",
+        definition: "bizarre and dreamlike art",
+        shortExplanation: "\"sur\" + \"realisme\" = \"surrealism\"",
+    },
 ];

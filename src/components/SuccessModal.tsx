@@ -52,7 +52,8 @@ export default function SuccessModal(props: SuccessModalProps) {
   const link = `https://lexicon-pi.vercel.app/`;
   const shareText: string = `${dayLine}\n\n${props.hintsUsed === 0 ? noHints : someHints}\n${streak === 0 ? noStreak : someStreak}\n${link}`;
 
-  const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) 
+  const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
+  const longExplanation = `The word "${props.today.answer}" comes from the ${props.today.rootLanguages} for "${props.today.clue}", since ${props.today.firstRoot} and ${props.today.secondRoot}.`
   const explanationSection = (
     <div>
       <div className="successModalBoxes">
@@ -63,7 +64,7 @@ export default function SuccessModal(props: SuccessModalProps) {
 
       <div className="successModalBoxes">
         <div className="helpModalText">
-          {props.today.longExplanation}
+          {longExplanation}
         </div>
       </div>
     </div>
