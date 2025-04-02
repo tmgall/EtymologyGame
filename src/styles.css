@@ -32,6 +32,63 @@
     padding: 16px;
 }
 
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
+.headerText {
+    display: flex;
+    flex-direction: column;
+}
+
+.headerName {
+    font-size: 48px;
+    font-weight: 800px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    line-height: 1;
+    text-align: left;
+}
+
+.headerPuzzleNumber {
+    font-family: 'Courier New', Courier, monospace;
+    max-width: 384px;
+}
+
+.headerButtons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.headerButton {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: var(--ready);
+    border-radius: 50%;
+    border-color: var(--lightest);
+    border-width: 1px;
+}
+
+.headerButton:hover {
+    background-color: var(--hover);
+}
+
+.headerButton:active {
+    background-color: var(--active);
+}
+
 .divider {
     border-top-width: 1px;
     width: 100%;
