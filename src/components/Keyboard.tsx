@@ -22,11 +22,11 @@ const Keyboard = ({ onKeyPress, onBackspace, onSubmit }: KeyboardProps) => {
     }
   
     return (
-      <div className="flex flex-col gap-2 w-full max-w-96 mx-auto mt-2">
+      <div className="keyboard">
         {keys.map((row, rowIndex) => (
           <div
             key={rowIndex}
-            className="flex w-full justify-center gap-1 text-sky-950 "
+            className="keyboardRow"
           >
             {row.map((key, index) => (
               <button

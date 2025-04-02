@@ -102,9 +102,25 @@
     padding: 3px;
 }
 
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-inline: auto;
+    margin-top: 8px;
+}
+
+.keyboardRow {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 4px;
+}
+
 .keyboardButton {
     flex: 1;
-    height: 12;
+    height: 36px;
     background-color: var(--revealed);
     border-width: 2px;
     font-weight: 500;
