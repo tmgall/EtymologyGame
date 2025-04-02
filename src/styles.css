@@ -32,6 +32,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    max-width: var(--max-width);
     padding: 16px;
 }
 
