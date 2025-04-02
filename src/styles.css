@@ -165,7 +165,7 @@
 .keyboard {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     width: 100%;
     max-width: var(--max-width);
     margin-inline: auto;
@@ -176,18 +176,17 @@
     display: flex;
     width: 100%;
     max-width: var(--max-width);
-    justify-content: center;
-    gap: 4px;
+    gap: 3px;
 }
 
 .keyboardButton {
     flex: 1;
     height: 36px;
     background-color: var(--revealed);
-    border-width: 2px;
+    border-width: 1px;
     font-weight: 500;
     border-radius: 4px;
-    font-size: large
+    font-size: 20px;
 }
 
 .keyboardButton:hover {
