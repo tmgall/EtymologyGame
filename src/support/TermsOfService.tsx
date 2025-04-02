@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 
 const TermsOfService = () => {
   return (
-    <div className="bg-sky-950 flex flex-col items-center space-y-4 p-4 min-h-screen">
-      <h1 className="text-sky-100 text-2xl font-bold">Terms of Service</h1>
-      <p className="text-sky-100">This is where your terms of service go.</p>
+    <div className="support">
+      <h1 className="supportHeader">Terms of Service</h1>
+      <p>This is where your terms of service go.</p>
 
-      <Link to="/" className="text-sky-100 hover:underline">
+      <br></br> 
+      <hr className="divider" />
+      <br></br> 
+
+      <Link to="/" className="backToHomeButton">
         Back to Home
       </Link>
     </div>

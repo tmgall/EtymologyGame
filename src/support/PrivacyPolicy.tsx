@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="bg-sky-950 flex flex-col items-center space-y-4 p-4 min-h-screen">
-      <h1 className="text-sky-100 text-2xl font-bold">Privacy Policy</h1>
-      <p className="text-sky-100">This is where your privacy policy goes.</p>
+    <div className="support">
+      <h1 className="supportHeader">Privacy Policy</h1>
+      <p>This is where your privacy policy goes.</p>
 
-      <Link to="/" className="text-sky-100 hover:underline">
+      <br></br> 
+      <hr className="divider" />
+      <br></br> 
+
+      <Link to="/" className="backToHomeButton">
         Back to Home
       </Link>
     </div>
