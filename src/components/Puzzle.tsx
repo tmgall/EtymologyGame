@@ -217,9 +217,9 @@ const Puzzle = () => {
 
                 <footer className="footer">
                     <div className="footerSpacing">
-                        <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
-                        <Link to="/terms-of-service" className="hover:underline">Terms of Service</Link>
-                        <Link to="/contact" className="hover:underline">Contact</Link>
+                        <Link to="/privacy-policy" className="backToHomeButton">Privacy Policy</Link>
+                        <Link to="/terms-of-service" className="backToHomeButton">Terms of Service</Link>
+                        <Link to="/contact" className="backToHomeButton">Contact</Link>
                     </div>
                 </footer>
                 {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}
