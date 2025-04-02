@@ -6,6 +6,8 @@
     --active: #0084d1;
     --lightest: #dff2fe;
     --max-width: 384px;
+    --font-mono: "Lucida Console", "Courier New", monospace;
+    --font-standard: "Georgia", serif
 }
 
 * {
@@ -13,13 +15,15 @@
     border-color: var(--lightest);
     color: var(--lightest);
     text-align: center;
+    font-family: var(--font-standard);
 }
 
 .app {
+    display: flex;
     max-width: var(--max-width);
-    width: 100%;
-    margin-inline: auto;
-    min-height: 100dvh;
+    margin-inline: auto auto;
+    width: 100vw;
+
 }
 
 .puzzle {
@@ -49,14 +53,14 @@
 .headerName {
     font-size: 48px;
     font-weight: 800px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     width: 100%;
     line-height: 1;
     text-align: left;
 }
 
 .headerPuzzleNumber {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono)
 }
 
 .headerButtons {
@@ -65,7 +69,7 @@
 }
 
 .headerButton {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     font-weight: 500;
     font-size: 20px;
     width: 24px;
@@ -94,24 +98,21 @@
 }
 
 .promptText {
-    font-family: 'Courier New', Courier, monospace;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 24px;
     display: flex;
     margin-top: 4px;
 }
 
 .userInput {
-    font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
     font-size: 24px;
     margin-top: 4px;
 }
 
 .clue {
-    font-family: 'Courier New', Courier, monospace;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 24px;
     margin-top: 4px;
     display: flex;
     justify-content: center;
@@ -119,13 +120,14 @@
 
 .hintButton {
     background-color: var(--ready);
+    font-size: 16px;
     font-weight: 700;
     border-width: 2px;
     border-radius: 4px;
     color: var(--lightest);
     width: 100%;
-    margin-top: 4px;
-    padding: 3px;
+    margin-top: 6px;
+    padding: 6px;
 }
 
 .hintButton:active {
@@ -139,23 +141,25 @@
 
 .hintButtonRevealed {
     background-color: var(--revealed);
+    font-size: 16px;
     font-weight: 700;
     border-width: 2px;
     border-radius: 4px;
     color: var(--lightest);
     width: 100%;
-    margin-top: 4px;
-    padding: 3px;
+    margin-top: 6px;
+    padding: 6px;
 }
 
 .hintButtonDisabled {
     font-weight: 700;
+    font-size: 16px;
     border-width: 2px;
     border-radius: 4px;
     color: var(--lightest);
     width: 100%;
-    margin-top: 4px;
-    padding: 3px;
+    margin-top: 6px;
+    padding: 6px;
 }
 
 .keyboard {
@@ -226,8 +230,9 @@
 
 .helpModalOverlay {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0); 
@@ -265,14 +270,12 @@
     background-color: var(--lightest);
 }
 
-/* Main container */
 .statsBox {
     width: 100%;
     margin-bottom: 4px;
     background-color: var(--lightest);
 }
 
-/* Each row */
 .statsRow {
     display: flex;
     align-items: center;

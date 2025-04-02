@@ -126,7 +126,7 @@ const Puzzle = () => {
     useEffect(() => {
       const interval = setInterval(() => {
         setShowCursor((prev) => !prev);
-      }, 500);
+      }, 700);
       return () => clearInterval(interval);
     }, []);
       
