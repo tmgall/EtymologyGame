@@ -167,6 +167,7 @@
     flex-direction: column;
     gap: 8px;
     width: 100%;
+    max-width: var(--max-width);
     margin-inline: auto;
     margin-top: 8px;
 }
