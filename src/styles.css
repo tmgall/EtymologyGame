@@ -32,7 +32,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: var(--max-width);
+    max-width: 100vw;
+    /* max-width: var(--max-width); */
     padding: 16px;
 }
 
@@ -66,7 +67,7 @@
 
 .headerButtons {
     display: flex;
-    gap: 10px; /* Space between buttons */
+    gap: 10px;
 }
 
 .headerButton {
@@ -175,6 +176,7 @@
 
 .keyboardRow {
     display: flex;
+    justify-content: center;
     width: 100%;
     max-width: var(--max-width);
     gap: 3px;
