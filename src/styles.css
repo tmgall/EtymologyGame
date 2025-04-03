@@ -5,7 +5,7 @@
     --hover: #0069a8;
     --active: #0084d1;
     --lightest: #dff2fe;
-    --max-width: min(384px, 100%);
+    --max-width: min(370px, 100%);
     --font-mono: "Lucida Console", "Courier New", monospace;
     --font-standard: "Georgia", serif
 }
@@ -22,8 +22,6 @@
     display: flex;
     max-width: var(--max-width);
     margin-inline: auto auto;
-    width: 100vw;
-
 }
 
 .puzzle {
@@ -31,10 +29,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     max-width: 100vw;
-    /* max-width: var(--max-width); */
     padding: 16px;
+    overflow-x: hidden;
 }
 
 .header {
@@ -177,14 +174,14 @@
 
 .keyboardRow {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     max-width: var(--max-width);
     gap: 3px;
 }
 
 .keyboardButton {
-    flex: 1;
+    flex: 1 1 auto;
     height: 36px;
     background-color: var(--revealed);
     border-width: 1px;
