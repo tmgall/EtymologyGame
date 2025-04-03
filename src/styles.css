@@ -172,6 +172,7 @@
     max-width: var(--max-width);
     margin-inline: auto;
     margin-top: 8px;
+    box-sizing: border-box;
 }
 
 .keyboardRow {
