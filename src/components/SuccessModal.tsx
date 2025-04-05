@@ -94,7 +94,7 @@ export default function SuccessModal(props: SuccessModalProps) {
           </div>
         </div>
 
-        <div className="helpModalText">
+        <div className="helpModalHeaderText">
           Hints distribution
         </div>
 
@@ -105,7 +105,7 @@ export default function SuccessModal(props: SuccessModalProps) {
               <div className="statsBar">
                 <div
                   className="statsBarBox" 
-                  style={{ width: `${Math.max((value / maxValue) * 100, 9)}%` }}
+                  style={{ width: `${Math.max((value / maxValue) * 97, 7)}%` }}
                 >
                   {value}
                 </div>

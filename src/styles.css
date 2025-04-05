@@ -287,6 +287,7 @@
     text-align: right;
     color: var(--darkest);
     background-color: var(--lightest);
+    font-weight: 700;
 }
 
 .statsBar {
@@ -300,8 +301,10 @@
     height: 24px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 8px;
+    justify-content: right;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    font-weight: 600;
 }
 
 .shareButton {

@@ -57,7 +57,7 @@ const Puzzle = () => {
         if (guess.includes("")) {
             return;
         }
-        if (guess.join("").toLocaleLowerCase() === today.answer) {
+        if (guess.join("").toLocaleLowerCase() === today.answer.toLocaleLowerCase()) {
             updateStreak(false, today.number);
             updateStats((isOriginShown ? 1 : 0) + (isFirstRootShown ? 1 : 0) + (isSecondRootShown ? 1 : 0) + (isRevealShown ? 1 : 0));
             handleRevealAnswer();
