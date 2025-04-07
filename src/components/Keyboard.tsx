@@ -29,13 +29,13 @@ const Keyboard = ({ onKeyPress, onBackspace, onSubmit }: KeyboardProps) => {
             className="keyboardRow"
           >
             {row.map((key, index) => (
-              <button
+              <div
                 key={index}
                 className="keyboardButton"
                 onClick={() => onClick(key)}
               >
                 {key}
-              </button>
+              </div>
             ))}
           </div>
         ))}
