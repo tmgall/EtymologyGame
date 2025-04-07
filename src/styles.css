@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
     --darkest: #04283e;
     --revealed: #00598a;
@@ -22,6 +24,10 @@
     display: flex;
     max-width: var(--max-width);
     margin-inline: auto auto;
+}
+
+.apptw {
+    @apply max-w-96 w-full mx-auto min-h-dvh
 }
 
 .puzzle {
