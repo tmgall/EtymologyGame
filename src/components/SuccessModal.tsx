@@ -105,7 +105,7 @@ export default function SuccessModal(props: SuccessModalProps) {
               <div className="statsBar">
                 <div
                   className="statsBarBox" 
-                  style={{ width: `${Math.max((value / maxValue) * 97, 7)}%` }}
+                  style={{ width: `${Math.max((value / maxValue) * 100, 7)}%` }}
                 >
                   {value}
                 </div>
