@@ -331,7 +331,6 @@
 .support {
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 16px;
     min-height: 100vh;
     max-width: var(--max-width);
@@ -342,6 +341,11 @@
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 8px;
+}
+
+.supportText {
+    text-align: left;
+    margin-bottom: 1px;
 }
 
 .backToHomeButton:hover {
