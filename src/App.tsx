@@ -3,7 +3,7 @@ import Puzzle from "./components/Puzzle";
 const App = () => {
   return (
     <div>
-      <div className="apptw">
+      <div className="app">
         <Puzzle />
       </div>
     </div>
