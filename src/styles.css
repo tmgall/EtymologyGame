@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
     --darkest: #04283e;
     --revealed: #00598a;
@@ -18,6 +16,7 @@
     color: var(--lightest);
     text-align: center;
     font-family: var(--font-standard);
+    box-sizing: border-box;
 }
 
 .app {
@@ -186,7 +185,6 @@
     font-weight: 500;
     border-radius: 4px;
     font-size: 20px;
-    box-sizing: border-box;
 }
 
 .keyboardButton:hover {
