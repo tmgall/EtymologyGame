@@ -400,7 +400,7 @@
 
 @keyframes swipeUp {
     from {
-        transform: translate(-50%, -20px);
+        transform: translate(-50%, -20%);
         opacity: 0;
     } to {
       transform: translate(-50%, -50%);
@@ -409,6 +409,20 @@
 }
 
 .modalEnter {
-    animation: swipeUp 0.15s ease-out;
+    animation: swipeUp 0.15s cubic-bezier(0.19, 1, 0.22, 1);
 }
   
+@keyframes swipeDown {
+    from {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+    to {
+      transform: translate(-50%, -20%);
+      opacity: 0;
+    }
+}
+
+.modalExit {
+    animation: swipeDown 0.2s cubic-bezier(0.25, 1, 0.22, 1) forwards;
+}

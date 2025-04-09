@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { WordData } from "../assets/WordList";
 import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
@@ -68,12 +68,24 @@ export default function SuccessModal(props: SuccessModalProps) {
         </div>
       </div>
     </div>
-    );
+  );
+
+  const [isClosing, setIsClosing] = useState(false);
+    
+  const handleClose = () => {
+      setIsClosing(true);
+      setTimeout(() => {
+        props.onClose();
+      }, 150); 
+  };
+
+  const modalClass = isClosing ? "helpModalOverlay modalExit" : "helpModalOverlay modalEnter";
+
 
   return (
-    <div className="helpModalOverlay modalEnter" onClick={props.onClose}>
+    <div className={modalClass} onClick={handleClose}>
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
-        <div className="closeButton" onClick={props.onClose}>
+        <div className="closeButton" onClick={handleClose}>
           &times;
         </div>
 

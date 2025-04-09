@@ -1,18 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function HelpModal({ onClose }: { onClose: () => void }) {
+  const [isClosing, setIsClosing] = useState(false);
+  
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 150); 
+  };
+  
+  const modalClass = isClosing ? "helpModalOverlay modalExit" : "helpModalOverlay modalEnter";
+  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
-  
+  }, [handleClose]);
+
   return (
-    <div className="helpModalOverlay modalEnter" onClick={onClose}>
+    <div className={modalClass} onClick={handleClose}>
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
-        <div className="closeButton" onClick={onClose}>
+        <div className="closeButton" onClick={handleClose}>
             &times;
         </div>
         <h2 className="helpModalHeaderText">
