@@ -12,9 +12,9 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="helpModalOverlay" onClick={onClose}>
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
-        <button className="closeButton" onClick={onClose}>
+        <div className="closeButton" onClick={onClose}>
             &times;
-        </button>
+        </div>
         <h2 className="helpModalHeaderText">
           How to Play
         </h2>

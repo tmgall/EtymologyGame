@@ -13,8 +13,8 @@ const Header = ({ setIsHelpModalOpen, setIsSuccessModalOpen }: HeaderProps) => {
                 <div className="headerPuzzleNumber">{getFormattedDate()}: Puzzle #{getPuzzleNumber()}</div>
             </div>
             <div className="headerButtons">
-                <button className="headerButton" onClick={() => setIsSuccessModalOpen(true)}>#</button>
-                <button className="headerButton" onClick={() => setIsHelpModalOpen(true)}>?</button>
+                <div className="headerButton" onClick={() => setIsSuccessModalOpen(true)}>#</div>
+                <div className="headerButton" onClick={() => setIsHelpModalOpen(true)}>?</div>
             </div>
         </div>
     );

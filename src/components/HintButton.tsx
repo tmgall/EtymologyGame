@@ -12,19 +12,19 @@ export interface HintButtonProps {
 const HintButton = ({ number, hint, storageKey, puzzleIsComplete, revealed, disabled, setShowHint, hintText }: HintButtonProps) => {
     const styleClass = revealed ? "hintButtonRevealed" : disabled ? "hintButtonDisabled" : "hintButton";
     return (
-        <button
-        className={styleClass}
-        onClick={() => { 
-            if (!revealed && !disabled) {
-                setShowHint(true)
-            }
-            if (!puzzleIsComplete) {
-                localStorage.setItem(storageKey, number);
-            }
-        }}
-    >
-        {revealed ? hint : hintText}
-    </button>
+        <div
+            className={styleClass}
+            onClick={() => { 
+                if (!revealed && !disabled) {
+                    setShowHint(true)
+                }
+                if (!puzzleIsComplete) {
+                    localStorage.setItem(storageKey, number);
+                }
+            }}
+        >
+            {revealed ? hint : hintText}
+        </div>
     );
 };
 

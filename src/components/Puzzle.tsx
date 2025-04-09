@@ -196,7 +196,7 @@ const Puzzle = () => {
                     setShowHint={setShowDefinition} 
                 />
 
-                <button
+                <div
                     className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 && showDefinition ? "hintButton" : "hintButtonDisabled"}
                     onClick={() => { 
                         if (showOrigin && showRoot1 && showRoot2 && showDefinition) {
@@ -211,7 +211,7 @@ const Puzzle = () => {
                     }}
                 >
                     {showRevealAnswer ? today.shortExplanation : "Reveal answer"}
-                </button>
+                </div>
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
