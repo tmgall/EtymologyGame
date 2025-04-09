@@ -5,7 +5,7 @@
     --hover: #0069a8;
     --active: #0084d1;
     --lightest: #dff2fe;
-    --max-width: min(370px, 100%);
+    --max-width: min(384px, 100%);
     --font-mono: "Lucida Console", "Courier New", monospace;
     --font-standard: "Georgia", serif
 }
