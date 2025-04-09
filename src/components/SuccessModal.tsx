@@ -71,7 +71,7 @@ export default function SuccessModal(props: SuccessModalProps) {
     );
 
   return (
-    <div className="helpModalOverlay" onClick={props.onClose}>
+    <div className="helpModalOverlay modalEnter" onClick={props.onClose}>
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
         <div className="closeButton" onClick={props.onClose}>
           &times;

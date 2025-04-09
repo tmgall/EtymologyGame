@@ -397,3 +397,18 @@
 .shake {
     animation: shake 0.4s ease;
 }
+
+@keyframes swipeUp {
+    from {
+        transform: translate(-50%, -20px);
+        opacity: 0;
+    } to {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+}
+
+.modalEnter {
+    animation: swipeUp 0.15s ease-out;
+}
+  

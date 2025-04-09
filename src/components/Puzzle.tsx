@@ -62,7 +62,6 @@ const Puzzle = () => {
             handleRevealAnswer();
         } else {
             if (ref.current) {
-                console.log("test");
                 ref.current.classList.add('shake');
           
                 const handleAnimationEnd = () => {

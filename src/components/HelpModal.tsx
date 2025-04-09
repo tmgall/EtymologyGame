@@ -10,7 +10,7 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
   }, [onClose]);
   
   return (
-    <div className="helpModalOverlay" onClick={onClose}>
+    <div className="helpModalOverlay modalEnter" onClick={onClose}>
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
         <div className="closeButton" onClick={onClose}>
             &times;
