@@ -13,8 +13,6 @@ This is an etymology word game, where your goal is to guess the word that has th
 * Come up with many more words
 * Real privacy policy and terms of service
 * Finalize sharing text
-* Fix icons spacing
-* Fix keyboard
 * Make sure iPad works
 * Add animations
 * Bug test

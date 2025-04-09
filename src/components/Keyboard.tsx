@@ -31,7 +31,7 @@ const Keyboard = ({ onKeyPress, onBackspace, onSubmit }: KeyboardProps) => {
             {row.map((key, index) => (
               <div
                 key={index}
-                className="keyboardButton"
+                className={key === "Back" || key === "Enter" ? "keyboardButtonLongText" : "keyboardButton"}
                 onClick={() => onClick(key)}
               >
                 {key}

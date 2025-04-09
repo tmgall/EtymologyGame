@@ -182,12 +182,12 @@
     margin-inline: auto;
     justify-content: space-between;
     width: 100%;
-    gap: 3px;
+    gap: 2px;
 }
 
 .keyboardButton {
     flex: 1;
-    height: 36px;
+    height: 40px;
     background-color: var(--revealed);
     border-color: var(--lightest);
     border-style: solid;
@@ -195,6 +195,19 @@
     font-weight: 500;
     border-radius: 4px;
     font-size: 20px;
+    line-height: 36px;
+}
+
+.keyboardButtonLongText {
+    flex: 1;
+    height: 40px;
+    background-color: var(--revealed);
+    border-color: var(--lightest);
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 16px;
     line-height: 36px;
 }
 
