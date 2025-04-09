@@ -113,6 +113,7 @@
     font-weight: 500;
     font-size: 24px;
     margin-top: 4px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: center;
 }
@@ -128,7 +129,7 @@
     color: var(--lightest);
     width: 100%;
     margin-top: 6px;
-    padding: 6px;
+    padding: 8px;
 }
 
 .hintButton:active {
@@ -151,7 +152,7 @@
     color: var(--lightest);
     width: 100%;
     margin-top: 6px;
-    padding: 6px;
+    padding: 8px;
 }
 
 .hintButtonDisabled {
@@ -164,7 +165,7 @@
     color: var(--lightest);
     width: 100%;
     margin-top: 6px;
-    padding: 6px;
+    padding: 8px;
 }
 
 .keyboard {
@@ -173,7 +174,7 @@
     gap: 6px;
     width: 100%;
     margin-inline: auto;
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 .keyboardRow {
