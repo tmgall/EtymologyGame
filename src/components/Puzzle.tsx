@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Keyboard from "./Keyboard";
 import { WORD_LIST } from "../assets/WordList";
 import { Link } from "react-router-dom";
@@ -30,6 +30,8 @@ const Puzzle = () => {
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
+    const ref = useRef<HTMLDivElement>(null);
+
     const handleKeyPress = (key: string) => {
         if (isComplete) return;
         const newGuess = [...guess];
@@ -54,13 +56,22 @@ const Puzzle = () => {
 
     const handleSubmit = () => {
         if (isComplete) return;
-        if (guess.includes("")) {
-            return;
-        }
         if (guess.join("").toLocaleLowerCase() === today.answer.toLocaleLowerCase()) {
             updateStreak(false, today.number);
             updateStats((isOriginShown ? 1 : 0) + (isFirstRootShown ? 1 : 0) + (isSecondRootShown ? 1 : 0) + (isRevealShown ? 1 : 0));
             handleRevealAnswer();
+        } else {
+            if (ref.current) {
+                console.log("test");
+                ref.current.classList.add('shake');
+          
+                const handleAnimationEnd = () => {
+                  ref.current?.classList.remove('shake');
+                  ref.current?.removeEventListener('animationend', handleAnimationEnd);
+                };
+          
+                ref.current.addEventListener('animationend', handleAnimationEnd);
+              }
         }
     };
 
@@ -141,7 +152,7 @@ const Puzzle = () => {
                     {"the literal root meaning of the " + today.answer.length + "-letter word"}
                 </div>
 
-                <div className="userInput">
+                <div className="userInput" ref={ref}>
                     {"\""}
                     {guess.join("")}
                     {isComplete ? "" : showCursor ? "|" : "\u00A0"}

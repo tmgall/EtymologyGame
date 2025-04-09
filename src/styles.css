@@ -220,6 +220,15 @@
     background-color: var(--active);
 }
 
+.keyboardButtonLongText:hover {
+    cursor: pointer;
+    background-color: var(--hover);
+}
+
+.keyboardButtonLongText:active {
+    background-color: var(--active);
+}
+
 .helpModalHeaderText {
     font-size: 20px;
     font-weight: 700;
@@ -373,4 +382,18 @@
 
 .backToHomeButton:hover {
     text-decoration-line: underline;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0) }
+    17% { transform: translateX(-6px); }
+    34% { transform: translateX(12px); }
+    50% { transform: translateX(-9px); }
+    67% { transform: translateX(6px); }
+    84% { transform: translateX(-3px); }
+    100% { transform: translateX(0px); }
+}
+
+.shake {
+    animation: shake 0.4s ease;
 }
