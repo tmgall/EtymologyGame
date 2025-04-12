@@ -51,7 +51,7 @@
 
 .headerName {
     font-size: 48px;
-    font-weight: 800px;
+    font-weight: bold;
     font-family: var(--font-mono);
     width: 100%;
     line-height: 1;
@@ -60,7 +60,7 @@
 
 .headerPuzzleNumber {
     font-family: var(--font-mono);
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .headerButtons {
@@ -72,8 +72,8 @@
     font-family: var(--font-mono);
     font-weight: 500;
     font-size: 20px;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -82,7 +82,7 @@
     border-color: var(--lightest);
     border-style: solid;
     border-width: 1px;
-    line-height: 28px;
+    line-height: 32px;
 }
 
 .headerButton:hover {
