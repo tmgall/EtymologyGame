@@ -10,6 +10,7 @@ This is an etymology word game, where your goal is to guess the word that has th
 
 ## To-do
 
+* Add GDPR stuff and other compliance
 * Come up with many more words
 * Real privacy policy and terms of service
 * Add Charlie's suggestions
