@@ -20,7 +20,7 @@ export default function SuccessModal(props: SuccessModalProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [props.onClose]);
 
-  const hintMessages = ["Very impressive!", "You know your stuff!", "You figured it out!", "Nice job!", "Tough one today."];
+  const hintMessages = ["Very impressive!", "You know your stuff!", "You figured it out!", "Nice job!", "Just in time.", "Tough one today."];
 
   const stats = getStats().hintsStats;
   const maxValue = Math.max(...stats, 1);
@@ -44,13 +44,14 @@ export default function SuccessModal(props: SuccessModalProps) {
   const fire = '🔥'
   const dateFormatted = `${now.getMonth() + 1}/${now.getDate()}`;
   const dayLine = `Lexicon ${dateFormatted}: Puzzle #${props.today.number}`
-  const noHints = `I solved it without any hints!`;
-  const someHints = `I solved it with ${props.hintsUsed + 1} hints: ${emojis[props.hintsUsed]}`;
+  const noHints = `I solved it without any hints!\n`;
+  const someHints = `I solved it with ${props.hintsUsed} hint${props.hintsUsed == 1 ? "" : "s"}: ${emojis[props.hintsUsed]}\n`;
+  const hintsText = props.hintsUsed === 0 ? noHints : props.hintsUsed === 5 ? "" : someHints;
   const streak = getStreak(props.today.number); 
   const noStreak = 'I had to reveal it today — see if you can beat me!'
   const someStreak = `I'm on a streak of ${fire}${streak}${fire}`
   const link = `https://lexicon-pi.vercel.app/`;
-  const shareText: string = `${dayLine}\n\n${props.hintsUsed === 0 ? noHints : someHints}\n${streak === 0 ? noStreak : someStreak}\n${link}`;
+  const shareText: string = `${dayLine}\n\n${hintsText}${streak === 0 ? noStreak : someStreak}\n${link}`;
 
   const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
   const longExplanation = `The word "${props.today.answer}" comes from the ${props.today.rootLanguages} for "${props.today.clue}", since ${props.today.firstRoot} and ${props.today.secondRoot}.`
@@ -81,6 +82,7 @@ export default function SuccessModal(props: SuccessModalProps) {
 
   const modalClass = isClosing ? "helpModalOverlay modalExit" : "helpModalOverlay modalEnter";
 
+  console.log(shareText);
 
   return (
     <div className={modalClass} onClick={handleClose}>

@@ -10,10 +10,9 @@ This is an etymology word game, where your goal is to guess the word that has th
 
 ## To-do
 
+* Fix colors
 * Come up with many more words
 * Real privacy policy and terms of service
-* Finalize sharing text
-* Make sure iPad works
-* Add animations
+* Add Charlie's suggestions
 * Bug test
 * Buy domain
