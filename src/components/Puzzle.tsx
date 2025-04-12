@@ -238,6 +238,7 @@ const Puzzle = () => {
                         onClose={() => setIsSuccessModalOpen(false)} 
                         hintsUsed={(isOriginShown ? 1 : 0) + (isFirstRootShown ? 1 : 0) + (isSecondRootShown ? 1 : 0) + (isDefinitionShown ? 1 : 0) + (isRevealShown ? 1 : 0)}
                         today={today}
+                        isComplete={isComplete}
                     />}
             </div>
         </>

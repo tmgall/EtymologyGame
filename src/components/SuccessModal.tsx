@@ -9,6 +9,7 @@ export interface SuccessModalProps {
   onClose: () => void;
   hintsUsed: number;
   today: WordData;
+  isComplete: boolean;
 }
 
 export default function SuccessModal(props: SuccessModalProps) {
@@ -41,7 +42,7 @@ export default function SuccessModal(props: SuccessModalProps) {
     "\u{1F30D} \u{0031}\u{FE0F}\u{20E3} \u{0032}\u{FE0F}\u{20E3} \u{1F4D6} \u{26A1}"
   ];
 
-  const fire = '🔥'
+  const fire = '🔥';
   const dateFormatted = `${now.getMonth() + 1}/${now.getDate()}`;
   const dayLine = `Lexicon ${dateFormatted}: Puzzle #${props.today.number}`
   const noHints = `I solved it without any hints!\n`;
@@ -51,7 +52,7 @@ export default function SuccessModal(props: SuccessModalProps) {
   const noStreak = 'I had to reveal it today — see if you can beat me!'
   const someStreak = `I'm on a streak of ${fire}${streak}${fire}`
   const link = `https://lexicon-pi.vercel.app/`;
-  const shareText: string = `${dayLine}\n\n${hintsText}${streak === 0 ? noStreak : someStreak}\n${link}`;
+  const shareText: string = !props.isComplete ? `Try out Lexicon!\n${link}` : `${dayLine}\n\n${hintsText}${streak === 0 ? noStreak : someStreak}\n${link}`;
 
   const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
   const longExplanation = `The word "${props.today.answer}" comes from the ${props.today.rootLanguages} for "${props.today.clue}", since ${props.today.firstRoot} and ${props.today.secondRoot}.`
