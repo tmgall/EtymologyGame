@@ -64,6 +64,7 @@
 }
 
 .headerButtons {
+    font-weight: bold;
     display: flex;
     gap: 10px;
 }
