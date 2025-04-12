@@ -1,6 +1,7 @@
 :root {
     --darkest: #04283e;
     --revealed: #00598a;
+    --disabled: #031724;
     --ready: #0267a7;
     --hover: #0069a8;
     --active: #0084d1;
@@ -58,7 +59,8 @@
 }
 
 .headerPuzzleNumber {
-    font-family: var(--font-mono)
+    font-family: var(--font-mono);
+    font-size: 14px;
 }
 
 .headerButtons {
@@ -70,8 +72,8 @@
     font-family: var(--font-mono);
     font-weight: 500;
     font-size: 20px;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -80,7 +82,7 @@
     border-color: var(--lightest);
     border-style: solid;
     border-width: 1px;
-    line-height: 24px;
+    line-height: 28px;
 }
 
 .headerButton:hover {
@@ -119,17 +121,16 @@
 }
 
 .hintButton {
-    background-color: var(--ready);
-    border-color: var(--lightest);
-    border-style: solid;
+    /* background-color: var(--ready); */
+    border: 2px solid var(--lightest);
     font-size: 16px;
     font-weight: 700;
-    border-width: 2px;
     border-radius: 4px;
     color: var(--lightest);
     width: 100%;
     margin-top: 6px;
     padding: 8px;
+    background: linear-gradient(to right, var(--darkest), var(--revealed));
 }
 
 .hintButton:active {
@@ -142,12 +143,9 @@
 }
 
 .hintButtonRevealed {
-    background-color: var(--revealed);
-    border-color: var(--lightest);
-    border-style: solid;
+    border: 2px solid var(--lightest);
     font-size: 16px;
     font-weight: 700;
-    border-width: 2px;
     border-radius: 4px;
     color: var(--lightest);
     width: 100%;
@@ -156,12 +154,11 @@
 }
 
 .hintButtonDisabled {
-    font-weight: 700;
+    background-color: var(--disabled);
+    /* font-weight: 700; */
     font-size: 16px;
-    border-width: 2px;
     border-radius: 4px;
-    border-color: var(--lightest);
-    border-style: solid;
+    border: 2px solid var(--lightest);
     color: var(--lightest);
     width: 100%;
     margin-top: 6px;

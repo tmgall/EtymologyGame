@@ -82,8 +82,6 @@ export default function SuccessModal(props: SuccessModalProps) {
 
   const modalClass = isClosing ? "helpModalOverlay modalExit" : "helpModalOverlay modalEnter";
 
-  console.log(shareText);
-
   return (
     <div className={modalClass} onClick={handleClose}>
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
