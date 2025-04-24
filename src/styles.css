@@ -121,16 +121,24 @@
     justify-content: center;
 }
 
-.hintButton {
-    /* background-color: var(--ready); */
+.buttonRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.hintButtonBase {
     border: 2px solid var(--lightest);
     font-size: 16px;
-    font-weight: 700;
     border-radius: 4px;
-    color: var(--lightest);
     width: 100%;
     margin-top: 6px;
     padding: 8px;
+}
+
+.hintButton {
+    font-weight: 700;
+    color: var(--lightest);
     background: linear-gradient(to right, var(--darkest), var(--revealed));
 }
 
@@ -143,27 +151,21 @@
     background-color: var(--hover);
 }
 
+.rootHintButton {
+    display: flex;
+    min-height: 70px;
+    align-items: center;
+    justify-content: center;
+}
+
 .hintButtonRevealed {
-    border: 2px solid var(--lightest);
-    font-size: 16px;
     font-weight: 700;
-    border-radius: 4px;
     color: var(--lightest);
-    width: 100%;
-    margin-top: 6px;
-    padding: 8px;
 }
 
 .hintButtonDisabled {
     background-color: var(--disabled);
-    /* font-weight: 700; */
-    font-size: 16px;
-    border-radius: 4px;
-    border: 2px solid var(--lightest);
     color: var(--lightest);
-    width: 100%;
-    margin-top: 6px;
-    padding: 8px;
 }
 
 .keyboard {

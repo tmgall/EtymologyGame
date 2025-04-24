@@ -4,10 +4,11 @@ import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
 import ShareTextButtonProps from "./Share";
 import { MOST_RECENTLY_COMPLETED_PUZZLE_KEY } from "./Puzzle";
+import { formatAsList, formatRootDefinition, formatShareText } from "../util/StringFormatting";
 
 export interface SuccessModalProps {
   onClose: () => void;
-  hintsUsed: number;
+  hintsUsed: boolean[];
   today: WordData;
   isComplete: boolean;
 }
@@ -21,7 +22,12 @@ export default function SuccessModal(props: SuccessModalProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [props.onClose]);
 
-  const hintMessages = ["Very impressive!", "You know your stuff!", "You figured it out!", "Nice job!", "Just in time.", "Tough one today."];
+  const hintMessages = ["Very impressive!", "You know your stuff!", "You figured it out!", "Nice job!", "Good one!"];
+  const hintMessage = props.hintsUsed[props.hintsUsed.length - 1] 
+    ? "Tough one today." 
+    : props.hintsUsed[props.hintsUsed.length - 2] 
+    ? "Just in time." 
+    : hintMessages[props.hintsUsed.filter((hintUsed) => hintUsed).length];
 
   const stats = getStats().hintsStats;
   const maxValue = Math.max(...stats, 1);
@@ -34,33 +40,17 @@ export default function SuccessModal(props: SuccessModalProps) {
   const minutes = String(Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
   const seconds = String(Math.floor((diffMs % (1000 * 60)) / 1000)).padStart(2, "0");
 
-  const emojis = [
-    "\u{1F30D}", 
-    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3}", 
-    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3} \u{0032}\u{FE0F}\u{20E3}",
-    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3} \u{0032}\u{FE0F}\u{20E3} \u{1F4D6}",
-    "\u{1F30D} \u{0031}\u{FE0F}\u{20E3} \u{0032}\u{FE0F}\u{20E3} \u{1F4D6} \u{26A1}"
-  ];
+  const shareText = formatShareText(props.hintsUsed, props.today.number, props.isComplete, now);
 
-  const fire = '🔥';
-  const dateFormatted = `${now.getMonth() + 1}/${now.getDate()}`;
-  const dayLine = `Lexicon ${dateFormatted}: Puzzle #${props.today.number}`
-  const noHints = `I solved it without any hints!\n`;
-  const someHints = `I solved it with ${props.hintsUsed} hint${props.hintsUsed == 1 ? "" : "s"}: ${emojis[props.hintsUsed]}\n`;
-  const hintsText = props.hintsUsed === 0 ? noHints : props.hintsUsed === 5 ? "" : someHints;
-  const streak = getStreak(props.today.number); 
-  const noStreak = 'I had to reveal it today — see if you can beat me!'
-  const someStreak = `I'm on a streak of ${fire}${streak}${fire}`
-  const link = `https://lexicon-pi.vercel.app/`;
-  const shareText: string = !props.isComplete ? `Try out Lexicon!\n${link}` : `${dayLine}\n\n${hintsText}${streak === 0 ? noStreak : someStreak}\n${link}`;
-
+  const rootLanguages = formatAsList(props.today.roots.map((root) => root.languageName));
   const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
-  const longExplanation = `The word "${props.today.answer}" comes from the ${props.today.rootLanguages} for "${props.today.clue}", since ${props.today.firstRoot} and ${props.today.secondRoot}.`
+  const rootHints = formatAsList(props.today.roots.map((root) => formatRootDefinition(root)));
+  const longExplanation = `The word "${props.today.answer}" comes from the ${rootLanguages} for "${props.today.clue}", since ${rootHints}`
   const explanationSection = (
     <div>
       <div className="successModalBoxes">
         <div className="helpModalHeaderText">
-          {hintMessages[props.hintsUsed]}
+          {hintMessage}
         </div>
       </div>
 
@@ -86,40 +76,27 @@ export default function SuccessModal(props: SuccessModalProps) {
   return (
     <div className={modalClass} onClick={handleClose}>
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
-        <div className="closeButton" onClick={handleClose}>
-          &times;
-        </div>
+        <div className="closeButton" onClick={handleClose}>&times;</div>
 
         {shouldShowExplanationSection && explanationSection}
 
         <div className="successModalBoxes">
-          <div className="helpModalHeaderText">
-            Stats
-          </div>
+          <div className="helpModalHeaderText">Stats</div>
         </div>
 
         <div className="streakBox">
-          <div className="helpModalText">
-            {"Streak: " + getStreak(props.today.number)}
-          </div>
-          <div className="helpModalText">
-            {"Best streak: " + getBestStreak()}
-          </div>
+          <div className="helpModalText">{"Streak: " + getStreak(props.today.number)}</div>
+          <div className="helpModalText">{"Best streak: " + getBestStreak()}</div>
         </div>
 
-        <div className="helpModalHeaderText">
-          Hints distribution
-        </div>
+        <div className="helpModalHeaderText">Hints distribution</div>
 
         <div className="statsBox">
           {stats.map((value, index) => (
             <div key={index} className="statsRow">
               <span className="statsIndex">{index}</span>
               <div className="statsBar">
-                <div
-                  className="statsBarBox" 
-                  style={{ width: `${Math.max((value / maxValue) * 100, 7)}%` }}
-                >
+                <div className="statsBarBox" style={{ width: `${Math.max((value / maxValue) * 100, 7)}%` }}>
                   {value}
                 </div>
               </div>
@@ -128,9 +105,7 @@ export default function SuccessModal(props: SuccessModalProps) {
         </div>
 
         <div className="successModalBoxes">
-          <div className="helpModalText">
-            {`Next puzzle in: ${hours}:${minutes}:${seconds}`}
-          </div>
+          <div className="helpModalText">{`Next puzzle in: ${hours}:${minutes}:${seconds}`}</div>
         </div>
 
         <div className="successModalBoxes">

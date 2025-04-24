@@ -10,19 +10,19 @@ import { getPuzzleNumber } from "../util/Date";
 import { updateStreak } from "../util/Streak";
 import { updateStats } from "../util/Stats";
 import HintButton from "./HintButton";
+import { formatAsList, formatRootDefinition, formatShortExplanation } from "../util/StringFormatting";
 
 export const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
-const LAST_FIRST_ROOT_HINT_KEY = "last-first-root-hint";
-const LAST_SECOND_ROOT_HINT_KEY = "last-second-root-hint";
+export const LAST_ROOT_HINTS_KEY = "last-root-hints"
 const LAST_REVEAL_HINT_KEY = "last-reveal-hint";
 const LAST_DEFINITION_KEY = "last-definition-hint";
 
 const Puzzle = () => {
     const today = WORD_LIST[getPuzzleNumber() - 1];
     const [showOrigin, setShowOrigin] = useState(false);
-    const [showRoot1, setShowRoot1] = useState(false);
-    const [showRoot2, setShowRoot2] = useState(false);
+    const [aRootIsShown, setARootIsShown] = useState(false);
+    const [showRoots, setShowRoots] = useState<boolean[]>(Array(today.roots.length).fill(false));
     const [showDefinition, setShowDefinition] = useState(false);
     const [showRevealAnswer, setShowRevealAnswer] = useState(false);
     const [guess, setGuess] = useState<string[]>(Array(today.answer.length).fill(""));
@@ -54,11 +54,34 @@ const Puzzle = () => {
         setGuess(newGuess);
     };
 
+    const getRootHintsUsed = () => {
+        return showRoots.filter((rootShown) => rootShown === true)
+    }
+    
+    const getHintsUsed = () => {
+        const hintsUsed = [];
+        if (isOriginShown) {
+            hintsUsed.push(true);
+        } else { hintsUsed.push(false); }
+        showRoots.forEach((showRoot) => {
+            if (showRoot) {
+                hintsUsed.push(true);
+            } else { hintsUsed.push(false); }
+        })
+        if (isDefinitionShown) {
+            hintsUsed.push(true);
+        } else { hintsUsed.push(false); }
+        if (isRevealShown) {
+            hintsUsed.push(true);
+        } else { hintsUsed.push(false); }
+        return hintsUsed;
+    }
+
     const handleSubmit = () => {
         if (isComplete) return;
         if (guess.join("").toLocaleLowerCase() === today.answer.toLocaleLowerCase()) {
             updateStreak(false, today.number);
-            updateStats((isOriginShown ? 1 : 0) + (isFirstRootShown ? 1 : 0) + (isSecondRootShown ? 1 : 0) + (isRevealShown ? 1 : 0));
+            updateStats(getHintsUsed().filter((hintUsed) => hintUsed).length);
             handleRevealAnswer();
         } else {
             if (ref.current) {
@@ -73,13 +96,6 @@ const Puzzle = () => {
               }
         }
     };
-
-    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.number;
-    const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === today.number;
-    const isFirstRootShown = localStorage.getItem(LAST_FIRST_ROOT_HINT_KEY) === today.number;
-    const isSecondRootShown = localStorage.getItem(LAST_SECOND_ROOT_HINT_KEY) === today.number;
-    const isDefinitionShown = localStorage.getItem(LAST_DEFINITION_KEY) === today.number;
-    const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === today.number;
 
     const handleKeyDown = (e: KeyboardEvent) => {
         if (e.ctrlKey || e.altKey || e.metaKey || isComplete) {
@@ -106,9 +122,15 @@ const Puzzle = () => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [selectedIndex, guess]);
-      
+
+    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.number;
+    const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === today.number;
+    const isDefinitionShown = localStorage.getItem(LAST_DEFINITION_KEY) === today.number;
+    const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === today.number;
+    const areHintsShown: boolean[] = Array(today.roots.length).fill(false);
+
     useEffect(() => {
-        if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === null) {
+        if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === null && localStorage.getItem(LAST_ORIGIN_HINT_KEY) === null) {
             setIsHelpModalOpen(true);
         }
         if (isComplete) {
@@ -117,12 +139,13 @@ const Puzzle = () => {
         if (isOriginShown) {
             setShowOrigin(true);
         }
-        if (isFirstRootShown) {
-            setShowRoot1(true);
-        }
-        if (isSecondRootShown) {
-            setShowRoot2(true);
-        }
+        const lastRootsShown = localStorage.getItem(LAST_ROOT_HINTS_KEY);
+        const rootsShown: string[] = lastRootsShown ? lastRootsShown.split(",") : [];
+        rootsShown.map((val, index) => {
+            if (val === today.number) {
+                areHintsShown[index] = true;
+            }
+        })
         if (isDefinitionShown) {
             setShowDefinition(true);
         }
@@ -139,7 +162,11 @@ const Puzzle = () => {
       }, 700);
       return () => clearInterval(interval);
     }, []);
-      
+
+    const revealButtonClass = "hintButtonBase " + (showRevealAnswer 
+        ? "hintButtonRevealed" 
+        : showOrigin && aRootIsShown && showDefinition 
+        ? "hintButton" : "hintButtonDisabled");
 
     return (
         <>
@@ -163,53 +190,52 @@ const Puzzle = () => {
                 </div>
 
                 <HintButton 
-                    number={today.number} 
-                    hint={today.rootLanguages} 
-                    hintText={"Reveal language(s) of origin"} 
+                    today={today} 
+                    hint={formatAsList(today.roots.map((root) => root.languageName))} 
+                    hintText={"Reveal language(s) of origin"}
                     storageKey={LAST_ORIGIN_HINT_KEY} 
                     puzzleIsComplete={isComplete} 
                     revealed={showOrigin} 
                     disabled={false} 
-                    setShowHint={setShowOrigin} 
+                    setShowHint={() => setShowOrigin(true)} 
                 />
 
-                <HintButton 
-                    number={today.number} 
-                    hint={today.firstRoot} 
-                    hintText={"Reveal first root"} 
-                    storageKey={LAST_FIRST_ROOT_HINT_KEY} 
-                    puzzleIsComplete={isComplete} 
-                    revealed={showRoot1} 
-                    disabled={!showOrigin} 
-                    setShowHint={setShowRoot1} 
-                />
+                <div className="buttonRow">
+                    {today.roots.map((root, index) =>
+                        <HintButton 
+                            key={index}
+                            today={today}
+                            hint={formatRootDefinition(root)} 
+                            hintText={`Reveal \"${root.english}\"`}
+                            storageKey={LAST_ROOT_HINTS_KEY}
+                            puzzleIsComplete={isComplete} 
+                            revealed={showRoots[index]} 
+                            disabled={!showOrigin} 
+                            setShowHint={() => {
+                                setARootIsShown(true);
+                                setShowRoots(showRoots.map((rootShown, i) => i === index ? true : rootShown))
+                            }}
+                            isRootHintButton={true}
+                            rootNumber={index}                    
+                        />
+                    )}
+                </div>
 
                 <HintButton 
-                    number={today.number} 
-                    hint={today.secondRoot} 
-                    hintText={"Reveal second root"} 
-                    storageKey={LAST_SECOND_ROOT_HINT_KEY} 
-                    puzzleIsComplete={isComplete} 
-                    revealed={showRoot2} 
-                    disabled={!showRoot1} 
-                    setShowHint={setShowRoot2} 
-                />
-
-                <HintButton 
-                    number={today.number} 
+                    today={today} 
                     hint={today.definition} 
                     hintText={"Reveal English definition hint"} 
                     storageKey={LAST_DEFINITION_KEY} 
                     puzzleIsComplete={isComplete} 
                     revealed={showDefinition} 
-                    disabled={!showRoot2} 
-                    setShowHint={setShowDefinition} 
+                    disabled={!aRootIsShown} 
+                    setShowHint={() => setShowDefinition(true)} 
                 />
 
                 <div
-                    className={showRevealAnswer ? "hintButtonRevealed" : showOrigin && showRoot1 && showRoot2 && showDefinition ? "hintButton" : "hintButtonDisabled"}
+                    className={revealButtonClass}
                     onClick={() => { 
-                        if (showOrigin && showRoot1 && showRoot2 && showDefinition) {
+                        if (showOrigin && aRootIsShown && showDefinition) {
                             setShowRevealAnswer(true);
                         }
                         if (!isComplete) {
@@ -220,7 +246,7 @@ const Puzzle = () => {
                         }
                     }}
                 >
-                    {showRevealAnswer ? today.shortExplanation : "Reveal answer"}
+                    {showRevealAnswer ? formatShortExplanation(today) : "Reveal answer"}
                 </div>
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
@@ -236,7 +262,7 @@ const Puzzle = () => {
                 {isSuccessModalOpen && 
                     <SuccessModal
                         onClose={() => setIsSuccessModalOpen(false)} 
-                        hintsUsed={(isOriginShown ? 1 : 0) + (isFirstRootShown ? 1 : 0) + (isSecondRootShown ? 1 : 0) + (isDefinitionShown ? 1 : 0) + (isRevealShown ? 1 : 0)}
+                        hintsUsed={getHintsUsed()}
                         today={today}
                         isComplete={isComplete}
                     />}
