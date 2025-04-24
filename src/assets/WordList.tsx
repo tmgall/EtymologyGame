@@ -2,11 +2,14 @@ export interface WordData {
     number: string;
     clue: string;
     answer: string;
-    rootLanguages: string;
-    firstRoot: string;
-    secondRoot: string;
+    roots: RootsData[];
     definition: string;
-    shortExplanation: string;
+}
+
+export interface RootsData {
+    english: string;
+    languageName: string;
+    languageWord: string;
 }
 
 export const WORD_LIST: WordData[] = [
@@ -14,100 +17,84 @@ export const WORD_LIST: WordData[] = [
         number: "1", 
         clue: "far vision", 
         answer: "television", 
-        rootLanguages: "Greek and Latin", 
-        firstRoot: "\"tele-\" is Greek for \"far\"", 
-        secondRoot: "\"visio\" is Latin for \"vision\"",
+        roots: [{ english: "far", languageName: "Greek", languageWord: "tele-" }, { english: "vision", languageName: "Latin", languageWord: "visio" }],
         definition: "technology with a screen",
-        shortExplanation: "\"tele-\" + \"visio\" = \"television\"",
     },
     { 
         number: "2", 
         clue: "life writing", 
         answer: "biography", 
-        rootLanguages: "Greek", 
-        firstRoot: "\"bios\" is Greek for \"life\"", 
-        secondRoot: "\"-graphia\" is Greek for \"writing\"",
+        roots: [{ english: "life", languageName: "Greek", languageWord: "bios" }, { english: "writing", languageName: "Greek", languageWord: "-graphia" }],
         definition: "an account of someone's life",
-        shortExplanation: "\"bios\" + \"-graphia\" = \"biography\"",
     },
     { 
         number: "3", 
         clue: "spiral wing", 
         answer: "helicopter", 
-        rootLanguages: "Greek", 
-        firstRoot: "\"helix\" is Greek for \"spiral\"", 
-        secondRoot: "\"pteron\" is Greek for \"wing\"",
+        roots: [{ english: "spiral", languageName: "Greek", languageWord: "bios" }, { english: "wing", languageName: "Greek", languageWord: "pteron" }],
         definition: "a type of aircraft",
-        shortExplanation: "\"helix\" + \"pteron\" = \"helicopter\"",
     },
     { 
         number: "4", 
         clue: "lord of the world", 
         answer: "juggernaut", 
-        rootLanguages: "Sanskrit", 
-        firstRoot: "\"jagat\" is Sanskrit for \"the world\"", 
-        secondRoot: "\"natha\" is Sanskrit for \"lord\"",
+        roots: [{ english: "the world", languageName: "Sanskrit", languageWord: "jagat" }, { english: "natha", languageName: "Sanskrit", languageWord: "lord" }],
         definition: "a huge or overwhelming force",
-        shortExplanation: "\"jagat\" + \"natha\" = \"juggernaut\"",
     },
     {
         number: "5",
         clue: "small-seeing instrument",
         answer: "microscope", 
-        rootLanguages: "Latin", 
-        firstRoot: "\"micro-\" is Latin for \"small\"", 
-        secondRoot: "\"-scopium\" is Latin for \"seeing instrument\"",
+        roots: [{ english: "small", languageName: "Latin", languageWord: "micro-" }, { english: "seeing instrument", languageName: "Latin", languageWord: "-scopium" }],
         definition: "an instrument to see very small objects",
-        shortExplanation: "\"micro-\" + \"-scopium\" = \"microscope\"",
     },
     {
         number: "6",
         clue: "harbor wave",
         answer: "tsunami", 
-        rootLanguages: "Japanese", 
-        firstRoot: "\"tsu\" is Japanese for \"harbor\"", 
-        secondRoot: "\"nami\" is Japanese for \"wave\"",
+        roots: [{ english: "harbor", languageName: "Japanese", languageWord: "tsu" }, { english: "wave", languageName: "Japanese", languageWord: "nami" }],
         definition: "a big wave",
-        shortExplanation: "\"tsu\" + \"nami\" = \"tsunami\"",
     },
     {
         number: "7",
         clue: "joy from harm",
         answer: "Schadenfreude", 
-        rootLanguages: "German", 
-        firstRoot: "\"Schaden\" is German for \"harm\"", 
-        secondRoot: "\"Freude\" is German for \"joy\"",
+        roots: [{ english: "harm", languageName: "German", languageWord: "Schaden" }, { english: "joy", languageName: "German", languageWord: "Freude" }],
         definition: "joy from harm to others",
-        shortExplanation: "\"Schaden\" + \"Freude\" = \"Schadenfreude\"",
     },
     {
         number: "8",
         clue: "two wheels",
         answer: "bicycle", 
-        rootLanguages: "Greek", 
-        firstRoot: "\"bi-\" is Greek for \"two\"", 
-        secondRoot: "\"kyklos\" is Greek for \"wheel\"",
+        roots: [{ english: "two", languageName: "Greek", languageWord: "bi-" }, { english: "wheel", languageName: "Greek", languageWord: "kyklos" }],
         definition: "a two-wheeled transport",
-        shortExplanation: "\"bi-\" + \"kyklos\" = \"bicycle\"",
     },
     {
         number: "9",
         clue: "flesh devourer",
         answer: "carnivore",
-        rootLanguages: "Latin", 
-        firstRoot: "\"carni\" is Latin for \"flesh\"", 
-        secondRoot: "\"vore\" is Latin for \"devour\"",
+        roots: [{ english: "flesh", languageName: "Latin", languageWord: "carni" }, { english: "devour", languageName: "Latin", languageWord: "vore" }],
         definition: "one that eats meat",
-        shortExplanation: "\"carni\" + \"vore\" = \"carnivore\"",
     },
     {
         number: "10",
         clue: "beyond reality",
         answer: "surrealism", 
-        rootLanguages: "French", 
-        firstRoot: "\"sur\" is French for \"beyond\"", 
-        secondRoot: "\"realisme\" is French for \"reality\"",
+        roots: [{ english: "beyond", languageName: "French", languageWord: "sur" }, { english: "reality", languageName: "French", languageWord: "realisme" }],
         definition: "bizarre and dreamlike art",
-        shortExplanation: "\"sur\" + \"realisme\" = \"surrealism\"",
+    },
+    {
+        number: "11",
+        clue: "star sailor",
+        answer: "astronaut", 
+        roots: [{ english: "star", languageName: "Greek", languageWord: "astro" }, { english: "sailor", languageName: "Greek", languageWord: "naut" }],
+        definition: "one exploring space",
+    },
+    {
+        number: "12",
+        clue: "empty orchestra",
+        answer: "karaoke", 
+        roots: [{ english: "empty", languageName: "Japanese", languageWord: "kara" }, { english: "orchestra", languageName: "Japanese", languageWord: "oke" }],
+        definition: "singing with just the music",
     },
 ];
