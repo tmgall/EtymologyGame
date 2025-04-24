@@ -73,29 +73,6 @@ const Puzzle = () => {
         return hintsUsed;
     }
 
-    const getRootHintsUsed = () => {
-        return showRoots.filter((rootShown) => rootShown === true)
-    }
-    
-    const getHintsUsed = () => {
-        const hintsUsed = [];
-        if (isOriginShown) {
-            hintsUsed.push(true);
-        } else { hintsUsed.push(false); }
-        showRoots.forEach((showRoot) => {
-            if (showRoot) {
-                hintsUsed.push(true);
-            } else { hintsUsed.push(false); }
-        })
-        if (isDefinitionShown) {
-            hintsUsed.push(true);
-        } else { hintsUsed.push(false); }
-        if (isRevealShown) {
-            hintsUsed.push(true);
-        } else { hintsUsed.push(false); }
-        return hintsUsed;
-    }
-
     const handleSubmit = () => {
         if (isComplete) return;
         if (guess.join("").toLocaleLowerCase() === today.answer.toLocaleLowerCase()) {
