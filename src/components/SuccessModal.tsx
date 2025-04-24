@@ -9,25 +9,26 @@ import { formatAsList, formatRootDefinition, formatShareText } from "../util/Str
 export interface SuccessModalProps {
   onClose: () => void;
   hintsUsed: boolean[];
-  today: WordData;
+  puzzleConfig: WordData;
+  puzzleNumber: string;
   isComplete: boolean;
 }
 
-export default function SuccessModal(props: SuccessModalProps) {
+export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleNumber, isComplete}: SuccessModalProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") props.onClose();
+      if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [props.onClose]);
+  }, [onClose]);
 
   const hintMessages = ["Very impressive!", "You know your stuff!", "You figured it out!", "Nice job!", "Good one!"];
-  const hintMessage = props.hintsUsed[props.hintsUsed.length - 1] 
+  const hintMessage = hintsUsed[hintsUsed.length - 1] 
     ? "Tough one today." 
-    : props.hintsUsed[props.hintsUsed.length - 2] 
+    : hintsUsed[hintsUsed.length - 2] 
     ? "Just in time." 
-    : hintMessages[props.hintsUsed.filter((hintUsed) => hintUsed).length];
+    : hintMessages[hintsUsed.filter((hintUsed) => hintUsed).length];
 
   const stats = getStats().hintsStats;
   const maxValue = Math.max(...stats, 1);
@@ -40,12 +41,12 @@ export default function SuccessModal(props: SuccessModalProps) {
   const minutes = String(Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
   const seconds = String(Math.floor((diffMs % (1000 * 60)) / 1000)).padStart(2, "0");
 
-  const shareText = formatShareText(props.hintsUsed, props.today.number, props.isComplete, now);
+  const shareText = formatShareText(hintsUsed, puzzleNumber, isComplete, now);
 
-  const rootLanguages = formatAsList(props.today.roots.map((root) => root.languageName));
-  const shouldShowExplanationSection = props.today.number === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
-  const rootHints = formatAsList(props.today.roots.map((root) => formatRootDefinition(root)));
-  const longExplanation = `The word "${props.today.answer}" comes from the ${rootLanguages} for "${props.today.clue}", since ${rootHints}`
+  const rootLanguages = formatAsList(puzzleConfig.roots.map((root) => root.languageName));
+  const shouldShowExplanationSection = puzzleNumber === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
+  const rootHints = formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root)));
+  const longExplanation = `The word "${puzzleConfig.answer}" comes from the ${rootLanguages} for "${puzzleConfig.clue}", since ${rootHints}`
   const explanationSection = (
     <div>
       <div className="successModalBoxes">
@@ -66,9 +67,7 @@ export default function SuccessModal(props: SuccessModalProps) {
     
   const handleClose = () => {
       setIsClosing(true);
-      setTimeout(() => {
-        props.onClose();
-      }, 150); 
+      setTimeout(() => { onClose(); }, 150); 
   };
 
   const modalClass = isClosing ? "helpModalOverlay modalExit" : "helpModalOverlay modalEnter";
@@ -85,7 +84,7 @@ export default function SuccessModal(props: SuccessModalProps) {
         </div>
 
         <div className="streakBox">
-          <div className="helpModalText">{"Streak: " + getStreak(props.today.number)}</div>
+          <div className="helpModalText">{"Streak: " + getStreak(puzzleNumber)}</div>
           <div className="helpModalText">{"Best streak: " + getBestStreak()}</div>
         </div>
 

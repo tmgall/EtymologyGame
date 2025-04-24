@@ -1,8 +1,7 @@
-import { WordData } from "../assets/WordList";
 import { LAST_ROOT_HINTS_KEY } from "./Puzzle";
 
 export interface HintButtonProps {
-    today: WordData;
+    puzzleNumber: string;
     hint: string;
     storageKey: string;
     puzzleIsComplete: boolean;
@@ -14,7 +13,7 @@ export interface HintButtonProps {
     rootNumber?: number;
 }
 
-const HintButton = ({ today, hint, storageKey, puzzleIsComplete, revealed, disabled, setShowHint, hintText, isRootHintButton, rootNumber }: HintButtonProps) => {
+const HintButton = ({ puzzleNumber, hint, storageKey, puzzleIsComplete, revealed, disabled, setShowHint, hintText, isRootHintButton, rootNumber }: HintButtonProps) => {
     const styleClass = "hintButtonBase " + (revealed
         ? "hintButtonRevealed" 
         : disabled  ? "hintButtonDisabled" : "hintButton") + (isRootHintButton ? " rootHintButton" : "");
@@ -27,7 +26,7 @@ const HintButton = ({ today, hint, storageKey, puzzleIsComplete, revealed, disab
                 }
                 if (!puzzleIsComplete) {
                     if (storageKey !== LAST_ROOT_HINTS_KEY) {
-                        localStorage.setItem(storageKey, today.number);
+                        localStorage.setItem(storageKey, puzzleNumber);
                     } else {
                         const lastRootsShown = localStorage.getItem(LAST_ROOT_HINTS_KEY);
                         const rootsShown: string[] = lastRootsShown ? lastRootsShown.split(",") : [];
@@ -35,7 +34,7 @@ const HintButton = ({ today, hint, storageKey, puzzleIsComplete, revealed, disab
                         const maxRootsShown = Array(maxLength).fill(0);
                         for (let i = 0; i < maxLength; i += 1) {
                             if (i == rootNumber) {
-                                maxRootsShown[i] = today.number;
+                                maxRootsShown[i] = puzzleNumber;
                             } else if (i < rootsShown.length) {
                                 maxRootsShown[i] = rootsShown[i];
                             }

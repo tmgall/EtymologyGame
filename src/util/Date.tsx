@@ -1,17 +1,18 @@
+const LAUNCH_DATE = new Date("April 23, 2025 00:00:00");
 
-export const getFormattedDate = () => {
-    const today = new Date();
+export const getFormattedDate = (puzzleNumber: string) => {
+    const puzzleDate = new Date(LAUNCH_DATE);
+    puzzleDate.setDate(LAUNCH_DATE.getDate() + (Number(puzzleNumber) - 1));
     const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const dayOfWeek = dayNames[today.getDay()];
-    const dayOfMonth = today.getDate();
-    const month = monthNames[today.getMonth()];
+    const dayOfWeek = dayNames[puzzleDate.getDay()];
+    const dayOfMonth = puzzleDate.getDate();
+    const month = monthNames[puzzleDate.getMonth()];
     return dayOfWeek + ", " + month + " " + dayOfMonth;
 }
 
-export const getPuzzleNumber = () => {
+export const getTodaysPuzzleNumber = () => {
     const today = new Date();
-    const launchDate = new Date("April 23, 2025 00:00:00");
     const millisecondsPerDay = 1000 * 60 * 60 * 24;
-    return Math.floor((today.getTime() - launchDate.getTime()) / millisecondsPerDay) + 1;
+    return Math.floor((today.getTime() - LAUNCH_DATE.getTime()) / millisecondsPerDay) + 1;
 }

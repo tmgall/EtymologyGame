@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
-import { getPuzzleNumber } from "../util/Date";
 import { updateStreak } from "../util/Streak";
 import { updateStats } from "../util/Stats";
 import HintButton from "./HintButton";
@@ -18,14 +17,18 @@ export const LAST_ROOT_HINTS_KEY = "last-root-hints"
 const LAST_REVEAL_HINT_KEY = "last-reveal-hint";
 const LAST_DEFINITION_KEY = "last-definition-hint";
 
-const Puzzle = () => {
-    const today = WORD_LIST[getPuzzleNumber() - 1];
+export interface PuzzleProps {
+    puzzleNumber: number;
+}
+
+const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
+    const puzzleConfig = WORD_LIST[puzzleNumber - 1];
     const [showOrigin, setShowOrigin] = useState(false);
     const [aRootIsShown, setARootIsShown] = useState(false);
-    const [showRoots, setShowRoots] = useState<boolean[]>(Array(today.roots.length).fill(false));
+    const [showRoots, setShowRoots] = useState<boolean[]>(Array(puzzleConfig.roots.length).fill(false));
     const [showDefinition, setShowDefinition] = useState(false);
     const [showRevealAnswer, setShowRevealAnswer] = useState(false);
-    const [guess, setGuess] = useState<string[]>(Array(today.answer.length).fill(""));
+    const [guess, setGuess] = useState<string[]>(Array(puzzleConfig.answer.length).fill(""));
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -36,7 +39,7 @@ const Puzzle = () => {
         if (isComplete) return;
         const newGuess = [...guess];
         newGuess[selectedIndex] = key;
-        setSelectedIndex(Math.min(selectedIndex + 1, today.answer.length - 1));
+        setSelectedIndex(Math.min(selectedIndex + 1, puzzleConfig.answer.length - 1));
         setGuess(newGuess);
     };
 
@@ -75,8 +78,8 @@ const Puzzle = () => {
 
     const handleSubmit = () => {
         if (isComplete) return;
-        if (guess.join("").toLocaleLowerCase() === today.answer.toLocaleLowerCase()) {
-            updateStreak(false, today.number);
+        if (guess.join("").toLocaleLowerCase() === puzzleConfig.answer.toLocaleLowerCase()) {
+            updateStreak(false, puzzleNumber.toString());
             updateStats(getHintsUsed().filter((hintUsed) => hintUsed).length);
             handleRevealAnswer();
         } else {
@@ -108,9 +111,9 @@ const Puzzle = () => {
     };
 
     const handleRevealAnswer = () => {
-        localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, today.number);
+        localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, puzzleNumber.toString());
         setSelectedIndex(-1);
-        setGuess(today.answer.toUpperCase().split(''));
+        setGuess(puzzleConfig.answer.toUpperCase().split(''));
         setIsSuccessModalOpen(true);
     }
 
@@ -119,11 +122,11 @@ const Puzzle = () => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [selectedIndex, guess]);
 
-    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === today.number;
-    const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === today.number;
-    const isDefinitionShown = localStorage.getItem(LAST_DEFINITION_KEY) === today.number;
-    const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === today.number;
-    const areHintsShown: boolean[] = Array(today.roots.length).fill(false);
+    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === puzzleNumber.toString();
+    const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === puzzleNumber.toString();
+    const isDefinitionShown = localStorage.getItem(LAST_DEFINITION_KEY) === puzzleNumber.toString();
+    const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === puzzleNumber.toString();
+    const areHintsShown: boolean[] = Array(puzzleConfig.roots.length).fill(false);
 
     useEffect(() => {
         if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === null && localStorage.getItem(LAST_ORIGIN_HINT_KEY) === null) {
@@ -138,7 +141,7 @@ const Puzzle = () => {
         const lastRootsShown = localStorage.getItem(LAST_ROOT_HINTS_KEY);
         const rootsShown: string[] = lastRootsShown ? lastRootsShown.split(",") : [];
         rootsShown.map((val, index) => {
-            if (val === today.number) {
+            if (val === puzzleNumber.toString()) {
                 areHintsShown[index] = true;
             }
         })
@@ -164,14 +167,24 @@ const Puzzle = () => {
         : showOrigin && aRootIsShown && showDefinition 
         ? "hintButton" : "hintButtonDisabled");
 
+    const languagesOfOriginList = puzzleConfig.roots
+        .map((root) => root.languageName)
+        .reduce<string[]>((acc, item) => {
+            if (!acc.includes(item)) acc.push(item);
+            return acc;
+        }, []);
     return (
         <>
             <div className="puzzle">
-                <Header setIsHelpModalOpen={setIsHelpModalOpen} setIsSuccessModalOpen={setIsSuccessModalOpen} />
+                <Header 
+                    setIsHelpModalOpen={setIsHelpModalOpen} 
+                    setIsSuccessModalOpen={setIsSuccessModalOpen} 
+                    puzzleNumber={puzzleNumber.toString()}
+                />
                 <hr className="divider" />
 
                 <div className="promptText">
-                    {"the literal root meaning of the " + today.answer.length + "-letter word"}
+                    {"the literal root meaning of the " + puzzleConfig.answer.length + "-letter word"}
                 </div>
 
                 <div className="userInput" ref={ref}>
@@ -182,12 +195,12 @@ const Puzzle = () => {
                 </div>
 
                 <div className="clue">
-                    is "{<span style={{ fontWeight: 700 }}>{today.clue}</span>}"
+                    is "{<span style={{ fontWeight: 700 }}>{puzzleConfig.clue}</span>}"
                 </div>
 
                 <HintButton 
-                    today={today} 
-                    hint={formatAsList(today.roots.map((root) => root.languageName))} 
+                    puzzleNumber={puzzleNumber.toString()} 
+                    hint={formatAsList(languagesOfOriginList)} 
                     hintText={"Reveal language(s) of origin"}
                     storageKey={LAST_ORIGIN_HINT_KEY} 
                     puzzleIsComplete={isComplete} 
@@ -197,10 +210,10 @@ const Puzzle = () => {
                 />
 
                 <div className="buttonRow">
-                    {today.roots.map((root, index) =>
+                    {puzzleConfig.roots.map((root, index) =>
                         <HintButton 
                             key={index}
-                            today={today}
+                            puzzleNumber={puzzleNumber.toString()}
                             hint={formatRootDefinition(root)} 
                             hintText={`Reveal \"${root.english}\"`}
                             storageKey={LAST_ROOT_HINTS_KEY}
@@ -218,8 +231,8 @@ const Puzzle = () => {
                 </div>
 
                 <HintButton 
-                    today={today} 
-                    hint={today.definition} 
+                    puzzleNumber={puzzleNumber.toString()} 
+                    hint={puzzleConfig.definition} 
                     hintText={"Reveal English definition hint"} 
                     storageKey={LAST_DEFINITION_KEY} 
                     puzzleIsComplete={isComplete} 
@@ -235,14 +248,14 @@ const Puzzle = () => {
                             setShowRevealAnswer(true);
                         }
                         if (!isComplete) {
-                            updateStreak(true, today.number);
+                            updateStreak(true, puzzleNumber.toString());
                             updateStats(5);
-                            localStorage.setItem(LAST_REVEAL_HINT_KEY, today.number);
+                            localStorage.setItem(LAST_REVEAL_HINT_KEY, puzzleNumber.toString());
                             handleRevealAnswer();
                         }
                     }}
                 >
-                    {showRevealAnswer ? formatShortExplanation(today) : "Reveal answer"}
+                    {showRevealAnswer ? formatShortExplanation(puzzleConfig) : "Reveal answer"}
                 </div>
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
@@ -259,7 +272,8 @@ const Puzzle = () => {
                     <SuccessModal
                         onClose={() => setIsSuccessModalOpen(false)} 
                         hintsUsed={getHintsUsed()}
-                        today={today}
+                        puzzleConfig={puzzleConfig}
+                        puzzleNumber={puzzleNumber.toString()}
                         isComplete={isComplete}
                     />}
             </div>
