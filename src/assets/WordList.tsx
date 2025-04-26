@@ -43,10 +43,22 @@ export const WORD_LIST: WordData[] = [
         definition: "an instrument to see very small objects",
     },
     {
+        clue: "measurement of three angles",
+        answer: "trigonometry",
+        roots: [{ english: "three", languageName: "Greek", languageWord: "tri"}, { english: "angles", languageName: "Greek", languageWord: "gonia"}, { english: "measurement", languageName: "Greek", languageWord: "metron"}],
+        definition: "a branch of math"
+    },
+    {
         clue: "harbor wave",
         answer: "tsunami", 
         roots: [{ english: "harbor", languageName: "Japanese", languageWord: "tsu" }, { english: "wave", languageName: "Japanese", languageWord: "nami" }],
         definition: "a big wave",
+    },
+    {
+        clue: "start from",
+        answer: "originate", 
+        roots: [{ english: "beginning, source", languageName: "Latin", languageWord: "originem" }],
+        definition: "begin at",
     },
     {
         clue: "joy from harm",
@@ -84,4 +96,40 @@ export const WORD_LIST: WordData[] = [
         roots: [{ english: "empty", languageName: "Japanese", languageWord: "kara" }, { english: "orchestra", languageName: "Japanese", languageWord: "oke" }],
         definition: "singing with just the music",
     },
+    {
+        clue: "one marriage",
+        answer: "monogamy",
+        roots: [{ english: "one", languageName: "Greek", languageWord: "monos"}, { english: "marriage", languageName: "Greek", languageWord: "gamos"}],
+        definition: "one marriage at one time"
+    },
+    {
+        clue: "Sax's sound",
+        answer: "saxophone",
+        roots: [{ english: "Sax (surname)", languageName: "French", languageWord: "Sax"}, { english: "sound", languageName: "Greek", languageWord: "phone"}],
+        definition: "type of woodwind instrument"
+    },
+    {
+        clue: "forbidden",
+        answer: "taboo",
+        roots: [{ english: "forbidden", languageName: "Tongan", languageWord: "tapu"}],
+        definition: "socially unacceptable"
+    },
+    {
+        clue: "fear of spiders",
+        answer: "arachnophobia",
+        roots: [{ english: "spider", languageName: "Greek", languageWord: "arakhne"}, { english: "fear", languageName: "Greek", languageWord: "phobia"}],
+        definition: "literally fear of spiders"
+    },
+    {
+        clue: "journey",
+        answer: "safari",
+        roots: [{ english: "journey", languageName: "Arabic", languageWord: "safar"}],
+        definition: "expedition to hunt in Africa"
+    },
+    {
+        clue: "running back again",
+        answer: "palindrome",
+        roots: [{ english: "again", languageName: "Greek", languageWord: "palin"}, { english: "running", languageName: "Greek", languageWord: "dromos"}],
+        definition: "a word the same backwards"
+    }
 ];
