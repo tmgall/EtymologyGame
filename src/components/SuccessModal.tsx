@@ -47,21 +47,6 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
   const shouldShowExplanationSection = puzzleNumber === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
   const rootHints = formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root)));
   const longExplanation = `The word "${puzzleConfig.answer}" comes from the ${rootLanguages} for "${puzzleConfig.clue}", since ${rootHints}`
-  const explanationSection = (
-    <div>
-      <div className="successModalBoxes">
-        <div className="helpModalHeaderText">
-          {hintMessage}
-        </div>
-      </div>
-
-      <div className="successModalBoxes">
-        <div className="helpModalText">
-          {longExplanation}
-        </div>
-      </div>
-    </div>
-  );
 
   const [isClosing, setIsClosing] = useState(false);
     
@@ -77,7 +62,32 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
       <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
         <div className="closeButton" onClick={handleClose}>&times;</div>
 
-        {shouldShowExplanationSection && explanationSection}
+        {shouldShowExplanationSection && (
+          <div className="successModalBoxes">
+            <div className="helpModalHeaderText">
+              {hintMessage}
+            </div>
+          </div>
+        )}
+        {shouldShowExplanationSection && (
+          <div className="successModalBoxes">
+            <div className="helpModalText">
+              {longExplanation}
+            </div>
+          </div>
+        )}
+        {puzzleConfig.authorsNote && (
+          <div className="successModalBoxes">
+            <div className="helpModalHeaderText">
+              {"Author's Note"}
+            </div>
+          </div>
+        )}
+        {puzzleConfig.authorsNote && (
+          <div className="helpModalText">
+            {puzzleConfig.authorsNote}
+          </div>
+        )}
 
         <div className="successModalBoxes">
           <div className="helpModalHeaderText">Stats</div>
