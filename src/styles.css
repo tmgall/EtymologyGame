@@ -61,6 +61,7 @@
 .headerPuzzleNumber {
     font-family: var(--font-mono);
     font-size: 15px;
+    text-align: left;
 }
 
 .headerButtons {
