@@ -76,14 +76,14 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
             </div>
           </div>
         )}
-        {puzzleConfig.authorsNote && (
+        {puzzleConfig.authorsNote && shouldShowExplanationSection && (
           <div className="successModalBoxes">
             <div className="helpModalHeaderText">
               {"Author's Note"}
             </div>
           </div>
         )}
-        {puzzleConfig.authorsNote && (
+        {puzzleConfig.authorsNote && shouldShowExplanationSection && (
           <div className="helpModalText">
             {puzzleConfig.authorsNote}
           </div>

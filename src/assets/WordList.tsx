@@ -172,7 +172,8 @@ export const WORD_LIST: WordData[] = [
         clue: "the spirit/essence",
         answer: "alcohol",
         roots: [{ english: "the", languageName: "Arabic", languageWord: "al" },{ english: "chemical spirit/essence", languageName: "Arabic", languageWord: "kohl" }],
-        definition: "a drinkable intoxicating liquid"
+        definition: "a drinkable intoxicating liquid",
+        authorsNote: "There are several translations of \"kohl\", but I opted for this one since it's the closest to the English understanding of the term."
     },
     {
         clue: "sensing together",

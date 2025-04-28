@@ -126,7 +126,6 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === puzzleNumber.toString();
     const isDefinitionShown = localStorage.getItem(LAST_DEFINITION_KEY) === puzzleNumber.toString();
     const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === puzzleNumber.toString();
-    const areHintsShown: boolean[] = Array(puzzleConfig.roots.length).fill(false);
 
     useEffect(() => {
         if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === null && localStorage.getItem(LAST_ORIGIN_HINT_KEY) === null) {
@@ -139,12 +138,16 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
             setShowOrigin(true);
         }
         const lastRootsShown = localStorage.getItem(LAST_ROOT_HINTS_KEY);
-        const rootsShown: string[] = lastRootsShown ? lastRootsShown.split(",") : [];
-        rootsShown.map((val, index) => {
-            if (val === puzzleNumber.toString()) {
-                areHintsShown[index] = true;
-            }
-        })
+        const rootsShown: boolean[] = Array(puzzleConfig.roots.length).fill(false);
+        if (lastRootsShown) {
+            lastRootsShown.split(",").forEach((lastRootShown, index) => {
+                if (lastRootShown === puzzleNumber.toString()) {
+                    rootsShown[index] = true;
+                    setARootIsShown(true);
+                }
+            })
+        }
+        setShowRoots(rootsShown);
         if (isDefinitionShown) {
             setShowDefinition(true);
         }
