@@ -198,7 +198,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 </div>
 
                 <div className="clue">
-                    is "{<span style={{ fontWeight: 700 }}>{puzzleConfig.clue}</span>}"
+                    <span>is "<span style={{ fontWeight: 700 }}>{puzzleConfig.clue}</span>"</span>
                 </div>
 
                 <HintButton 
