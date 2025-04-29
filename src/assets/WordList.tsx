@@ -87,6 +87,7 @@ export const WORD_LIST: WordData[] = [
         answer: "taboo",
         roots: [{ english: "forbidden", languageName: "Tongan", languageWord: "tapu"}],
         definition: "socially unacceptable",
+        authorsNote: "This word appears in many Polynesian languages, not just Tongan."
     },
     {
         clue: "journey",
@@ -230,4 +231,49 @@ export const WORD_LIST: WordData[] = [
         roots: [{ english: "the", languageName: "Arabic", languageWord: "al"},{ english: "ashes of saltwort", languageName: "Arabic", languageWord: "qaly" }],
         definition: "having a high pH"
     },
+    // new week
+    {
+        clue: "hundred foot",
+        answer: "centipede",
+        roots: [{ english: "hundred", languageName: "Latin", languageWord: "centum" }, { english: "foot", languageName: "Latin", languageWord: "ped" }],
+        definition: "insect with many legs"
+    },
+    {
+        clue: "mind healer",
+        answer: "psychiatrist",
+        roots: [{ english: "mind", languageName: "Greek", languageWord: "psyche" }, { english: "healing, care", languageName: "Greek", languageWord: "iatreia" }],
+        definition: "a doctor specializing in mental health"
+    },
+    {
+        clue: "the sun stands still",
+        answer: "solstice",
+        roots: [{ english: "sun", languageName: "Latin", languageWord: "sol" }, { english: "stand still", languageName: "Latin", languageWord: "sistere" }],
+        definition: "when the sun reaches its highest or lowest point",
+    }, 
+    {
+        clue: "the king is helpless",
+        answer: "checkmate",
+        roots: [{ english: "king", languageName: "Persian", languageWord: "shah"}, { english: "helpless, astonished", languageName: "Persian", languageWord: "mat"}],
+        definition: "a losing position in chess"
+    },
+    {
+        clue: "sacred carvings",
+        answer: "hieroglyphics",
+        roots: [{ english: "sacred", languageName: "Greek", languageWord: "hieros"}, { english: "carving", languageName: "Greek", languageWord: "glyph"}],
+        definition: "ancient Egyptian writing",
+    },
+    {
+        clue: "expert, sorcerer",
+        answer: "kahuna",
+        roots: [{ english: "master, sorcerer, doctor", languageName: "Hawaiian", languageWord: "kahuna"}],
+        definition: "a very important person",
+        authorsNote: "This word has many definitions, but all attribute to word to referencing some form of expert."
+    },
+    {
+        clue: "fart goblin",
+        answer: "pumpernickel",
+        roots: [{ english: "fart", languageName: "German", languageWord: "pumpern"}, { english: "goblin, devil", languageName: "German", languageWord: "nickel"}],
+        definition: "type of dark rye bread",
+        authorsNote: "I know this is a very difficult one... but I saw \"fart goblin\" and knew I had to include it."
+    }
 ];
