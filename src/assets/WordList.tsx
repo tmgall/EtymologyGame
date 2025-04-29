@@ -275,5 +275,49 @@ export const WORD_LIST: WordData[] = [
         roots: [{ english: "fart", languageName: "German", languageWord: "pumpern"}, { english: "goblin, devil", languageName: "German", languageWord: "nickel"}],
         definition: "type of dark rye bread",
         authorsNote: "I know this is a very difficult one... but I saw \"fart goblin\" and knew I had to include it."
+    },
+    // new week
+    {
+        clue: "power from the people",
+        answer: "democracy",
+        roots: [{ english: "people", languageName: "Greek", languageWord: "demos" }, { english: "power", languageName: "Greek", languageWord: "kratia" }],
+        definition: "government ruled by the people"
+    },
+    {
+        clue: "earth heat",
+        answer: "geothermal",
+        roots: [{ english: "earth", languageName: "Greek", languageWord: "geo" }, { english: "heat", languageName: "Greek", languageWord: "therme" }],
+        definition: "pertaining to heat from the earth"
+    },
+    {
+        clue: "viewing all",
+        answer: "panorama",
+        roots: [{ english: "all", languageName: "Greek", languageWord: "pan" }, { english: "view", languageName: "Greek", languageWord: "horama" }],
+        definition: "a wide view of a surrounding area",
+    },
+    {
+        clue: "hide away from",
+        answer: "abscond",
+        roots: [{ english: "away from", languageName: "Latin", languageWord: "ab" }, { english: "hide", languageName: "Latin", languageWord: "condere" }],
+        definition: "depart suddenly"
+    },
+    {
+        clue: "smoked chili",
+        answer: "chipotle",
+        roots: [{ english: "chili", languageName: "Nahuatl", languageWord: "chilli"}, { english: "smoke", languageName: "Nahuatl", languageWord: "poctli"}],
+        definition: "a smoke-dried chili pepper"
+    },
+    {
+        clue: "warrior wearing a bearskin shirt",
+        answer: "berserker",
+        roots: [{ english: "bear", languageName: "Old Norse", languageWord: "ber"}, { english: "shirt", languageName: "Old Norse", languageWord: "serkr"}],
+        definition: "a Norse warrior"
+    },
+    {
+        clue: "season",
+        answer: "monsoon",
+        roots: [{ english: "season", languageName: "Arabic", languageWord: "mausim" }],
+        definition: "seasonal heavy rains"
     }
+    // ideas: canteloupe
 ];
