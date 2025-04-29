@@ -318,6 +318,51 @@ export const WORD_LIST: WordData[] = [
         answer: "monsoon",
         roots: [{ english: "season", languageName: "Arabic", languageWord: "mausim" }],
         definition: "seasonal heavy rains"
+    },
+    // new week
+    {
+        clue: "folding paper",
+        answer: "origami", 
+        roots: [{ english: "folding", languageName: "Japanese", languageWord: "ori" }, { english: "paper", languageName: "Japanese", languageWord: "kami" }],
+        definition: "the art of paper folding",
+    },
+    {
+        clue: "turning",
+        answer: "tornado",
+        roots: [{ english: "to turn", languageName: "Spanish", languageWord: "tornar"}],
+        definition: "a rotating storm"
+    },
+    {
+        clue: "sound picture",
+        answer: "sonogram",
+        roots: [{ english: "sound", languageName: "Latin", languageWord: "sonus"}, { english: "picture", languageName: "Latin", languageWord: "-gram"}],
+        definition: "medical imaging using sound"
+    },
+    {
+        clue: "wanderer",
+        answer: "planet",
+        roots: [{ english: "wanderer", languageName: "Greek", languageWord: "planetos"}],
+        definition: "celestial body that orbits a star",
+        authorsNote: "This may be my favorite word origin; thinking of a planet as something that wanders is so poetic to me."
+    },
+    {
+        clue: "ring",
+        answer: "bagel",
+        roots: [{ english: "ring", languageName: "Yiddish", languageWord: "beygl"}],
+        definition: "a ring-shaped bread roll"
+    },
+    {
+        clue: "singing wolf",
+        answer: "cantaloupe",
+        roots: [{ english: "sing", languageName: "Latin", languageWord: "canta"}, { english: "wolf", languageName: "Latin", languageWord: "lupus"}],
+        definition: "a small melon",
+        authorsNote: "Cantaloupe is named after the region where it was first grown, Cantalupo." 
+    },
+    {
+        clue: "with a key",
+        answer: "conclave",
+        roots: [{ english: "with", languageName: "Latin", languageWord: "con" }, { english: "key", languageName: "Latin", languageWord: "clavis" }],
+        definition: "where cardinals elect a new pope",
+        authorsNote: "\"With a key\" refers to the fact that the cardinals are locked in the room."
     }
-    // ideas: canteloupe
 ];
