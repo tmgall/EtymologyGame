@@ -10,6 +10,8 @@ import { updateStreak } from "../util/Streak";
 import { updateStats } from "../util/Stats";
 import HintButton from "./HintButton";
 import { formatAsList, formatRootDefinition, formatShortExplanation } from "../util/StringFormatting";
+import { evaluateWordSimilarity, SIMILARITY_THRESHOLD } from "../util/Evaluation";
+import SimilarityModal from "./SimilarityModal";
 
 export const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
@@ -32,6 +34,8 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const [isSimilarityModalOpen, setIsSimilarityModalOpen] = useState(false);
+    const [similarity, setSimilarity] = useState(0);
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -78,7 +82,9 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
     const handleSubmit = () => {
         if (isComplete) return;
-        if (guess.join("").toLocaleLowerCase() === puzzleConfig.answer.toLocaleLowerCase()) {
+        const submission = guess.join("").toLocaleLowerCase();
+        const actualAnswer = puzzleConfig.answer.toLocaleLowerCase();
+        if (submission === actualAnswer) {
             updateStreak(false, puzzleNumber.toString());
             updateStats(getHintsUsed().filter((hintUsed) => hintUsed).length);
             handleRevealAnswer();
@@ -92,7 +98,12 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 };
           
                 ref.current.addEventListener('animationend', handleAnimationEnd);
-              }
+            }
+            const similarity = evaluateWordSimilarity(submission, actualAnswer);
+            setSimilarity(similarity);
+            if (similarity <= SIMILARITY_THRESHOLD) {
+                setIsSimilarityModalOpen(true);
+            }
         }
     };
 
@@ -278,7 +289,11 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         puzzleConfig={puzzleConfig}
                         puzzleNumber={puzzleNumber.toString()}
                         isComplete={isComplete}
-                    />}
+                />}
+                {isSimilarityModalOpen && <SimilarityModal 
+                    onClose={() => setIsSimilarityModalOpen(false)}
+                    similarity={similarity}
+                />}
             </div>
         </>
     );

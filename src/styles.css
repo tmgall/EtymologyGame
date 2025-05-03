@@ -245,6 +245,13 @@
     color: var(--darkest)
 }
 
+.similarityModalText {
+    font-size: 18px;
+    margin-bottom: 4px;
+    background-color: var(--lightest);
+    color: var(--darkest)
+}
+
 .closeButton {
     position: absolute;
     top: 8px;
