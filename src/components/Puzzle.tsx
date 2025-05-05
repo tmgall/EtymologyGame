@@ -260,12 +260,12 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     onClick={() => { 
                         if (showOrigin && aRootIsShown && showDefinition) {
                             setShowRevealAnswer(true);
-                        }
-                        if (!isComplete) {
-                            updateStreak(true, puzzleNumber.toString());
-                            updateStats(5);
-                            localStorage.setItem(LAST_REVEAL_HINT_KEY, puzzleNumber.toString());
-                            handleRevealAnswer();
+                            if (!isComplete) {
+                                updateStreak(true, puzzleNumber.toString());
+                                updateStats(5);
+                                localStorage.setItem(LAST_REVEAL_HINT_KEY, puzzleNumber.toString());
+                                handleRevealAnswer();
+                            }
                         }
                     }}
                 >
