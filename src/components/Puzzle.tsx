@@ -26,7 +26,7 @@ export interface PuzzleProps {
 const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const puzzleConfig = WORD_LIST[puzzleNumber - 1];
     const [showOrigin, setShowOrigin] = useState(false);
-    const [aRootIsShown, setARootIsShown] = useState(false);
+    const [allRootsAreShown, setAllRootsAreShown] = useState(false);
     const [showRoots, setShowRoots] = useState<boolean[]>(Array(puzzleConfig.roots.length).fill(false));
     const [showDefinition, setShowDefinition] = useState(false);
     const [showRevealAnswer, setShowRevealAnswer] = useState(false);
@@ -151,12 +151,16 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         const lastRootsShown = localStorage.getItem(LAST_ROOT_HINTS_KEY);
         const rootsShown: boolean[] = Array(puzzleConfig.roots.length).fill(false);
         if (lastRootsShown) {
+            let numRootsShown = 0;
             lastRootsShown.split(",").forEach((lastRootShown, index) => {
                 if (lastRootShown === puzzleNumber.toString()) {
                     rootsShown[index] = true;
-                    setARootIsShown(true);
+                    numRootsShown++;
                 }
-            })
+            });
+            if (numRootsShown === puzzleConfig.roots.length) {
+                setAllRootsAreShown(true);
+            }
         }
         setShowRoots(rootsShown);
         if (isDefinitionShown) {
@@ -178,7 +182,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
     const revealButtonClass = "hintButtonBase " + (showRevealAnswer 
         ? "hintButtonRevealed" 
-        : showOrigin && aRootIsShown && showDefinition 
+        : showOrigin && allRootsAreShown && showDefinition 
         ? "hintButton" : "hintButtonDisabled");
 
     const languagesOfOriginList = puzzleConfig.roots
@@ -235,7 +239,9 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                             revealed={showRoots[index]} 
                             disabled={!showOrigin} 
                             setShowHint={() => {
-                                setARootIsShown(true);
+                                if (showRoots.filter((showRoot) => showRoot).length + 1 === puzzleConfig.roots.length) {
+                                    setAllRootsAreShown(true);
+                                }
                                 setShowRoots(showRoots.map((rootShown, i) => i === index ? true : rootShown))
                             }}
                             isRootHintButton={true}
@@ -251,14 +257,14 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     storageKey={LAST_DEFINITION_KEY} 
                     puzzleIsComplete={isComplete} 
                     revealed={showDefinition} 
-                    disabled={!aRootIsShown} 
+                    disabled={!allRootsAreShown} 
                     setShowHint={() => setShowDefinition(true)} 
                 />
 
                 <div
                     className={revealButtonClass}
                     onClick={() => { 
-                        if (showOrigin && aRootIsShown && showDefinition) {
+                        if (showOrigin && allRootsAreShown && showDefinition) {
                             setShowRevealAnswer(true);
                             if (!isComplete) {
                                 updateStreak(true, puzzleNumber.toString());
