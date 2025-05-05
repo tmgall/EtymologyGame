@@ -12,7 +12,7 @@ export const formatRootDefinition = (root: RootsData) => {
 }
 
 export const formatShortExplanation = (today: WordData) => {
-    return today.roots.map((root) => `\"${root.languageWord}`).join(" + ") + ` = ${today.answer}`;
+    return today.roots.map((root) => `\"${root.languageWord}\"`).join(" + ") + ` = ${today.answer}`;
 }
 
 export const formatShareText = (hintsUsed: boolean[], puzzleNumber: string, isComplete: boolean, now: Date) => {
