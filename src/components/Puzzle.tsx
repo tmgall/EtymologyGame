@@ -280,13 +280,6 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
-                <footer className="footer">
-                    <div className="footerSpacing">
-                        <Link to="/privacy-policy" className="backToHomeButton">Privacy Policy</Link>
-                        <Link to="/terms-of-service" className="backToHomeButton">Terms of Service</Link>
-                        <Link to="/contact" className="backToHomeButton">Contact</Link>
-                    </div>
-                </footer>
                 {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}
                 {isSuccessModalOpen && 
                     <SuccessModal
@@ -301,6 +294,13 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     similarity={similarity}
                 />}
             </div>
+            <footer className="footer">
+                <div className="footerSpacing">
+                    <Link to="/privacy-policy" className="backToHomeButton">Privacy Policy</Link>
+                    <Link to="/terms-of-service" className="backToHomeButton">Terms of Service</Link>
+                    <Link to="/contact" className="backToHomeButton">Contact</Link>
+                </div>
+            </footer>
         </>
     );
 };
