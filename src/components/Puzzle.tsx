@@ -293,14 +293,14 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     onClose={() => setIsSimilarityModalOpen(false)}
                     similarity={similarity}
                 />}
-                <footer className="footer">
-                    <div className="footerSpacing">
-                        <Link to="/privacy-policy" className="backToHomeButton">Privacy Policy</Link>
-                        <Link to="/terms-of-service" className="backToHomeButton">Terms of Service</Link>
-                        <Link to="/contact" className="backToHomeButton">Contact</Link>
-                    </div>
-                </footer>
             </div>
+            <footer className="footer">
+                <div className="footerSpacing">
+                    <Link to="/privacy-policy" className="backToHomeButton">Privacy Policy</Link>
+                    <Link to="/terms-of-service" className="backToHomeButton">Terms of Service</Link>
+                    <Link to="/contact" className="backToHomeButton">Contact</Link>
+                </div>
+            </footer>
         </>
     );
 };
