@@ -24,12 +24,12 @@
     max-width: var(--max-width);
     width: 100%;
     margin-inline: auto;
-    min-height: 100dvh;
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .puzzle {
     display: flex;
-    min-height: 100vh;
+    min-height: 100%;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
