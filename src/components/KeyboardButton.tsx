@@ -14,12 +14,10 @@ const KeyboardButton = ({ keyContent, onClick }: KeyboardButtonProps) => {
   
     return (
       <div
-        onTouchStart={() => setIsActive(true)}
-        onTouchEnd={() => setIsActive(false)}
-        onTouchCancel={() => setIsActive(false)}
-        onMouseDown={() => setIsActive(true)}
-        onMouseUp={() => setIsActive(false)}
-        onMouseLeave={() => setIsActive(false)}
+        onPointerDown={() => setIsActive(true)}
+        onPointerUp={() => setIsActive(false)}
+        onPointerCancel={() => setIsActive(false)}
+        onPointerLeave={() => setIsActive(false)}
         key={keyContent}
         className={className}
         onClick={() => {
