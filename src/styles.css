@@ -207,9 +207,11 @@
     background-color: var(--revealed);
 }
 
-.keyboardButtonShortNeutral:hover {
-    cursor: pointer;
-    background-color: var(--hover);
+@media (hover: hover) and (pointer: fine) {
+    .keyboardButtonShortNeutral:hover {
+        cursor: pointer;
+        background-color: var(--hover);
+    }
 }
 
 .keyboardButtonLongNeutral {
@@ -225,9 +227,11 @@
     background-color: var(--revealed);
 }
 
-.keyboardButtonLongNeutral:hover {
-    cursor: pointer;
-    background-color: var(--hover);
+@media (hover: hover) and (pointer: fine) {
+    .keyboardButtonLongNeutral:hover {
+        cursor: pointer;
+        background-color: var(--hover);
+    }
 }
 
 .keyboardButtonShortActive {
@@ -243,8 +247,10 @@
     background-color: var(--disabled);
 }
 
-.keyboardButtonShortActive:hover {
-    cursor: pointer;
+@media (hover: hover) and (pointer: fine) {
+    .keyboardButtonShortActive:hover {
+        cursor: pointer;
+    }
 }
 
 .keyboardButtonLongActive {
@@ -260,8 +266,10 @@
     background-color: var(--revealed);
 }
 
-.keyboardButtonLongActive:hover {
-    cursor: pointer;
+@media (hover: hover) and (pointer: fine) {
+    .keyboardButtonLongActive:hover {
+        cursor: pointer;
+    }
 }
 
 .helpModalHeaderText {
