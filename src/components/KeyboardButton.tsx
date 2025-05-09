@@ -15,11 +15,11 @@ const KeyboardButton = ({ keyContent, onClick }: KeyboardButtonProps) => {
     return (
       <div
         onTouchStart={() => setIsActive(true)}
-        onTouchEnd={() => setTimeout(() => setIsActive(false), 100)}
-        onTouchCancel={() => setTimeout(() => setIsActive(false), 100)}     
+        onTouchEnd={() => setIsActive(false)}
+        onTouchCancel={() => setIsActive(false)}     
         onMouseDown={() => setIsActive(true)}
-        onMouseUp={() => setTimeout(() => setIsActive(false), 100)}
-        onMouseLeave={() => setTimeout(() => setIsActive(false), 100)}   
+        onMouseUp={() => setIsActive(false)}
+        onMouseLeave={() => setIsActive(false)}   
         key={keyContent}
         className={className}
         onClick={() => onClick(keyContent)}
