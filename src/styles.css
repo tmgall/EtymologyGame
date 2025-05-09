@@ -160,13 +160,6 @@
     background-color: var(--hover);
 }
 
-.rootHintButton {
-    display: flex;
-    min-height: 70px;
-    align-items: center;
-    justify-content: center;
-}
-
 .hintButtonRevealed {
     font-weight: 700;
     color: var(--lightest);
@@ -244,7 +237,7 @@
     border-radius: 4px;
     line-height: 36px;
     font-size: 20px;
-    background-color: var(--disabled);
+    background-color: var(--active);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -263,7 +256,7 @@
     border-radius: 4px;
     line-height: 36px;
     font-size: 16px;
-    background-color: var(--revealed);
+    background-color: var(--active);
 }
 
 @media (hover: hover) and (pointer: fine) {
