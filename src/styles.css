@@ -126,9 +126,10 @@
 }
 
 .buttonRow {
+    flex: 1;
     display: flex;
     justify-content: space-between;
-    min-width: 100%;
+    width: 100%;
     gap: 8px;
 }
 

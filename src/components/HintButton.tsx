@@ -14,9 +14,8 @@ export interface HintButtonProps {
 }
 
 const HintButton = ({ puzzleNumber, hint, storageKey, puzzleIsComplete, revealed, disabled, setShowHint, hintText, isRootHintButton, rootNumber }: HintButtonProps) => {
-    const styleClass = "hintButtonBase " + (revealed
-        ? "hintButtonRevealed" 
-        : disabled  ? "hintButtonDisabled" : "hintButton") + (isRootHintButton ? " rootHintButton" : "");
+    const styleClass = "hintButtonBase " 
+        + (revealed ? "hintButtonRevealed" : disabled  ? "hintButtonDisabled" : "hintButton");
     return (
         <div
             className={styleClass}
