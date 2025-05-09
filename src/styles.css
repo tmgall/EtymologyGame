@@ -240,7 +240,7 @@
     border-radius: 4px;
     line-height: 36px;
     font-size: 20px;
-    background-color: var(--revealed);
+    background-color: var(--disabled);
 }
 
 .keyboardButtonShortActive:hover {
