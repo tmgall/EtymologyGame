@@ -13,7 +13,7 @@ export interface HintButtonProps {
     rootNumber?: number;
 }
 
-const HintButton = ({ puzzleNumber, hint, storageKey, puzzleIsComplete, revealed, disabled, setShowHint, hintText, isRootHintButton, rootNumber }: HintButtonProps) => {
+const HintButton = ({ puzzleNumber, hint, storageKey, puzzleIsComplete, revealed, disabled, setShowHint, hintText, rootNumber }: HintButtonProps) => {
     const styleClass = "hintButtonBase " 
         + (revealed ? "hintButtonRevealed" : disabled  ? "hintButtonDisabled" : "hintButton");
     return (
