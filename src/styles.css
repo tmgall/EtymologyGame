@@ -194,48 +194,74 @@
     gap: 2px;
 }
 
-.keyboardButton {
+.keyboardButtonShortNeutral {
     flex: 1;
     height: 40px;
-    background-color: var(--revealed);
     border-color: var(--lightest);
     border-style: solid;
     border-width: 1px;
     font-weight: 500;
     border-radius: 4px;
+    line-height: 36px;
     font-size: 20px;
-    line-height: 36px;
+    background-color: var(--revealed);
 }
 
-.keyboardButtonLongText {
+.keyboardButtonShortNeutral:hover {
+    cursor: pointer;
+    background-color: var(--hover);
+}
+
+.keyboardButtonLongNeutral {
     flex: 1;
     height: 40px;
-    background-color: var(--revealed);
     border-color: var(--lightest);
     border-style: solid;
     border-width: 1px;
     font-weight: 500;
     border-radius: 4px;
-    font-size: 16px;
     line-height: 36px;
+    font-size: 16px;
+    background-color: var(--revealed);
 }
 
-.keyboardButton:hover {
+.keyboardButtonLongNeutral:hover {
     cursor: pointer;
     background-color: var(--hover);
 }
 
-.keyboardButton:active {
-    background-color: var(--active);
+.keyboardButtonShortActive {
+    flex: 1;
+    height: 40px;
+    border-color: var(--lightest);
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 500;
+    border-radius: 4px;
+    line-height: 36px;
+    font-size: 20px;
+    background-color: var(--revealed);
 }
 
-.keyboardButtonLongText:hover {
+.keyboardButtonShortActive:hover {
     cursor: pointer;
-    background-color: var(--hover);
 }
 
-.keyboardButtonLongText:active {
-    background-color: var(--active);
+.keyboardButtonLongActive {
+    flex: 1;
+    height: 40px;
+    border-color: var(--lightest);
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 500;
+    border-radius: 4px;
+    line-height: 36px;
+    font-size: 16px;
+    background-color: var(--revealed);
+}
+
+.keyboardButtonLongActive:hover {
+    cursor: pointer;
 }
 
 .helpModalHeaderText {

@@ -1,3 +1,5 @@
+import KeyboardButton from "./KeyboardButton";
+
 export interface KeyboardProps {
     onKeyPress: (key: string) => void;
     onBackspace: () => void;
@@ -20,7 +22,7 @@ const Keyboard = ({ onKeyPress, onBackspace, onSubmit }: KeyboardProps) => {
             onKeyPress(key);
         }
     }
-  
+
     return (
       <div className="keyboard">
         {keys.map((row, rowIndex) => (
@@ -28,15 +30,7 @@ const Keyboard = ({ onKeyPress, onBackspace, onSubmit }: KeyboardProps) => {
             key={rowIndex}
             className="keyboardRow"
           >
-            {row.map((key, index) => (
-              <div
-                key={index}
-                className={key === "Back" || key === "Enter" ? "keyboardButtonLongText" : "keyboardButton"}
-                onClick={() => onClick(key)}
-              >
-                {key}
-              </div>
-            ))}
+            {row.map((keyContent: string) => <KeyboardButton keyContent={keyContent} onClick={() => onClick(keyContent)}/>)}
           </div>
         ))}
       </div>
