@@ -43,7 +43,13 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
 
   const shareText = formatShareText(hintsUsed, puzzleNumber, isComplete, now);
 
-  const rootLanguages = formatAsList(puzzleConfig.roots.map((root) => root.languageName));
+  const languagesOfOriginList = puzzleConfig.roots
+  .map((root) => root.languageName)
+  .reduce<string[]>((acc, item) => {
+      if (!acc.includes(item)) acc.push(item);
+      return acc;
+  }, []);
+  const rootLanguages = formatAsList(languagesOfOriginList);
   const shouldShowExplanationSection = puzzleNumber === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
   const rootHints = formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root)));
   const longExplanation = `The word "${puzzleConfig.answer}" comes from the ${rootLanguages} for "${puzzleConfig.clue}", since ${rootHints}`

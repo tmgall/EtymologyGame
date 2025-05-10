@@ -10,7 +10,7 @@ const App = () => {
     };
   
     setVh();
-    window.addEventListener('resize', setVh); // Update on resize
+    window.addEventListener('resize', setVh);
   
     return () => window.removeEventListener('resize', setVh);
   }, []);
