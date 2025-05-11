@@ -9,10 +9,21 @@ const App = () => {
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
   
+    window.addEventListener('load', setVh);
+    setTimeout(setVh, 100);
     setVh();
-    // window.addEventListener('resize', setVh);
   
-    // return () => window.removeEventListener('resize', setVh);
+    let resizeTimeout: number;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(setVh, 150);
+    };
+    window.addEventListener('resize', handleResize);
+  
+    return () => {
+      window.removeEventListener('load', setVh);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
   
   const override = undefined;
