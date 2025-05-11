@@ -10,9 +10,9 @@ const App = () => {
     };
   
     setVh();
-    window.addEventListener('resize', setVh);
+    // window.addEventListener('resize', setVh);
   
-    return () => window.removeEventListener('resize', setVh);
+    // return () => window.removeEventListener('resize', setVh);
   }, []);
   
   const override = undefined;
