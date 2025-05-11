@@ -14,7 +14,7 @@ const App = () => {
     let resizeTimeout: number;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = window.setTimeout(setVh, 150);
+      resizeTimeout = window.setTimeout(setVh, 20);
     };
     window.addEventListener('resize', handleResize);
   
