@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { IoBackspaceOutline } from "react-icons/io5";
+import { IoReturnDownBackSharp } from "react-icons/io5";
 
 export interface KeyboardButtonProps {
   keyContent: string;
@@ -11,6 +13,11 @@ const KeyboardButton = ({ keyContent, onClick }: KeyboardButtonProps) => {
     const className = keyContent === "Back" || keyContent === "Enter" 
     ? isActive ? "keyboardButtonLongActive" : "keyboardButtonLongNeutral"
     : isActive ? "keyboardButtonShortActive" : "keyboardButtonShortNeutral";
+
+    const content = keyContent === "Back" 
+      ? <IoBackspaceOutline className="keyboardIconButton"/> 
+      : keyContent === "Enter" ? <IoReturnDownBackSharp className="keyboardIconButton"/> 
+      : <div className={className}>{keyContent}</div>
   
     return (
       <div
@@ -25,7 +32,7 @@ const KeyboardButton = ({ keyContent, onClick }: KeyboardButtonProps) => {
           onClick(keyContent)
         }}
       >
-        {keyContent}
+        {content}
       </div>
     );
 };
