@@ -9,8 +9,6 @@ const App = () => {
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
   
-    window.addEventListener('load', setVh);
-    setTimeout(setVh, 100);
     setVh();
   
     let resizeTimeout: number;
@@ -21,7 +19,6 @@ const App = () => {
     window.addEventListener('resize', handleResize);
   
     return () => {
-      window.removeEventListener('load', setVh);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
