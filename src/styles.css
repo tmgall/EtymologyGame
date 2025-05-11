@@ -7,8 +7,7 @@
     --active: #0084d1;
     --lightest: #dff2fe;
     --max-width: min(420px, 100%);
-    --font-mono: monospace;
-    --font-standard: "Georgia", serif
+    --font-standard: "Roboto Mono", monospace;
 }
 
 * {
@@ -55,14 +54,12 @@
 .headerName {
     font-size: 48px;
     font-weight: bold;
-    font-family: var(--font-mono);
     width: 100%;
     line-height: 1;
     text-align: left;
 }
 
 .headerPuzzleNumber {
-    font-family: var(--font-mono);
     font-size: 15px;
     text-align: left;
 }
@@ -74,7 +71,6 @@
 }
 
 .headerButton {
-    font-family: var(--font-mono);
     font-weight: 500;
     font-size: 20px;
     width: 32px;
@@ -206,7 +202,6 @@
     flex: 1;
     height: 75%;
     width: 75%;
-    line-height: 36px;
     background-color: var(--revealed);
     justify-content: center;
     align-items: center;
