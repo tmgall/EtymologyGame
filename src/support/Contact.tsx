@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <div className="support">
       <h1 className="supportHeader">Contact</h1>
-      <p>The developer hopes you like the game! For any questions or feedback, please contact: </p>
+      <p>This game is made by a solo developer, and I hope you like the game! To report any bugs, suggest a word, ask a question, or provide feedback, please contact: </p>
       <br></br>
       <p>Email: <a href="mailto:lexicongamecontact@gmail.com" className="hover:underline">lexicongamecontact@gmail.com</a></p>
 

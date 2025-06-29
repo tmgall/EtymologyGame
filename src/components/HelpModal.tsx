@@ -39,7 +39,7 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
           For example, the clue "far vision" would mean the answer is television, since "television" comes from the Greek "tele" (meaning "far") and Latin "visio" (meaning "vision").
         </p>
         <p className="helpModalText">
-            The puzzles get harder as the week goes on, with Monday being the easiest and Sunday being the hardest.  
+            The puzzles get harder as the week goes on, with Monday being the easiest and Sunday being brutal.  
         </p>
         <p className="helpModalText">
             If you're stuck, you can use the available hints.

@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
     <div className="support">
       <h1 className="supportHeader">Privacy Policy</h1>
       <p className="supportText" style={{ fontWeight: 700 }}>1. Data Collection</p>
-      <p className="supportText">Lexicon does not collect any personally identifiable information (PII). The app uses localStorage to store game-related data, such as user stats and play history</p>
+      <p className="supportText">Lexicon does not collect any personally identifiable information (PII). The app uses localStorage to store game-related data, such as user stats and play history. The game also uses Vercel Analytics, which collects location and device information. </p>
       <p className="supportText">In the future, Lexicon may integrate third-party services, such as Google Ads, which may collect additional data. These services are governed by their own privacy policies.</p>
       <p className="supportText" style={{ fontWeight: 700 }}>2. Use of Data</p>
       <p className="supportText">The data stored in localStorage is used solely to enhance the user experience within Lexicon, such as tracking your progress and stats. No data is shared with third parties unless otherwise stated.</p>
