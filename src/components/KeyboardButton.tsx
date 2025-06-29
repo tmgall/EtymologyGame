@@ -1,7 +1,4 @@
-import { IoBackspaceOutline } from "react-icons/io5";
-import { IoReturnDownBackSharp } from "react-icons/io5";
-import { IconContext } from "react-icons";
-
+import { IoBackspaceOutline } from "react-icons/io5"
 
 export interface KeyboardButtonProps {
   keyContent: string;
