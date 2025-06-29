@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { IoBackspaceOutline } from "react-icons/io5";
 import { IoReturnDownBackSharp } from "react-icons/io5";
+import { IconContext } from "react-icons";
+
 
 export interface KeyboardButtonProps {
   keyContent: string;
@@ -8,30 +9,21 @@ export interface KeyboardButtonProps {
 }
 
 const KeyboardButton = ({ keyContent, onClick }: KeyboardButtonProps) => {
-    const [isActive, setIsActive] = useState(false);
+    const className = keyContent === "Enter" ? "keyboardButtonSubmit" : "keyboardButton";
 
-    const className = keyContent === "Back" || keyContent === "Enter" 
-    ? isActive ? "keyboardButtonLongActive" : "keyboardButtonLongNeutral"
-    : isActive ? "keyboardButtonShortActive" : "keyboardButtonShortNeutral";
+    const submitContent = (
+      <div key={keyContent} className={className} onClick={() => { onClick(keyContent) }}>
+        {"Enter"}
+      </div>
+    );
 
     const content = keyContent === "Back" 
       ? <IoBackspaceOutline className="keyboardIconButton"/> 
-      : keyContent === "Enter" ? <IoReturnDownBackSharp className="keyboardIconButton"/> 
+      : keyContent === "Enter" ? submitContent
       : <div className={className}>{keyContent}</div>
   
     return (
-      <div
-        onPointerDown={() => setIsActive(true)}
-        onPointerUp={() => setIsActive(false)}
-        onPointerCancel={() => setIsActive(false)}
-        onPointerLeave={() => setIsActive(false)}
-        key={keyContent}
-        className={className}
-        onClick={() => {
-          setIsActive(false)
-          onClick(keyContent)
-        }}
-      >
+      <div key={keyContent} className={className} onClick={() => { onClick(keyContent) }}>
         {content}
       </div>
     );

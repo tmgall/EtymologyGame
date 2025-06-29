@@ -203,11 +203,12 @@
     height: 75%;
     width: 75%;
     background-color: var(--revealed);
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.keyboardButtonShortNeutral {
+.keyboardButton {
     flex: 1;
     height: 40px;
     border-color: var(--lightest);
@@ -222,14 +223,11 @@
     justify-content: center;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .keyboardButtonShortNeutral:hover {
-        cursor: pointer;
-        background-color: var(--hover);
-    }
+.keyboardButton:active {
+    background-color: var(--hover);
 }
 
-.keyboardButtonLongNeutral {
+.keyboardButtonSubmit {
     flex: 1;
     height: 40px;
     border-color: var(--lightest);
@@ -241,55 +239,17 @@
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    background-color: var(--revealed);
+    background: linear-gradient(to right, var(--darkest), var(--revealed));
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .keyboardButtonLongNeutral:hover {
+    .keyboardButton:hover {
         cursor: pointer;
         background-color: var(--hover);
     }
-}
-
-.keyboardButtonShortActive {
-    flex: 1;
-    height: 40px;
-    border-color: var(--lightest);
-    border-style: solid;
-    border-width: 1px;
-    font-weight: 500;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    background-color: var(--active);
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .keyboardButtonShortActive:hover {
+    .keyboardButtonSubmit:hover {
         cursor: pointer;
-    }
-}
-
-.keyboardButtonLongActive {
-    flex: 1;
-    height: 40px;
-    border-color: var(--lightest);
-    border-style: solid;
-    border-width: 1px;
-    font-weight: 500;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    background-color: var(--active);
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .keyboardButtonLongActive:hover {
-        cursor: pointer;
+        background-color: var(--hover);
     }
 }
 
