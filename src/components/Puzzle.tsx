@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import Keyboard from "./Keyboard";
 import { WORD_LIST } from "../assets/WordList";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./Header";
 import HelpModal from "./HelpModal";
@@ -264,13 +263,6 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     similarity={similarity}
                 />}
             </div>
-            <footer className="footer">
-                <div className="footerSpacing">
-                    <Link to="/privacy-policy" className="backToHomeButton">Privacy Policy</Link>
-                    <Link to="/terms-of-service" className="backToHomeButton">Terms of Service</Link>
-                    <Link to="/contact" className="backToHomeButton">Contact</Link>
-                </div>
-            </footer>
         </>
     );
 };
