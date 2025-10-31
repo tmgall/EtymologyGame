@@ -30,7 +30,7 @@ const Keyboard = ({ onKeyPress, onBackspace, onSubmit }: KeyboardProps) => {
             key={rowIndex}
             className="keyboardRow"
           >
-            {row.map((keyContent: string) => <KeyboardButton keyContent={keyContent} onClick={() => onClick(keyContent)}/>)}
+            {row.map((keyContent: string) => <KeyboardButton key={keyContent} keyContent={keyContent} onClick={() => onClick(keyContent)}/>)}
           </div>
         ))}
       </div>

@@ -1,19 +1,21 @@
 :root {
-    --darkest: #04283e;
-    --revealed: #00598a;
-    --disabled: #031724;
-    --ready: #0267a7;
-    --hover: #0069a8;
-    --active: #0084d1;
-    --lightest: #dff2fe;
+    --paper: #f4f1e8;
+    --ink: #2c2c2c;
+    --ink-light: #4a4a4a;
+    --ink-lighter: #666666;
+    --typewriter-ribbon: #8b0000;
+    --typewriter-ribbon-light: #a52a2a;
+    --typewriter-key: #e8e0d6;
+    --typewriter-key-shadow: #d4c4b0;
+    --typewriter-key-pressed: #cfc0a8;
     --max-width: min(420px, 100%);
     --font-standard: "Roboto Mono", monospace;
 }
 
 * {
-    background-color: var(--darkest);
-    border-color: var(--lightest);
-    color: var(--lightest);
+    background-color: var(--paper);
+    border-color: var(--ink);
+    color: var(--ink);
     text-align: center;
     font-family: var(--font-standard);
     box-sizing: border-box;
@@ -29,7 +31,6 @@
 .puzzle {
     display: flex;
     min-height: 100%;
-    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     max-width: 100vw;
@@ -79,33 +80,37 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: var(--ready);
+    background-color: var(--typewriter-key);
     border-radius: 50%;
-    border-color: var(--lightest);
+    border-color: var(--typewriter-key-shadow);
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
+    color: var(--ink);
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
 }
 
 .headerIconButton {
     height: 60%;
     width: 60%;
-    background-color: var(--ready);
+    background-color: inherit;
 }
 
 .headerIconButton:hover {
-    background-color: var(--hover);
+    background-color: inherit;
 }
 
 .headerIconButton:active {
-    background-color: var(--active);
+    background-color: inherit;
 }
 
 .headerButton:hover {
-    background-color: var(--hover);
+    background-color: var(--typewriter-key-pressed);
 }
 
 .headerButton:active {
-    background-color: var(--active);
+    background-color: var(--typewriter-key-pressed);
+    box-shadow: 0 1px 0 var(--typewriter-key-shadow);
+    transform: translateY(1px);
 }
 
 .divider {
@@ -113,39 +118,137 @@
     width: 100%;
 }
 
-.promptText {
-    font-weight: 500;
-    font-size: 24px;
+.clueSection {
+    background-color: var(--paper);
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(139, 69, 19, 0.01) 0%, transparent 50%);
+    border: 2px solid var(--typewriter-key-shadow);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px 0;
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
+    position: relative;
+    width: 100%;
+}
+
+.clueSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(90deg, transparent 0%, transparent 24px, rgba(139, 69, 19, 0.05) 25px, transparent 26px),
+        linear-gradient(0deg, transparent 0%, transparent 19px, rgba(139, 69, 19, 0.03) 20px, transparent 21px);
+    background-size: 25px 20px;
+    pointer-events: none;
+    border-radius: 6px;
+}
+
+.dictionaryEntry {
     display: flex;
-    margin-top: 4px;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.wordEntry {
+    display: flex;
+    align-items: center;
+}
+
+.wordLength {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+}
+
+.partOfSpeechLine {
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.partOfSpeech {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--ink-light);
+    font-style: italic;
+}
+
+.etymologyContent {
+    margin-bottom: 4px;
+}
+
+.hintLabel {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    text-align: left;
+}
+
+.definitionLabel {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    text-align: right;
+}
+
+.etymologyValue {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--ink);
+    font-style: italic;
+    text-align: left;
+    color: var(--ink-light);
+    font-style: italic;
+}
+
+.definitionValue {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--ink);
+    font-style: italic;
+    text-align: right;
+    color: var(--ink-light);
+    font-style: italic;
 }
 
 .userInput {
-    font-weight: 600;
-    font-size: 24px;
-    margin-top: 4px;
+    font-weight: 700;
+    font-size: 36px;
+    padding: 2px 8px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--ink);
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    color: var(--ink);
+    text-align: left;
+    justify-content: flex-start;
 }
 
-.clue {
-    font-weight: 500;
-    font-size: 24px;
-    margin-top: 4px;
-    margin-bottom: 8px;
+.hintsRow {
     display: flex;
-    justify-content: center;
-}
-
-.buttonRow {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
     width: 100%;
     gap: 8px;
+    margin-top: 6px;
 }
+
 
 .hintButtonBase {
     display: flex;
-    border: 2px solid var(--lightest);
+    border: 2px solid var(--ink);
     font-size: 16px;
     border-radius: 4px;
     width: 100%;
@@ -154,32 +257,43 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    max-height: 100px;
+    height: 80px;
+    padding: 8px;
 }
 
 .hintButton {
     font-weight: 700;
-    color: var(--lightest);
-    background: linear-gradient(to right, var(--darkest), var(--revealed));
+    color: var(--ink);
+    background-color: var(--typewriter-key);
+    border-color: var(--typewriter-key-shadow);
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
+    height: 80px;
 }
 
 .hintButton:active {
-    background-color: var(--active);
+    background-color: var(--typewriter-key-pressed);
+    box-shadow: 0 1px 0 var(--typewriter-key-shadow);
+    transform: translateY(1px);
 }
 
 .hintButton:hover {
     cursor: pointer;
-    background-color: var(--hover);
+    background-color: var(--typewriter-key-pressed);
 }
 
 .hintButtonRevealed {
     font-weight: 700;
-    color: var(--lightest);
+    color: var(--ink);
+    background-color: var(--paper);
+    border-style: dashed;
+    height: 80px;
 }
 
 .hintButtonDisabled {
-    background-color: var(--disabled);
-    color: var(--lightest);
+    background-color: var(--paper);
+    color: var(--ink-lighter);
+    border-color: var(--ink-lighter);
+    height: 80px;
 }
 
 .keyboard {
@@ -203,7 +317,7 @@
     flex: 1;
     height: 75%;
     width: 75%;
-    background-color: var(--revealed);
+    background-color: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -212,45 +326,51 @@
 .keyboardButton {
     flex: 1;
     height: 40px;
-    border-color: var(--lightest);
+    border-color: var(--typewriter-key-shadow);
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     font-weight: 500;
     border-radius: 4px;
     font-size: 20px;
-    background-color: var(--revealed);
+    background-color: var(--typewriter-key);
+    color: var(--ink);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
 }
 
 .keyboardButton:active {
-    background-color: var(--hover);
+    background-color: var(--typewriter-key-pressed);
+    box-shadow: 0 1px 0 var(--typewriter-key-shadow);
+    transform: translateY(1px);
 }
 
 .keyboardButtonSubmit {
     flex: 1;
     height: 40px;
-    border-color: var(--lightest);
+    border-color: var(--typewriter-key-shadow);
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     font-weight: 500;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    background: linear-gradient(to right, var(--darkest), var(--revealed));
+    background-color: var(--typewriter-key);
+    color: var(--ink);
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
 }
 
 @media (hover: hover) and (pointer: fine) {
     .keyboardButton:hover {
         cursor: pointer;
-        background-color: var(--hover);
+        background-color: var(--typewriter-key-pressed);
     }
     .keyboardButtonSubmit:hover {
         cursor: pointer;
-        background-color: var(--hover);
+        background-color: var(--typewriter-key-pressed);
     }
 }
 
@@ -258,22 +378,22 @@
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 4px;
-    background-color: var(--lightest);
-    color: var(--darkest)
+    background-color: var(--paper);
+    color: var(--ink)
 }
 
 .helpModalText {
     font-size: 14px;
     margin-bottom: 4px;
-    background-color: var(--lightest);
-    color: var(--darkest)
+    background-color: var(--paper);
+    color: var(--ink)
 }
 
 .similarityModalText {
     font-size: 18px;
     margin-bottom: 4px;
-    background-color: var(--lightest);
-    color: var(--darkest)
+    background-color: var(--paper);
+    color: var(--ink)
 }
 
 .closeButton {
@@ -282,14 +402,14 @@
     right: 14px;
     background: transparent;
     border: none;
-    color: var(--darkest);
+    color: var(--ink);
     font-size: 30px;
     font-weight: 700;
     cursor: pointer;
 }
 
 .closeButton:hover {
-    color: var(--active);
+    color: var(--typewriter-ribbon);
 }
 
 .helpModalOverlay {
@@ -307,11 +427,11 @@
 }
   
 .helpModalBox {
-    background-color: var(--lightest);
-    color: var(--darkest);
+    background-color: var(--paper);
+    color: var(--ink);
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid var(--darkest);
+    border: 1px solid var(--ink);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
     width: 300px;
@@ -323,7 +443,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--lightest);
+    background-color: var(--paper);
 }
 
 .streakBox {
@@ -331,32 +451,32 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    background-color: var(--lightest);
+    background-color: var(--paper);
 }
 
 .statsBox {
     width: 100%;
     margin-bottom: 4px;
-    background-color: var(--lightest);
+    background-color: var(--paper);
 }
 
 .statsRow {
     display: flex;
     align-items: center;
     margin-bottom: 2px;
-    background-color: var(--lightest);
+    background-color: var(--paper);
 }
 
 .statsIndex {
     width: 8px;
     text-align: right;
-    color: var(--darkest);
-    background-color: var(--lightest);
+    color: var(--ink);
+    background-color: var(--paper);
     font-weight: 700;
 }
 
 .statsBar {
-    background-color: var(--lightest);
+    background-color: var(--paper);
     margin-left: 8px;
     flex: 1;
 }

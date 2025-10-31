@@ -17,7 +17,6 @@ export const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
 const LAST_ORIGIN_HINT_KEY = "last-origin-hint";
 export const LAST_ROOT_HINTS_KEY = "last-root-hints"
 const LAST_REVEAL_HINT_KEY = "last-reveal-hint";
-const LAST_DEFINITION_KEY = "last-definition-hint";
 
 export interface PuzzleProps {
     puzzleNumber: number;
@@ -26,9 +25,7 @@ export interface PuzzleProps {
 const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const puzzleConfig = WORD_LIST[puzzleNumber - 1];
     const [showOrigin, setShowOrigin] = useState(false);
-    const [allRootsAreShown, setAllRootsAreShown] = useState(false);
     const [showRoots, setShowRoots] = useState<boolean[]>(Array(puzzleConfig.roots.length).fill(false));
-    const [showDefinition, setShowDefinition] = useState(false);
     const [showRevealAnswer, setShowRevealAnswer] = useState(false);
     const [guess, setGuess] = useState<string[]>(Array(puzzleConfig.answer.length).fill(""));
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
@@ -66,12 +63,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         if (isOriginShown) {
             hintsUsed.push(true);
         } else { hintsUsed.push(false); }
-        showRoots.forEach((showRoot) => {
-            if (showRoot) {
-                hintsUsed.push(true);
-            } else { hintsUsed.push(false); }
-        })
-        if (isDefinitionShown) {
+        if (showRoots[0]) {
             hintsUsed.push(true);
         } else { hintsUsed.push(false); }
         if (isRevealShown) {
@@ -135,7 +127,6 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
     const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === puzzleNumber.toString();
     const isOriginShown = localStorage.getItem(LAST_ORIGIN_HINT_KEY) === puzzleNumber.toString();
-    const isDefinitionShown = localStorage.getItem(LAST_DEFINITION_KEY) === puzzleNumber.toString();
     const isRevealShown = localStorage.getItem(LAST_REVEAL_HINT_KEY) === puzzleNumber.toString();
 
     useEffect(() => {
@@ -149,22 +140,8 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
             setShowOrigin(true);
         }
         const lastRootsShown = localStorage.getItem(LAST_ROOT_HINTS_KEY);
-        const rootsShown: boolean[] = Array(puzzleConfig.roots.length).fill(false);
-        if (lastRootsShown) {
-            let numRootsShown = 0;
-            lastRootsShown.split(",").forEach((lastRootShown, index) => {
-                if (lastRootShown === puzzleNumber.toString()) {
-                    rootsShown[index] = true;
-                    numRootsShown++;
-                }
-            });
-            if (numRootsShown === puzzleConfig.roots.length) {
-                setAllRootsAreShown(true);
-            }
-        }
-        setShowRoots(rootsShown);
-        if (isDefinitionShown) {
-            setShowDefinition(true);
+        if (lastRootsShown && lastRootsShown.split(",")[0] === puzzleNumber.toString()) {
+            setShowRoots([true]);
         }
         if (isRevealShown) {
             setShowRevealAnswer(true);
@@ -182,7 +159,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
     const revealButtonClass = "hintButtonBase " + (showRevealAnswer 
         ? "hintButtonRevealed" 
-        : showOrigin && allRootsAreShown && showDefinition 
+        : showOrigin 
         ? "hintButton" : "hintButtonDisabled");
 
     const languagesOfOriginList = puzzleConfig.roots
@@ -201,74 +178,67 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 />
                 <hr className="divider" />
 
-                <div className="promptText">
-                    {"the literal root meaning of the " + puzzleConfig.answer.length + "-letter word"}
+                <div className="clueSection">
+                    <div className="dictionaryEntry">
+                        <div className="wordEntry">
+                            <div className="userInput" ref={ref}>
+                                {guess.join("")}
+                                {isComplete ? "" : showCursor ? "|" : "\u00A0"}
+                            </div>
+                        </div>
+                        
+                        <div className="partOfSpeechLine">
+                            <span className="partOfSpeech">noun, {puzzleConfig.answer.length} letters</span>
+                        </div>
+                        
+                        <div className="etymologyContent">
+                            <div className="hintLabel">literally, </div>
+                            <div className="etymologyValue">"{puzzleConfig.clue}"</div>
+                        </div>
+                        
+                        <div className="etymologyContent">
+                            <div className="definitionLabel">...but we know it as</div>
+                            <div className="definitionValue">{puzzleConfig.definition}</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="userInput" ref={ref}>
-                    {"\""}
-                    {guess.join("")}
-                    {isComplete ? "" : showCursor ? "|" : "\u00A0"}
-                    {"\""}
+                <div style={{ flex: 1 }}></div>
+
+                <div className="hintsRow">
+                    <HintButton 
+                        puzzleNumber={puzzleNumber.toString()} 
+                        hint={formatAsList(languagesOfOriginList)} 
+                        hintText={"Reveal language(s) of origin"}
+                        storageKey={LAST_ORIGIN_HINT_KEY} 
+                        puzzleIsComplete={isComplete} 
+                        revealed={showOrigin} 
+                        disabled={false} 
+                        setShowHint={() => setShowOrigin(true)} 
+                    />
+
+                    <HintButton 
+                        puzzleNumber={puzzleNumber.toString()}
+                        hint={formatRootDefinition(puzzleConfig.roots[0])} 
+                        hintText={"Reveal root"}
+                        storageKey={LAST_ROOT_HINTS_KEY}
+                        puzzleIsComplete={isComplete} 
+                        revealed={showRoots[0]} 
+                        disabled={false} 
+                        setShowHint={() => setShowRoots([true])}
+                        isRootHintButton={true}
+                        rootNumber={0}                    
+                    />
                 </div>
-
-                <div className="clue">
-                    <span>is "<span style={{ fontWeight: 700 }}>{puzzleConfig.clue}</span>"</span>
-                </div>
-
-                <HintButton 
-                    puzzleNumber={puzzleNumber.toString()} 
-                    hint={formatAsList(languagesOfOriginList)} 
-                    hintText={"Reveal language(s) of origin"}
-                    storageKey={LAST_ORIGIN_HINT_KEY} 
-                    puzzleIsComplete={isComplete} 
-                    revealed={showOrigin} 
-                    disabled={false} 
-                    setShowHint={() => setShowOrigin(true)} 
-                />
-
-                <div className="buttonRow">
-                    {puzzleConfig.roots.map((root, index) =>
-                        <HintButton 
-                            key={index}
-                            puzzleNumber={puzzleNumber.toString()}
-                            hint={formatRootDefinition(root)} 
-                            hintText={`Reveal \"${root.english}\"`}
-                            storageKey={LAST_ROOT_HINTS_KEY}
-                            puzzleIsComplete={isComplete} 
-                            revealed={showRoots[index]} 
-                            disabled={!showOrigin} 
-                            setShowHint={() => {
-                                if (showRoots.filter((showRoot) => showRoot).length + 1 === puzzleConfig.roots.length) {
-                                    setAllRootsAreShown(true);
-                                }
-                                setShowRoots(showRoots.map((rootShown, i) => i === index ? true : rootShown))
-                            }}
-                            isRootHintButton={true}
-                            rootNumber={index}                    
-                        />
-                    )}
-                </div>
-
-                <HintButton 
-                    puzzleNumber={puzzleNumber.toString()} 
-                    hint={puzzleConfig.definition} 
-                    hintText={"Reveal English definition hint"} 
-                    storageKey={LAST_DEFINITION_KEY} 
-                    puzzleIsComplete={isComplete} 
-                    revealed={showDefinition} 
-                    disabled={!allRootsAreShown} 
-                    setShowHint={() => setShowDefinition(true)} 
-                />
 
                 <div
                     className={revealButtonClass}
                     onClick={() => { 
-                        if (showOrigin && allRootsAreShown && showDefinition) {
+                        if (showOrigin) {
                             setShowRevealAnswer(true);
                             if (!isComplete) {
                                 updateStreak(true, puzzleNumber.toString());
-                                updateStats(5);
+                                updateStats(3);
                                 localStorage.setItem(LAST_REVEAL_HINT_KEY, puzzleNumber.toString());
                                 handleRevealAnswer();
                             }
