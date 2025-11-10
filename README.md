@@ -10,7 +10,6 @@ This is an etymology word game, where your goal is to guess the word that has th
 
 ## To-do
 
-* Move keyboard to default to the bottom
-* Add better spacing with word box
-* Bug test
-* Buy domain
+* Finish adding new hints to each word
+* Add part of speech
+* Add archive?

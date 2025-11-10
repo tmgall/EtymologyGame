@@ -31,13 +31,13 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
           Welcome to Lexicon!
         </h2>
         <p className="helpModalText">
-            Your goal is to guess the secret word given (1) the literal meaning of the word based on its etymology, i.e. its root words and (2) a hint to its actual meaning. 
+            Your goal is to guess the secret word given the literal meaning of the word based on its etymology, i.e. its root words, and a hint to its actual meaning. 
         </p>
         <p className="helpModalText">
           For example, the clue "far vision" would mean the answer is television, since "television" comes from the Greek "tele" (meaning "far") and Latin "visio" (meaning "vision").
         </p>
         <p className="helpModalText">
-            The puzzles get harder as the week goes on, with Monday being the easiest and Sunday being brutal. If you're stuck, you can use the available hints. 
+            The puzzles get harder as the week goes on, with Monday being the easiest and Sunday being the hardest. If you're stuck, you can use the available hints. 
         </p>
         <hr className="divider" />
         <Link to="/privacy-policy" className="backToHomeButton">Privacy Policy</Link>

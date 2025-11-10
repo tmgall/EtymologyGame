@@ -23,12 +23,9 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  const hintMessages = ["Very impressive!", "You know your stuff!", "You figured it out!", "Nice job!", "Good one!"];
-  const hintMessage = hintsUsed[hintsUsed.length - 1] 
-    ? "Tough one today." 
-    : hintsUsed[hintsUsed.length - 2] 
-    ? "Just in time." 
-    : hintMessages[hintsUsed.filter((hintUsed) => hintUsed).length];
+  const hintMessages = ["Very impressive!", "You figured it out!", "Good one!", "Tough one today."];
+  const numHintsUsed = hintsUsed.filter((hintUsed) => hintUsed).length;
+  const hintMessage = hintMessages[numHintsUsed];
 
   const stats = getStats().hintsStats;
   const maxValue = Math.max(...stats, 1);
@@ -104,19 +101,20 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
           <div className="helpModalText">{"Best streak: " + getBestStreak()}</div>
         </div>
 
-        <div className="helpModalHeaderText">Hints distribution</div>
-
         <div className="statsBox">
-          {stats.map((value, index) => (
-            <div key={index} className="statsRow">
-              <span className="statsIndex">{index}</span>
-              <div className="statsBar">
-                <div className="statsBarBox" style={{ width: `${Math.max((value / maxValue) * 100, 7)}%` }}>
-                  {value}
+          {stats.map((value, index) => {
+            const labels = ["No hints", "One hint", "Two hints", "Gave up"];
+            return (
+              <div key={index} className="statsRow">
+                <span className="statsIndex">{labels[index]}</span>
+                <div className="statsBar">
+                  <div className="statsBarBox" style={{ width: `${Math.max((value / maxValue) * 100, 7)}%` }}>
+                    {value}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="successModalBoxes">

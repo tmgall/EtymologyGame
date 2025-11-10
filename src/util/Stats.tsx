@@ -5,32 +5,21 @@ export interface Stats {
 export const STATS_KEY = "stats";
 
 export const updateStats = (hintsUsed: number) => {
-    const previousStats = localStorage.getItem(STATS_KEY);
-    if (previousStats === null) {
-        const hintsStats = Array(6).fill(0);
-        hintsStats[hintsUsed] = 1;
-        const newStats: Stats = {
-            hintsStats: hintsStats
-        }
-        localStorage.setItem(STATS_KEY, JSON.stringify(newStats))
-    } else {
-        const parsedPreviousStats: Stats = JSON.parse(previousStats);
-        const newHintsStats = [...parsedPreviousStats.hintsStats];
-        newHintsStats[hintsUsed] = parsedPreviousStats.hintsStats[hintsUsed] + 1;
-        const newStats: Stats = {
-            hintsStats: newHintsStats
-        }
-        localStorage.setItem(STATS_KEY, JSON.stringify(newStats));
-    }
+    const previousStats = getStats();
+    previousStats.hintsStats[hintsUsed] = (previousStats.hintsStats[hintsUsed] || 0) + 1;
+    localStorage.setItem(STATS_KEY, JSON.stringify(previousStats));
 }
 
 export const getStats = (): Stats => {
     const stats = localStorage.getItem(STATS_KEY);
     if (stats === null) {
         return {
-            hintsStats: Array(5).fill(0)
+            hintsStats: Array(4).fill(0)
         }
     } else {
-        return JSON.parse(stats);
+        const parsed = JSON.parse(stats);
+        return {
+            hintsStats: parsed.hintsStats.length === 4 ? parsed.hintsStats : Array(4).fill(0)
+        };
     }
 }
