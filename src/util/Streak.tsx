@@ -18,9 +18,7 @@ export const incrementStreak = async (puzzleNumber: number) => {
             // need some way to get best streak even if the previous puzzle didn't have a best streak
             const previousBestStreak = puzzle.bestStreak;
             await updatePuzzleField(puzzleNumber, 'streakAtTime', newStreak);
-            console.log("before");
             if (previousBestStreak < newStreak) {
-                console.log("here");
                 await updatePuzzleField(puzzleNumber, 'bestStreak', newStreak);
             }
         }

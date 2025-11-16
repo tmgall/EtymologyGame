@@ -30,7 +30,8 @@ export const formatShareText = (hintsUsed: boolean[], puzzleNumber: string, isCo
         emojis.push("\u{1F914}")
     }
     const fire = '🔥';
-    const noHints = `${fire} I solved it without any hints! ${fire}\n`;
+    const brain = '\u{1F9E0}'
+    const noHints = `I solved it without any hints! ${brain}\n`;
     const someHints = `I solved it with ${numHintsUsed} hint${numHintsUsed == 1 ? "" : "s"}: ${emojis.join(" ")}\n`;
     const hintsText = numHintsUsed === 0 ? noHints : numHintsUsed === 3 ? "" : someHints;
     

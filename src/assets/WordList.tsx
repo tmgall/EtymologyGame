@@ -37,7 +37,7 @@ export const WORD_LIST: WordData[] = [
         clue: "start from",
         answer: "originate", 
         roots: [{ english: "beginning, source", languageName: "Latin", languageWord: "originem" }],
-        definition: "begin at",
+        definition: "come from",
         extraHint: "this root is common in English, \"orig-\"",
         partOfSpeech: "verb",
     },
