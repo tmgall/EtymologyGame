@@ -3,18 +3,16 @@ import { WordData } from "../assets/WordList";
 import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
 import ShareTextButtonProps from "./Share";
-import { MOST_RECENTLY_COMPLETED_PUZZLE_KEY } from "./Puzzle";
 import { formatAsList, formatRootDefinition, formatShareText } from "../util/StringFormatting";
+import { getPuzzle } from "../util/db";
 
 export interface SuccessModalProps {
   onClose: () => void;
-  hintsUsed: boolean[];
   puzzleConfig: WordData;
-  puzzleNumber: string;
-  isComplete: boolean;
+  puzzleNumber: number;
 }
 
-export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleNumber, isComplete}: SuccessModalProps) {
+export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: SuccessModalProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -23,11 +21,32 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
+  const [hintsUsed, setHintsUsed] = useState<boolean[]>([false, false, false]);
+  const [stats, setStats] = useState<number[]>([0, 0, 0, 0]);
+  const [streak, setStreak] = useState<number>(0);
+  const [bestStreak, setBestStreak] = useState<number>(0);
+  const [isComplete, setIsComplete] = useState<boolean>(false);
+  
+  useEffect(() => {
+    getPuzzle(puzzleNumber).then(data => {
+      setHintsUsed(data ? [data.originUsed, data.extraHintUsed, data.puzzleRevealed] : [false, false, false]);
+      setIsComplete(data ? data.puzzleCompleted : false);
+    });
+    getStats().then(stats => {
+      setStats(stats.hintsStats);
+    });
+    getStreak(puzzleNumber).then(streak => {
+      setStreak(streak);
+    });
+    getBestStreak().then(bestStreak => {
+      setBestStreak(bestStreak);
+    });
+  }, [puzzleNumber]);
+
   const hintMessages = ["Very impressive!", "You figured it out!", "Good one!", "Tough one today."];
   const numHintsUsed = hintsUsed.filter((hintUsed) => hintUsed).length;
   const hintMessage = hintMessages[numHintsUsed];
 
-  const stats = getStats().hintsStats;
   const maxValue = Math.max(...stats, 1);
 
   const now = new Date();
@@ -38,7 +57,7 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
   const minutes = String(Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
   const seconds = String(Math.floor((diffMs % (1000 * 60)) / 1000)).padStart(2, "0");
 
-  const shareText = formatShareText(hintsUsed, puzzleNumber, isComplete, now);
+  const shareText = formatShareText(hintsUsed, puzzleNumber.toString(), isComplete, now, streak);
 
   const languagesOfOriginList = puzzleConfig.roots
   .map((root) => root.languageName)
@@ -47,7 +66,7 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
       return acc;
   }, []);
   const rootLanguages = formatAsList(languagesOfOriginList);
-  const shouldShowExplanationSection = puzzleNumber === localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY);
+  const shouldShowExplanationSection = isComplete;
   const rootHints = formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root)));
   const longExplanation = `The word "${puzzleConfig.answer}" comes from the ${rootLanguages} for "${puzzleConfig.clue}", since ${rootHints}`
 
@@ -97,8 +116,8 @@ export default function SuccessModal({ onClose, hintsUsed, puzzleConfig, puzzleN
         </div>
 
         <div className="streakBox">
-          <div className="helpModalText">{"Streak: " + getStreak(puzzleNumber)}</div>
-          <div className="helpModalText">{"Best streak: " + getBestStreak()}</div>
+          <div className="helpModalText">{"Streak: " + streak}</div>
+          <div className="helpModalText">{"Best streak: " + bestStreak}</div>
         </div>
 
         <div className="statsBox">

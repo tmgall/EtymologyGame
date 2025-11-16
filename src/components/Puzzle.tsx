@@ -5,14 +5,11 @@ import { useEffect } from "react";
 import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
-import { updateStreak } from "../util/Streak";
-import { updateStats } from "../util/Stats";
 import { formatAsList, formatShortExplanation } from "../util/StringFormatting";
 import { evaluateWordSimilarity, SIMILARITY_THRESHOLD } from "../util/Evaluation";
 import SimilarityModal from "./SimilarityModal";
-
-export const MOST_RECENTLY_COMPLETED_PUZZLE_KEY = "last-solved";
-export const LAST_HINTS = "last-hints";
+import { blankPuzzleData, getPuzzle, getPuzzleCount, markPuzzleCompleted, savePuzzle, updatePuzzleField } from '../util/db.ts';
+import { resetStreak, getBestStreak, incrementStreak, getStreak } from "../util/Streak.tsx";
 
 export interface PuzzleProps {
     puzzleNumber: number;
@@ -29,6 +26,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const [showOrigin, setShowOrigin] = useState(false);
     const [showExtraHint, setShowExtraHint] = useState<boolean>(false);
     const [showRevealAnswer, setShowRevealAnswer] = useState(false);
+    const [puzzleCompleted, setPuzzleCompleted] = useState(false);
     const [guess, setGuess] = useState<string[]>(Array(puzzleConfig.answer.length).fill(""));
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
@@ -38,16 +36,16 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
     const ref = useRef<HTMLDivElement>(null);
 
-    const handleKeyPress = (key: string) => {
-        if (isComplete) return;
+    const handleKeyPress = async (key: string) => {
+        if (puzzleCompleted) return;
         const newGuess = [...guess];
         newGuess[selectedIndex] = key;
         setSelectedIndex(Math.min(selectedIndex + 1, puzzleConfig.answer.length - 1));
         setGuess(newGuess);
     };
 
-    const handleBackspace = () => {
-        if (isComplete) return;
+    const handleBackspace = async () => {
+        if (puzzleCompleted) return;
         const newGuess = [...guess];
         if (selectedIndex === 0) {
             newGuess[0] = "";
@@ -59,18 +57,15 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         }
         setGuess(newGuess);
     };
-    
-    const getHintsUsed = () => {
-        return [isOriginShown, isExtraHintShown, isRevealShown];
-    }
 
-    const handleSubmit = () => {
-        if (isComplete) return;
+    const handleSubmit = async () => {
+        if (puzzleCompleted) return;
         const submission = guess.join("").toLocaleLowerCase();
         const actualAnswer = puzzleConfig.answer.toLocaleLowerCase();
         if (submission === actualAnswer) {
-            updateStreak(false, puzzleNumber.toString());
-            updateStats(getHintsUsed().filter((hintUsed) => hintUsed).length);
+            setPuzzleCompleted(true);
+            await markPuzzleCompleted(puzzleNumber);
+            await incrementStreak(puzzleNumber);
             handleRevealAnswer();
         } else {
             if (ref.current) {
@@ -91,8 +86,8 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         }
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.ctrlKey || e.altKey || e.metaKey || isComplete) {
+    const handleKeyDown = async (e: KeyboardEvent) => {
+        if (e.ctrlKey || e.altKey || e.metaKey || puzzleCompleted) {
             return;
         }
         if (e.key.match(/^[a-zA-Z]$/)) {
@@ -106,7 +101,6 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     };
 
     const handleRevealAnswer = () => {
-        localStorage.setItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY, puzzleNumber.toString());
         setSelectedIndex(-1);
         setGuess(puzzleConfig.answer.toUpperCase().split(''));
         setIsSuccessModalOpen(true);
@@ -117,20 +111,28 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [selectedIndex, guess]);
 
-    const isComplete = localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === puzzleNumber.toString();
-    const hintsUsed = localStorage.getItem(LAST_HINTS) === null ? null : JSON.parse(localStorage.getItem(LAST_HINTS) || "") as HintsUsed;
-    const isOriginShown = hintsUsed === null ? false : hintsUsed.origin === puzzleNumber.toString();
-    const isExtraHintShown = hintsUsed === null ? false : hintsUsed.extra === puzzleNumber.toString();
-    const isRevealShown = hintsUsed === null ? false : hintsUsed.reveal === puzzleNumber.toString();
-
+    // runs at puzzle load
     useEffect(() => {
-        if (localStorage.getItem(MOST_RECENTLY_COMPLETED_PUZZLE_KEY) === null) {
-            setIsHelpModalOpen(true);
-        }
-        if (isComplete) handleRevealAnswer();
-        if (isOriginShown) setShowOrigin(true);
-        if (isExtraHintShown) setShowExtraHint(true);
-        if (isRevealShown) setShowRevealAnswer(true);
+        getPuzzleCount().then((count) => {
+            if (count < 1) {
+                setIsHelpModalOpen(true);
+            }
+        })
+        getPuzzle(puzzleNumber).then(async (puzzle) => {
+            if (puzzle) {
+                setShowOrigin(puzzle.originUsed);
+                setShowExtraHint(puzzle.extraHintUsed);
+                setShowRevealAnswer(puzzle.puzzleRevealed);
+                if (puzzle.puzzleCompleted) {
+                    setPuzzleCompleted(true);
+                    handleRevealAnswer();
+                }
+            } else {
+                const bestStreak = await getBestStreak();
+                const streak = await getStreak(puzzleNumber - 1);
+                savePuzzle(blankPuzzleData(puzzleNumber, streak, bestStreak));
+            }
+        });
     }, []);
 
     const [showCursor, setShowCursor] = useState(true);
@@ -168,7 +170,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         <div className="wordEntry">
                             <div className="userInput" ref={ref}>
                                 {guess.join("")}
-                                {isComplete ? "" : showCursor ? "|" : "\u00A0"}
+                                {puzzleCompleted ? "" : showCursor ? "|" : "\u00A0"}
                             </div>
                         </div>
                         
@@ -193,17 +195,11 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 <div className="hintsRow">
                     <div
                         className={"hintButtonBase " + (showOrigin ? "hintButtonRevealed" : "hintButton")}
-                        onClick={() => { 
+                        onClick={async () => { 
                             if (!showOrigin) {
                                 setShowOrigin(true)
-                                if (!isComplete) {
-                                    const newHintsUsed: HintsUsed = hintsUsed === null ? {
-                                        origin: puzzleNumber.toString(),
-                                        extra: "0",
-                                        reveal: "0",
-                                    }: hintsUsed;
-                                    newHintsUsed.origin = puzzleNumber.toString();
-                                    localStorage.setItem(LAST_HINTS, JSON.stringify(newHintsUsed));
+                                if (!puzzleCompleted) {
+                                    await updatePuzzleField(puzzleNumber, 'originUsed', true);
                                 }
                             }
                         }}
@@ -212,17 +208,11 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     </div>
                     <div
                         className={"hintButtonBase " + (showExtraHint ? "hintButtonRevealed" : "hintButton")}
-                        onClick={() => { 
+                        onClick={async () => { 
                             if (!showExtraHint) {
                                 setShowExtraHint(true)
-                                if (!isComplete) {
-                                    const newHintsUsed: HintsUsed = hintsUsed === null ? {
-                                        origin: "0",
-                                        extra: puzzleNumber.toString(),
-                                        reveal: "0",
-                                    }: hintsUsed;
-                                    newHintsUsed.extra = puzzleNumber.toString();
-                                    localStorage.setItem(LAST_HINTS, JSON.stringify(newHintsUsed));
+                                if (!puzzleCompleted) {
+                                    await updatePuzzleField(puzzleNumber, 'extraHintUsed', true);
                                 }
                             }
                         }}
@@ -233,18 +223,14 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
                 <div
                     className={revealButtonClass}
-                    onClick={() => { 
+                    onClick={async () => { 
                         if (showOrigin && showExtraHint) {
                             setShowRevealAnswer(true);
-                            if (!isComplete) {
-                                updateStreak(true, puzzleNumber.toString());
-                                updateStats(3);
-                                const newHintsUsed: HintsUsed = {
-                                    origin: puzzleNumber.toString(),
-                                    extra: puzzleNumber.toString(),
-                                    reveal: puzzleNumber.toString(),
-                                };
-                                localStorage.setItem(LAST_HINTS, JSON.stringify(newHintsUsed));
+                            if (!puzzleCompleted) {
+                                await updatePuzzleField(puzzleNumber, 'puzzleRevealed', true);
+                                markPuzzleCompleted(puzzleNumber);
+                                setPuzzleCompleted(true);
+                                await resetStreak(puzzleNumber);
                                 handleRevealAnswer();
                             }
                         }
@@ -259,10 +245,8 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 {isSuccessModalOpen && 
                     <SuccessModal
                         onClose={() => setIsSuccessModalOpen(false)} 
-                        hintsUsed={getHintsUsed()}
                         puzzleConfig={puzzleConfig}
-                        puzzleNumber={puzzleNumber.toString()}
-                        isComplete={isComplete}
+                        puzzleNumber={puzzleNumber}
                 />}
                 {isSimilarityModalOpen && <SimilarityModal 
                     onClose={() => setIsSimilarityModalOpen(false)}

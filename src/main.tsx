@@ -6,8 +6,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivacyPolicy from './support/PrivacyPolicy.tsx';
 import TermsOfService from './support/TermsOfService.tsx';
 import Contact from './support/Contact.tsx';
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { initDB } from './util/db.ts';
+
+await initDB();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

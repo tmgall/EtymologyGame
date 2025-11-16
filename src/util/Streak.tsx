@@ -1,46 +1,46 @@
+import { getAllPuzzles, getPuzzle, updatePuzzleField } from "./db";
+
 export interface StreakData {
     lastSolved: string;
     streakAtLastSolved: number;
-} 
+}
 
-export const STREAK_KEY = "streak";
-export const BEST_STREAK_KEY = "best-streak";
-
-export const updateStreak = (shouldEndStreak: boolean, puzzleNumber: string) => {
-    if (shouldEndStreak) {
-        const newStreakData: StreakData = {
-            lastSolved: puzzleNumber,
-            streakAtLastSolved: 0
-        };
-        localStorage.setItem(STREAK_KEY, JSON.stringify(newStreakData));
-    } else {
-        const streakData = localStorage.getItem(STREAK_KEY);
-        const prevStreak = streakData === null ? 0 : JSON.parse(streakData).streakAtLastSolved;
-        const newStreakData: StreakData = {
-            lastSolved: puzzleNumber,
-            streakAtLastSolved: prevStreak + 1
-        };
-        const bestStreakString = localStorage.getItem(BEST_STREAK_KEY);
-        const bestStreak = bestStreakString === null ? 0 : parseInt(bestStreakString);
-        localStorage.setItem(BEST_STREAK_KEY, Math.max(bestStreak, prevStreak + 1).toString());
-        localStorage.setItem(STREAK_KEY, JSON.stringify(newStreakData));
+export const incrementStreak = async (puzzleNumber: number) => {
+    const puzzle = await getPuzzle(puzzleNumber);
+    if (puzzle) {
+        if (puzzleNumber < 1) {
+            await updatePuzzleField(puzzleNumber, 'streakAtTime', 1);
+            await updatePuzzleField(puzzleNumber, 'bestStreak', 1);
+        } else {
+            const previousPuzzle = await getPuzzle(puzzleNumber - 1)
+            const previousStreak = previousPuzzle ? previousPuzzle.streakAtTime : 0;
+            const newStreak = previousStreak + 1;
+            // need some way to get best streak even if the previous puzzle didn't have a best streak
+            const previousBestStreak = puzzle.bestStreak;
+            await updatePuzzleField(puzzleNumber, 'streakAtTime', newStreak);
+            console.log("before");
+            if (previousBestStreak < newStreak) {
+                console.log("here");
+                await updatePuzzleField(puzzleNumber, 'bestStreak', newStreak);
+            }
+        }
     }
 }
 
-export const getStreak = (puzzleNumber: string) => {
-    const streakData = localStorage.getItem(STREAK_KEY);
-    const parsedStreakData: StreakData | null = streakData !== null ? JSON.parse(streakData) : null;
-    if (parsedStreakData === null) {
-        return 0;
+export const resetStreak = async (puzzleNumber: number): Promise<void> => {
+    const puzzle = await getPuzzle(puzzleNumber);
+    if (puzzle) {
+        await updatePuzzleField(puzzleNumber, 'streakAtTime', 0);
     }
-    const mostRecentNumber = parsedStreakData.lastSolved;
-    if (mostRecentNumber === puzzleNumber || mostRecentNumber === (parseInt(puzzleNumber) - 1).toString()) {
-        return parsedStreakData.streakAtLastSolved
-    }
-    return 0;
 }
 
-export const getBestStreak = () => {
-    const bestStreak = localStorage.getItem(BEST_STREAK_KEY);
-    return bestStreak === null ? 0 : parseInt(bestStreak);
+export const getBestStreak = async (): Promise<number> => {
+  const puzzles = await getAllPuzzles();
+  if (puzzles.length === 0) return 0;
+  const mostRecentPuzzleCompleted = Math.max(...puzzles.map(p => p.puzzleNumber));
+  return puzzles.find(p => p.puzzleNumber === mostRecentPuzzleCompleted)?.bestStreak ?? 0;
+}
+
+export const getStreak = async (puzzleNumber: number): Promise<number> => {
+    return (await getPuzzle(puzzleNumber))?.streakAtTime ?? 0;
 }

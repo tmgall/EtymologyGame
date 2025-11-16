@@ -1,5 +1,4 @@
 import { RootsData, WordData } from "../assets/WordList";
-import { getStreak } from "./Streak";
 
 export const formatAsList = (array: string[]) => {
     return array.length > 1
@@ -15,7 +14,7 @@ export const formatShortExplanation = (today: WordData) => {
     return today.roots.map((root) => `\"${root.languageWord}\"`).join(" + ") + ` = ${today.answer}`;
 }
 
-export const formatShareText = (hintsUsed: boolean[], puzzleNumber: string, isComplete: boolean, now: Date) => {
+export const formatShareText = (hintsUsed: boolean[], puzzleNumber: string, isComplete: boolean, now: Date, streak: number) => {
     const link = `https://www.lexicongame.net/`;
     if (!isComplete) {
         return `Try out Lexicon!\n${link}`;
@@ -35,7 +34,6 @@ export const formatShareText = (hintsUsed: boolean[], puzzleNumber: string, isCo
     const someHints = `I solved it with ${numHintsUsed} hint${numHintsUsed == 1 ? "" : "s"}: ${emojis.join(" ")}\n`;
     const hintsText = numHintsUsed === 0 ? noHints : numHintsUsed === 3 ? "" : someHints;
     
-    const streak = getStreak(puzzleNumber); 
     const noStreak = 'I had to reveal it today — see if you can beat me!';
     const someStreak = `I'm on a streak of ${fire}${streak}${fire}`;
     const streakText = streak === 0 ? noStreak : someStreak;
