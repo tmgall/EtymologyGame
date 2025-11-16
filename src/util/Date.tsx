@@ -1,4 +1,4 @@
-const LAUNCH_DATE = new Date("November 10, 2025 00:00:00");
+const LAUNCH_DATE = new Date("November 17, 2025 00:00:00");
 
 export const getFormattedDate = (puzzleNumber: string) => {
     const puzzleDate = new Date(LAUNCH_DATE);
