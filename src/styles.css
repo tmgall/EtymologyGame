@@ -167,14 +167,13 @@
 }
 
 .partOfSpeechLine {
-    margin-bottom: 8px;
     text-align: left;
 }
 
 .partOfSpeech {
     font-weight: 600;
     font-size: 12px;
-    color: var(--ink-light);
+    color: var(--ink);
     font-style: italic;
 }
 
@@ -185,7 +184,7 @@
 .hintLabel {
     font-weight: 700;
     font-size: 14px;
-    color: var(--ink-light);
+    color: var(--ink);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 4px;
@@ -195,7 +194,7 @@
 .definitionLabel {
     font-weight: 700;
     font-size: 14px;
-    color: var(--ink-light);
+    color: var(--ink);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 4px;
@@ -208,7 +207,7 @@
     color: var(--ink);
     font-style: italic;
     text-align: left;
-    color: var(--ink-light);
+    color: var(--ink);
     font-style: italic;
 }
 
@@ -218,14 +217,13 @@
     color: var(--ink);
     font-style: italic;
     text-align: right;
-    color: var(--ink-light);
+    color: var(--ink);
     font-style: italic;
 }
 
 .userInput {
     font-weight: 700;
     font-size: 36px;
-    padding: 2px 8px;
     background-color: transparent;
     border: none;
     border-bottom: 2px solid var(--ink);
@@ -257,7 +255,8 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    height: 80px;
+    min-height: 100px;
+    max-height: 100px;
     padding: 8px;
 }
 
@@ -267,7 +266,6 @@
     background-color: var(--typewriter-key);
     border-color: var(--typewriter-key-shadow);
     box-shadow: 0 2px 0 var(--typewriter-key-shadow);
-    height: 80px;
 }
 
 .hintButton:active {
@@ -286,14 +284,12 @@
     color: var(--ink);
     background-color: var(--paper);
     border-style: dashed;
-    height: 80px;
 }
 
 .hintButtonDisabled {
     background-color: var(--paper);
     color: var(--ink-lighter);
     border-color: var(--ink-lighter);
-    height: 80px;
 }
 
 .keyboard {

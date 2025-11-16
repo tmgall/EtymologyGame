@@ -179,12 +179,12 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         </div>
                         
                         <div className="etymologyContent">
-                            <div className="hintLabel">literally means:</div>
+                            <div className="hintLabel">literal meaning:</div>
                             <div className="etymologyValue">"{puzzleConfig.clue}"</div>
                         </div>
                         
                         <div className="etymologyContent">
-                            <div className="definitionLabel">and we know it as meaning</div>
+                            <div className="definitionLabel">actual meaning:</div>
                             <div className="definitionValue">{puzzleConfig.definition}</div>
                         </div>
                     </div>
