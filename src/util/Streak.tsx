@@ -8,7 +8,7 @@ export interface StreakData {
 export const incrementStreak = async (puzzleNumber: number) => {
     const puzzle = await getPuzzle(puzzleNumber);
     if (puzzle) {
-        if (puzzleNumber < 1) {
+        if (puzzleNumber == 1) {
             await updatePuzzleField(puzzleNumber, 'streakAtTime', 1);
             await updatePuzzleField(puzzleNumber, 'bestStreak', 1);
         } else {
