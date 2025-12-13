@@ -1,4 +1,4 @@
-import { RootsData, WordData } from "../assets/WordList";
+import { RootsData } from "../assets/WordList";
 
 export const formatAsList = (array: string[]) => {
     return array.length > 1
@@ -8,10 +8,6 @@ export const formatAsList = (array: string[]) => {
 
 export const formatRootDefinition = (root: RootsData) => {
     return `\"${root.languageWord}\" is ${root.languageName} for \"${root.english}\"`;
-}
-
-export const formatShortExplanation = (today: WordData) => {
-    return today.roots.map((root) => `\"${root.languageWord}\"`).join(" + ") + ` = ${today.answer}`;
 }
 
 export const formatShareText = (hintsUsed: boolean[], puzzleNumber: string, isComplete: boolean, now: Date, streak: number) => {
