@@ -171,6 +171,7 @@
 }
 
 .partOfSpeech {
+    text-align: left;
     font-weight: 600;
     font-size: 12px;
     color: var(--ink);

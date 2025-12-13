@@ -80,6 +80,20 @@ export const getAllPuzzles = (): Promise<PuzzleData[]> => {
   });
 };
 
+export const updateFirstHintField = async (
+  puzzleNumber: number,
+  value: boolean
+): Promise<void> => {
+  await updatePuzzleField(puzzleNumber, "originUsed", value);
+}
+
+export const updateSecondHintField = async (
+  puzzleNumber: number,
+  value: boolean
+): Promise<void> => {
+  await updatePuzzleField(puzzleNumber, "extraHintUsed", value);
+}
+
 export const updatePuzzleField = async (
   puzzleNumber: number,
   field: keyof Omit<PuzzleData, 'puzzleNumber'>,

@@ -5,10 +5,10 @@ import { useEffect } from "react";
 import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
-import { formatAsList, formatShortExplanation } from "../util/StringFormatting";
+import { formatAsList, formatRootDefinition, formatShortExplanation } from "../util/StringFormatting";
 import { evaluateWordSimilarity, SIMILARITY_THRESHOLD } from "../util/Evaluation";
 import SimilarityModal from "./SimilarityModal";
-import { blankPuzzleData, getPuzzle, getPuzzleCount, markPuzzleCompleted, savePuzzle, updatePuzzleField } from '../util/db.ts';
+import { blankPuzzleData, getPuzzle, getPuzzleCount, markPuzzleCompleted, savePuzzle, updateFirstHintField, updatePuzzleField, updateSecondHintField } from '../util/db.ts';
 import { resetStreak, getBestStreak, incrementStreak, getStreak } from "../util/Streak.tsx";
 
 export interface PuzzleProps {
@@ -179,18 +179,11 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         </div>
                         
                         <div className="etymologyContent">
-                            <div className="hintLabel">literal meaning:</div>
+                            <div className="hintLabel">literal meaning (from {formatAsList(languagesOfOriginList)})</div>
                             <div className="etymologyValue">"{puzzleConfig.clue}"</div>
-                        </div>
-                        
-                        <div className="etymologyContent">
-                            <div className="definitionLabel">actual meaning:</div>
-                            <div className="definitionValue">{puzzleConfig.definition}</div>
                         </div>
                     </div>
                 </div>
-
-                <div style={{ flex: 1 }}></div>
 
                 <div className="hintsRow">
                     <div
@@ -199,25 +192,25 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                             if (!showOrigin) {
                                 setShowOrigin(true)
                                 if (!puzzleCompleted) {
-                                    await updatePuzzleField(puzzleNumber, 'originUsed', true);
+                                    await updateFirstHintField(puzzleNumber, true);
                                 }
                             }
                         }}
                     >
-                        {showOrigin ? formatAsList(languagesOfOriginList) : "language(s) of origin"}
+                        {showOrigin ? formatRootDefinition(puzzleConfig.roots[0]) : "reveal one root"}
                     </div>
                     <div
                         className={"hintButtonBase " + (showExtraHint ? "hintButtonRevealed" : "hintButton")}
-                        onClick={async () => { 
+                        onClick={async () => {
                             if (!showExtraHint) {
                                 setShowExtraHint(true)
                                 if (!puzzleCompleted) {
-                                    await updatePuzzleField(puzzleNumber, 'extraHintUsed', true);
+                                    await updateSecondHintField(puzzleNumber, true);
                                 }
                             }
                         }}
                     >
-                        {showExtraHint ? puzzleConfig.extraHint : "extra hint"}
+                        {showExtraHint ? puzzleConfig.definition : "reveal actual meaning"}
                     </div>
                 </div>
 
@@ -236,8 +229,10 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         }
                     }}
                 >
-                    {showRevealAnswer ? formatShortExplanation(puzzleConfig) : "reveal answer"}
+                    {showRevealAnswer ? formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root))) : "reveal answer"}
                 </div>
+
+                <div style={{ flex: 1 }}></div>
 
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
