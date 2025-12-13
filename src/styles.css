@@ -322,7 +322,7 @@
 
 .keyboardButton {
     flex: 1;
-    height: 40px;
+    height: 55px;
     border-color: var(--typewriter-key-shadow);
     border-style: solid;
     border-width: 2px;
@@ -345,7 +345,7 @@
 
 .keyboardButtonSubmit {
     flex: 1;
-    height: 40px;
+    height: 55px;
     border-color: var(--typewriter-key-shadow);
     border-style: solid;
     border-width: 2px;
