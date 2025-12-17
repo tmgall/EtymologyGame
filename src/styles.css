@@ -12,6 +12,18 @@
     --font-standard: "Roboto Mono", monospace;
 }
 
+[data-theme='dark'] {
+    --paper: #1a1918;
+    --ink: #d4c4b0;
+    --ink-light: #cfc0a8;
+    --ink-lighter: #f4f1e8;
+    --typewriter-ribbon: #ff7676;
+    --typewriter-ribbon-light: #ff9e9e;
+    --typewriter-key: #2d2c2b;
+    --typewriter-key-shadow: #0d0c0c;
+    --typewriter-key-pressed: #3d3c3a;
+}
+
 * {
     background-color: var(--paper);
     border-color: var(--ink);
@@ -19,6 +31,7 @@
     text-align: center;
     font-family: var(--font-standard);
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app {
@@ -67,7 +80,8 @@
 
 .headerButtons {
     font-weight: bold;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
     gap: 10px;
 }
 

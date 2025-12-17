@@ -175,11 +175,11 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         </div>
                         
                         <div className="partOfSpeechLine">
-                            <span className="partOfSpeech">{puzzleConfig.partOfSpeech}, {puzzleConfig.answer.length} letters</span>
+                            <span className="partOfSpeech">{puzzleConfig.partOfSpeech}, {puzzleConfig.answer.length} letters; {formatAsList(languagesOfOriginList)} origin</span>
                         </div>
                         
                         <div className="etymologyContent">
-                            <div className="hintLabel">literal meaning (from {formatAsList(languagesOfOriginList)})</div>
+                            <div className="hintLabel">literal meaning</div>
                             <div className="etymologyValue">"{puzzleConfig.clue}"</div>
                         </div>
                     </div>
