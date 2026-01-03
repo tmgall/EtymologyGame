@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivacyPolicy from './support/PrivacyPolicy.tsx';
 import TermsOfService from './support/TermsOfService.tsx';
 import Contact from './support/Contact.tsx';
+import Archive from './archive/Archive.tsx';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { initDB } from './util/db.ts';
@@ -19,6 +20,7 @@ initDB().then(() => {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/archive" element={<Archive />} />
         </Routes>
       </Router>
       <Analytics />

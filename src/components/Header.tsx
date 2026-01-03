@@ -1,7 +1,7 @@
 import { getFormattedDate } from "../util/Date";
-import { IoStatsChart, IoMoon, IoSunny } from "react-icons/io5";
+import { IoStatsChart, IoMoon, IoSunny, IoCalendarSharp } from "react-icons/io5";
 import { useState, useEffect } from "react";
-
+import { useNavigate } from 'react-router-dom';
 
 type Theme = 'light' | 'dark';
 const THEME_KEY = 'theme';
@@ -32,6 +32,7 @@ export interface HeaderProps {
 
 const Header = ({ setIsHelpModalOpen, setIsSuccessModalOpen, puzzleNumber }: HeaderProps) => {
     const { toggleTheme, theme } = useTheme();
+    const navigate = useNavigate();
     return (
         <div className="header">
             <div className="headerText">
@@ -43,11 +44,13 @@ const Header = ({ setIsHelpModalOpen, setIsSuccessModalOpen, puzzleNumber }: Hea
                     <IoStatsChart className="headerIconButton"/>
                 </div>
                 <div className="headerButton" onClick={() => setIsHelpModalOpen(true)}>?</div>
-                <div></div>
                 <div className="headerButton" onClick={() => toggleTheme()}>
                     {theme == 'light'
                         ? <IoMoon className="headerIconButton"/>
                         : <IoSunny className="headerIconButton"/>}
+                </div>
+                <div className="headerButton" onClick={() => navigate('/archive')}>
+                      <IoCalendarSharp className="headerIconButton" />
                 </div>
             </div>
         </div>
