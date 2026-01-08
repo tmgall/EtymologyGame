@@ -62,6 +62,7 @@ const Archive = () => {
             {
                 puzzles.map((puzzle) => (
                     <ArchiveTile
+                        todaysPuzzleNumber={getTodaysPuzzleNumber()}
                         key={puzzle.puzzleNumber}
                         puzzleNumber={puzzle.puzzleNumber}
                         date={puzzle.date}

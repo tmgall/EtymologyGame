@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 interface ArchiveTileProps {
+    todaysPuzzleNumber: number;
     puzzleNumber: number;
     date: string;
     dayOfWeek: string;
@@ -10,9 +11,10 @@ interface ArchiveTileProps {
     hintsUsed: number;
 }
 
-const ArchiveTile = ({ puzzleNumber, date, dayOfWeek, difficulty, isSolved, isStarted, hintsUsed }: ArchiveTileProps) => {
+const ArchiveTile = ({ todaysPuzzleNumber, puzzleNumber, date, dayOfWeek, difficulty, isSolved, isStarted, hintsUsed }: ArchiveTileProps) => {
+    const linkTo = puzzleNumber === todaysPuzzleNumber ? '/' : `/archive/${puzzleNumber}`;
     return (
-        <Link to={`/archive/${puzzleNumber}`} className={`archiveTile ${isSolved ? 'solved' : ''}`}>
+        <Link to={linkTo} className={`archiveTile ${isSolved ? 'solved' : ''}`}>
             <span className="archiveTileTitle">Puzzle #{puzzleNumber}</span>
             <div className="archiveTileSubHeader">
                 <span>{dayOfWeek}</span>
