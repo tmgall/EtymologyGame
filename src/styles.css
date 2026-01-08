@@ -31,7 +31,6 @@
     text-align: center;
     font-family: var(--font-standard);
     box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app {
@@ -107,6 +106,11 @@
     height: 60%;
     width: 60%;
     background-color: inherit;
+}
+
+.archiveHomeIcon {
+    height: 75%;
+    width: 75%;
 }
 
 .headerIconButton:hover {
@@ -600,4 +604,105 @@
 
 .modalExit {
     animation: swipeDown 0.2s cubic-bezier(0.25, 1, 0.22, 1) forwards;
+}
+
+.support {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+    gap: 20px; 
+}
+
+/* The list container */
+.archiveList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px; 
+}
+
+/* Individual Puzzle Tile */
+.archiveTile {
+    background-color: var(--typewriter-key);
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 0 var(--typewriter-key-shadow);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+/* Fixes issue where child elements inherit the global paper background */
+.archiveTile * {
+    background-color: transparent;
+    text-align: left;
+}
+
+/* Optional: Hover effect to indicate interactivity */
+.archiveTile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--typewriter-key-shadow);
+    background-color: var(--typewriter-key-pressed);
+}
+
+/* Header inside the tile (Puzzle Title) */
+.archiveTileTitle {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--ink);
+    line-height: 1.1;
+}
+
+.archiveTileSubHeader {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--ink-light);
+    font-weight: 500;
+    width: 100%;
+}
+
+/* Footer inside the tile (Difficulty and Status) */
+.archiveTileFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    margin-top: 4px;
+}
+
+.archiveTileDifficulty {
+    font-style: italic;
+}
+
+.archiveTileSolved {
+    font-weight: bold;
+    color: var(--ink);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.archiveTile.solved {
+    background-color: var(--typewriter-key-pressed);
+    border-color: var(--ink-light);
+}
+
+/* Divider styling */
+.divider {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid var(--ink);
 }

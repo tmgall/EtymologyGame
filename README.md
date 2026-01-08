@@ -10,5 +10,3 @@ This is an etymology word game, where your goal is to guess the word that has th
 
 ## To-do
 
-* Finish adding new hints to each word
-* Add archive

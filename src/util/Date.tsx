@@ -16,3 +16,15 @@ export const getTodaysPuzzleNumber = () => {
     const millisecondsPerDay = 1000 * 60 * 60 * 24;
     return Math.floor((today.getTime() - LAUNCH_DATE.getTime()) / millisecondsPerDay) + 1;
 }
+
+export const getDateFromPuzzleNumber = (puzzleNumber: number): string => {
+  const puzzleDate = new Date(LAUNCH_DATE);
+
+  puzzleDate.setDate(puzzleDate.getDate() + (puzzleNumber - 1));
+
+  return puzzleDate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
