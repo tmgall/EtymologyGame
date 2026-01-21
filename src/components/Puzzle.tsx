@@ -148,6 +148,8 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         ? "hintButtonRevealed" 
         : (showOrigin && showExtraHint)
         ? "hintButton" : "hintButtonDisabled");
+    
+    const cursorIndex = guess.findIndex((char) => char === "") === -1 ? guess.length : selectedIndex;
 
     const languagesOfOriginList = puzzleConfig.roots
         .map((root) => root.languageName)
@@ -169,8 +171,12 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     <div className="dictionaryEntry">
                         <div className="wordEntry">
                             <div className="userInput" ref={ref}>
-                                {guess.join("")}
-                                {puzzleCompleted ? "" : showCursor ? "|" : "\u00A0"}
+                                {[...guess, ""].map((char, index) => (
+                                    <div key={index} className={index === guess.length ? "cursorSlot" : "letterSlot"}>
+                                        {char}
+                                        {!puzzleCompleted && index === cursorIndex && showCursor && <span className="cursor">|</span>}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         
