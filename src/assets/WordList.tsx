@@ -425,7 +425,7 @@ export const WORD_LIST: WordData[] = [
     },
     // new week
     {
-        clue: "ladder steps",
+        clue: "ladder",
         answer: "escalate",
         roots: [{ english: "ladder", languageName: "Latin", languageWord: "scala" }],
         definition: "to increase in intensity",
@@ -832,3 +832,8 @@ export const WORD_LIST: WordData[] = [
         partOfSpeech: "adverb",
     }
 ];
+
+// kindergarten, poltergeist, strategy, isobaric, paparazzi, denizen, fathom, jaguar, labyrinth, kowtow,
+// intelligentsia, kielbasa, amnesty, bazaar, caribou, ecstasy, fervent, ransom, sherbert, utopia,
+// vigilante, breakfast, muscle, paper, clue, sinister, zebra, loiter, cosmetic, denim
+// candidate, curfew, taxidermy, pedigree, tomato, 
