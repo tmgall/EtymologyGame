@@ -836,4 +836,4 @@ export const WORD_LIST: WordData[] = [
 // kindergarten, poltergeist, strategy, isobaric, paparazzi, denizen, fathom, jaguar, labyrinth, kowtow,
 // intelligentsia, kielbasa, amnesty, bazaar, caribou, ecstasy, fervent, ransom, sherbert, utopia,
 // vigilante, breakfast, muscle, paper, clue, sinister, zebra, loiter, cosmetic, denim
-// candidate, curfew, taxidermy, pedigree, tomato, 
+// candidate, curfew, taxidermy, pedigree, tomato,
