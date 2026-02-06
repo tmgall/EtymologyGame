@@ -3,7 +3,7 @@ import { WordData } from "../assets/WordList";
 import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
 import ShareTextButtonProps from "./Share";
-import { formatAsList, formatRootDefinition, formatShareText } from "../util/StringFormatting";
+import { formatShareText } from "../util/StringFormatting";
 import { getPuzzle } from "../util/db";
 
 export interface SuccessModalProps {
