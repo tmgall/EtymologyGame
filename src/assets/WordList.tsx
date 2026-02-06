@@ -3,6 +3,7 @@ export interface WordData {
     answer: string;
     roots: RootsData[];
     definition: string;
+    explanation: string;
     authorsNote?: string;
     partOfSpeech: string;
 }
@@ -21,6 +22,7 @@ export const WORD_LIST: WordData[] = [
         answer: "television", 
         roots: [{ english: "far", languageName: "Greek", languageWord: "tele-" }, { english: "vision", languageName: "Latin", languageWord: "visio" }],
         definition: "technology with a screen",
+        explanation: "The word \"television\" comes from the Greek \"tele\", meaning \"far\", and the Latin \"visio\", meaning \"vision\". It refers to the technology that allows us to see images from far away.",
         partOfSpeech: "noun",
     },
     { 
@@ -28,6 +30,7 @@ export const WORD_LIST: WordData[] = [
         answer: "biography", 
         roots: [{ english: "life", languageName: "Greek", languageWord: "bios" }, { english: "writing", languageName: "Greek", languageWord: "-graphia" }],
         definition: "an account of someone's life",
+        explanation: "The word \"biography\" comes from the Greek \"bios\", meaning \"life\", and \"graphia\", meaning \"writing\". It refers to a written account of someone's life.",
         partOfSpeech: "noun",
     },
     {
@@ -35,6 +38,7 @@ export const WORD_LIST: WordData[] = [
         answer: "originate", 
         roots: [{ english: "beginning, source", languageName: "Latin", languageWord: "originem" }],
         definition: "come from",
+        explanation: "The word \"originate\" comes from the Latin \"originem\", which means \"beginning\" or \"source\". It refers to the point at which something begins or arises.",
         partOfSpeech: "verb",
     },
     { 
@@ -42,6 +46,7 @@ export const WORD_LIST: WordData[] = [
         answer: "helicopter", 
         roots: [{ english: "spiral", languageName: "Greek", languageWord: "helix" }, { english: "wing", languageName: "Greek", languageWord: "pteron" }],
         definition: "a type of aircraft",
+        explanation: "The word \"helicopter\" comes from the Greek \"helix\", meaning \"spiral\", and \"pteron\", meaning \"wing\". It refers to the aircraft's spiralling blades that allow it to take off and land vertically.",
         partOfSpeech: "noun",
     },
     {
@@ -49,6 +54,7 @@ export const WORD_LIST: WordData[] = [
         answer: "tsunami", 
         roots: [{ english: "harbor", languageName: "Japanese", languageWord: "tsu" }, { english: "wave", languageName: "Japanese", languageWord: "nami" }],
         definition: "a big wave",
+        explanation: "The word \"tsunami\" comes from the Japanese words \"tsu\", meaning \"harbor\", and \"nami\", meaning \"wave\". It refers to a large sea wave caused by an underwater earthquake or volcanic eruption that can cause significant damage when it reaches land (a harbor).",
         partOfSpeech: "noun",
     },
     { 
@@ -56,6 +62,7 @@ export const WORD_LIST: WordData[] = [
         answer: "juggernaut", 
         roots: [{ english: "the world", languageName: "Sanskrit", languageWord: "jagat" }, { english: "lord", languageName: "Sanskrit", languageWord: "natha" }],
         definition: "a huge or overwhelming force",
+        explanation: "The word \"juggernaut\" comes from the Sanskrit words \"jagat\", meaning \"the world\", and \"natha\", meaning \"lord\". It originally referred to a massive chariot carrying an image of the Hindu god Jagannath, which was said to crush devotees under its wheels during religious processions. Over time, the term has come to refer more generally to any huge or overwhelming force.",
         partOfSpeech: "noun",
     },
     {
@@ -63,6 +70,7 @@ export const WORD_LIST: WordData[] = [
         answer: "Schadenfreude", 
         roots: [{ english: "harm", languageName: "German", languageWord: "Schaden" }, { english: "joy", languageName: "German", languageWord: "Freude" }],
         definition: "joy from harm to others",
+        explanation: "The word \"Schadenfreude\" comes from the German words \"Schaden\", meaning \"harm\", and \"Freude\", meaning \"joy\". It refers to the feeling of pleasure or satisfaction that comes from witnessing or hearing about the troubles of others.",
         partOfSpeech: "noun",
     },
     // New week
@@ -71,6 +79,7 @@ export const WORD_LIST: WordData[] = [
         answer: "microscope", 
         roots: [{ english: "small", languageName: "Latin", languageWord: "micro-" }, { english: "seeing instrument", languageName: "Latin", languageWord: "-scopium" }],
         definition: "an instrument to see very small objects",
+        explanation: "The word \"microscope\" comes from the Latin \"micro\", meaning \"small\", and \"scopium\", meaning \"seeing instrument\". It refers to an instrument that allows us to see objects that are too small for the naked eye.",
         partOfSpeech: "noun",
     },
     {
@@ -78,6 +87,7 @@ export const WORD_LIST: WordData[] = [
         answer: "carnivore",
         roots: [{ english: "flesh", languageName: "Latin", languageWord: "carni" }, { english: "devour", languageName: "Latin", languageWord: "vore" }],
         definition: "one that eats meat",
+        explanation: "The word \"carnivore\" comes from the Latin \"carni\", meaning \"flesh\", and \"vore\", meaning \"devour\". It refers to an organism that primarily eats (devours) meat (flesh).",
         partOfSpeech: "noun",
     },
     {
@@ -85,6 +95,7 @@ export const WORD_LIST: WordData[] = [
         answer: "trigonometry",
         roots: [{ english: "three", languageName: "Greek", languageWord: "tri"}, { english: "angles", languageName: "Greek", languageWord: "gonia"}, { english: "measurement", languageName: "Greek", languageWord: "metron"}],
         definition: "a branch of math",
+        explanation: "The word \"trigonometry\" comes from the Greek words \"tri\", meaning \"three\", \"gonia\", meaning \"angles\", and \"metron\", meaning \"measurement\". It refers to the branch of mathematics that studies the relationships between the angles and sides of triangles.",
         partOfSpeech: "noun",
     },
     {
@@ -92,6 +103,7 @@ export const WORD_LIST: WordData[] = [
         answer: "palindrome",
         roots: [{ english: "again", languageName: "Greek", languageWord: "palin"}, { english: "running", languageName: "Greek", languageWord: "dromos"}],
         definition: "a word the same backwards as forwards",
+        explanation: "The word \"palindrome\" comes from the Greek words \"palin\", meaning \"again\", and \"dromos\", meaning \"running\". It refers to a word, phrase, or sequence of characters that reads (a.k.a. \"runs\")the same backward as forward.",
         partOfSpeech: "noun",
     },
     {
@@ -99,6 +111,7 @@ export const WORD_LIST: WordData[] = [
         answer: "taboo",
         roots: [{ english: "forbidden", languageName: "Tongan", languageWord: "tapu"}],
         definition: "socially unacceptable",
+        explanation: "The word \"taboo\" comes from the Tongan word \"tapu\", which means \"forbidden\" or \"sacred\". It refers to something that is socially unacceptable or prohibited.",
         partOfSpeech: "noun, adjective",
         authorsNote: "This word appears in many Polynesian languages, not just Tongan."
     },
@@ -106,6 +119,7 @@ export const WORD_LIST: WordData[] = [
         clue: "journey",
         answer: "safari",
         roots: [{ english: "journey", languageName: "Arabic", languageWord: "safar"}],
+        explanation: "The word \"safari\" comes from the Arabic word \"safar\", which means \"journey\". It originally referred to a long journey or expedition, especially in Africa, and has come to specifically refer to a trip to observe or hunt wildlife in their natural habitat.",
         definition: "an expedition in Africa",
         partOfSpeech: "noun",
     },
@@ -114,6 +128,7 @@ export const WORD_LIST: WordData[] = [
         answer: "slogan",
         roots: [{ english: "army", languageName: "Gaelic", languageWord: "slua"}, { english: "cry", languageName: "Gaelic", languageWord: "ghairm"}],
         definition: "a memorable phrase or motto",
+        explanation: "The word \"slogan\" comes from the Gaelic words \"slua\", meaning \"army\", and \"ghairm\", meaning \"cry\". It originally referred to a battle cry used by Scottish clans, and has come to refer more generally to a memorable phrase or motto used in advertising or politics.",
         partOfSpeech: "noun",
     },
     // New week
@@ -122,6 +137,7 @@ export const WORD_LIST: WordData[] = [
         answer: "bicycle", 
         roots: [{ english: "two", languageName: "Greek", languageWord: "bi-" }, { english: "wheel", languageName: "Greek", languageWord: "kyklos" }],
         definition: "a two-wheeled transport",
+        explanation: "The word \"bicycle\" comes from the Greek \"bi\", meaning \"two\", and \"kyklos\", meaning \"wheel\". It refers to a vehicle with two wheels that is propelled by pedaling.",
         partOfSpeech: "noun",
     },
     {
@@ -129,6 +145,7 @@ export const WORD_LIST: WordData[] = [
         answer: "astronaut", 
         roots: [{ english: "star", languageName: "Greek", languageWord: "astro" }, { english: "sailor", languageName: "Greek", languageWord: "naut" }],
         definition: "one exploring space",
+        explanation: "The word \"astronaut\" comes from the Greek \"astro\", meaning \"star\", and \"naut\", meaning \"sailor\". It refers to a person who is trained to travel in a spacecraft and explore space.",
         partOfSpeech: "noun",
     },
     {
@@ -136,12 +153,14 @@ export const WORD_LIST: WordData[] = [
         answer: "surrealism", 
         roots: [{ english: "beyond", languageName: "French", languageWord: "sur" }, { english: "reality", languageName: "French", languageWord: "realisme" }],
         definition: "bizarre and dreamlike art",
+        explanation: "The word \"surrealism\" comes from the French \"sur\", meaning \"beyond\", and \"realisme\", meaning \"reality\". It refers to a cultural movement that began in the early 20th century, characterized by bizarre and dreamlike imagery that goes beyond ordinary reality.",
         partOfSpeech: "noun",
     },
     {
         clue: "Sax's sound",
         answer: "saxophone",
         roots: [{ english: "Sax (surname)", languageName: "French", languageWord: "Sax"}, { english: "sound", languageName: "Greek", languageWord: "phone"}],
+        explanation: "The saxophone was invented by Adolphe Sax in 1840, so it's named after him! The \"phone\" part comes from the Greek word for sound, since it's a musical instrument.",
         definition: "type of woodwind instrument",
         partOfSpeech: "noun",
     },
@@ -150,6 +169,7 @@ export const WORD_LIST: WordData[] = [
         answer: "karaoke", 
         roots: [{ english: "empty", languageName: "Japanese", languageWord: "kara" }, { english: "orchestra", languageName: "Japanese", languageWord: "oke" }],
         definition: "singing with just the music",
+        explanation: "The word \"karaoke\" comes from the Japanese \"kara\", meaning \"empty\", and \"oke\", meaning \"orchestra\". It refers to a form of entertainment where people sing along to recorded music without the original vocals, essentially an \"empty orchestra\".",
         partOfSpeech: "noun",
     },
     {
@@ -157,6 +177,7 @@ export const WORD_LIST: WordData[] = [
         answer: "giraffe",
         roots: [{english: "fast walker",languageName: "Arabic", languageWord: "zarafa"}],
         definition: "a tall, long-necked animal",
+        explanation: "The word \"giraffe\" comes from the Arabic word \"zarafa\", which means \"fast walker\". It refers to the tall, long-necked animal known for its graceful walking.",
         partOfSpeech: "noun",
     },
     {
@@ -164,6 +185,7 @@ export const WORD_LIST: WordData[] = [
         answer: "diagnosis",
         roots: [{english: "apart",languageName: "Greek",languageWord: "dia"},{english: "knowledge",languageName: "Greek",languageWord: "gnosis"}],
         definition: "identification of a condition or problem",
+        explanation: "The word \"diagnosis\" comes from the Greek \"dia\", meaning \"apart\", and \"gnosis\", meaning \"knowledge\". It refers to the process of identifying a condition or problem by analyzing its symptoms and distinguishing it from other possibilities.",
         partOfSpeech: "noun",
     },
     // New week
@@ -172,6 +194,7 @@ export const WORD_LIST: WordData[] = [
         answer: "monogamy",
         roots: [{ english: "one", languageName: "Greek", languageWord: "monos"}, { english: "marriage", languageName: "Greek", languageWord: "gamos"}],
         definition: "one marriage at one time",
+        explanation: "The word \"monogamy\" comes from the Greek \"monos\", meaning \"one\", and \"gamos\", meaning \"marriage\". It refers to the practice of being married to one person at a time.",
         partOfSpeech: "noun",
     },
     {
@@ -179,6 +202,7 @@ export const WORD_LIST: WordData[] = [
         answer: "arachnophobia",
         roots: [{ english: "spider", languageName: "Greek", languageWord: "arakhne"}, { english: "fear", languageName: "Greek", languageWord: "phobia"}],
         definition: "literally fear of spiders",
+        explanation: "The word \"arachnophobia\" comes from the Greek \"arakhne\", meaning \"spider\", and \"phobia\", meaning \"fear\". It refers to an intense fear of spiders.",
         partOfSpeech: "noun",
     },
     {
@@ -186,6 +210,7 @@ export const WORD_LIST: WordData[] = [
         answer: "manuscript",
         roots: [{english: "hand",languageName: "Latin",languageWord: "manus"},{english: "to write",languageName: "Latin",languageWord: "scribere"}],
         definition: "a handwritten document",
+        explanation: "The word \"manuscript\" comes from the Latin \"manus\", meaning \"hand\", and \"scribere\", meaning \"to write\". It refers to a document that is written by hand, as opposed to being printed or typed.",
         partOfSpeech: "noun",
     },
     {
@@ -193,6 +218,7 @@ export const WORD_LIST: WordData[] = [
         answer: "automaton",
         roots: [{english: "self",languageName: "Greek",languageWord: "auto"},{english: "moving",languageName: "Greek",languageWord: "matos"}],
         definition: "a machine that moves by itself",
+        explanation: "The word \"automaton\" comes from the Greek \"auto\", meaning \"self\", and \"matos\", meaning \"moving\". It refers to a machine that is designed to move on its own, often in a way that mimics human or animal behavior.",
         partOfSpeech: "noun",
     },
     {
@@ -200,6 +226,7 @@ export const WORD_LIST: WordData[] = [
         answer: "alcohol",
         roots: [{ english: "the", languageName: "Arabic", languageWord: "al" },{ english: "chemical spirit/essence", languageName: "Arabic", languageWord: "kohl" }],
         definition: "a drink",
+        explanation: "The word \"alcohol\" comes from the Arabic \"al\", meaning \"the\", and \"kohl\", which refers to a fine powder used as an eyeliner. The term was originally used in alchemy to refer to the \"essence\" or \"spirit\" of a substance, and later came to specifically refer to the intoxicating component of fermented drinks.",
         partOfSpeech: "noun",
         authorsNote: "There are several translations of \"kohl\", but I opted for this one since it's the closest to the English understanding of the term."
     },
@@ -208,6 +235,7 @@ export const WORD_LIST: WordData[] = [
         answer: "synesthesia",
         roots: [{ english: "together", languageName: "Greek", languageWord: "syn" }, { english: "sensation", languageName: "Greek", languageWord: "aisthesis" }],
         definition: "condition where the senses blend together",
+        explanation: "The word \"synesthesia\" comes from the Greek \"syn\", meaning \"together\", and \"aisthesis\", meaning \"sensation\". It refers to a neurological condition in which stimulation of one sensory pathway leads to automatic, involuntary experiences in a second sensory pathway. For example, someone with synesthesia might see colors when they hear music or associate specific tastes with certain words.",
         partOfSpeech: "noun",
     },
     {
@@ -215,6 +243,7 @@ export const WORD_LIST: WordData[] = [
         answer: "aikido",
         roots: [{ english: "together", languageName: "Japanese", languageWord: "ai" }, { english: "spirit", languageName: "Japanese", languageWord: "ki" }, { english: "way/path", languageName: "Japanese", languageWord: "do" }],
         definition: "martial art focused on harmony",
+        explanation: "The word \"aikido\" comes from the Japanese words \"ai\", meaning \"together\", \"ki\", meaning \"spirit\", and \"do\", meaning \"way\" or \"path\". It refers to a modern Japanese martial art that emphasizes blending with an opponent's movements and redirecting their energy rather than opposing it head-on, embodying the idea of adapting the spirit together.",
         partOfSpeech: "noun",
     },
     // New week
@@ -223,6 +252,7 @@ export const WORD_LIST: WordData[] = [
         answer: "volcano",
         roots: [{ english: "fire, burning", languageName: "Latin", languageWord: "vulcanus" }],
         definition: "a mountain that erupts molten rock",
+        explanation: "The word \"volcano\" comes from the Latin \"Vulcanus\", which was the name of the Roman god of fire. The term was originally used to refer to the island of Vulcano in the Mediterranean, which was believed to be the chimney of the forge of Vulcan. Over time, it came to refer more generally to any mountain that erupts molten rock.",
         partOfSpeech: "noun",
     },
     {
@@ -230,6 +260,7 @@ export const WORD_LIST: WordData[] = [
         answer: "iceberg",
         roots: [{ english: "ice", languageName: "English", languageWord: "ice" }, { english: "hill/mountain", languageName: "Old Norse", languageWord: "berg" }],
         definition: "a large floating mass of ice",
+        explanation: "The word \"iceberg\" comes from the English word \"ice\" and the Old Norse word \"berg\", meaning \"hill\" or \"mountain\". It refers to a large floating mass of ice that has broken off from a glacier or ice shelf and is drifting in the ocean.",
         partOfSpeech: "noun",
     },
     {
@@ -237,6 +268,7 @@ export const WORD_LIST: WordData[] = [
         answer: "Mediterranean",
         roots: [{ english: "middle", languageName: "Latin", languageWord: "medius" }, { english: "earth", languageName: "Latin", languageWord: "terra" }],
         definition: "region surrounding a large inland sea",
+        explanation: "The word \"Mediterranean\" comes from the Latin words \"medius\", meaning \"middle\", and \"terra\", meaning \"earth\". It refers to the region surrounding the Mediterranean Sea, which was considered the center of the known world by the ancient Romans.",
         partOfSpeech: "noun",
     },
     {
@@ -244,6 +276,7 @@ export const WORD_LIST: WordData[] = [
         answer: "economy",
         roots: [{ english: "house", languageName: "Greek", languageWord: "oikos" }, { english: "manage/keep", languageName: "Greek", languageWord: "nemein" }],
         definition: "management of resources or wealth",
+        explanation: "The word \"economy\" comes from the Greek \"oikos\", meaning \"house\", and \"nemein\", meaning \"manage\" or \"keep\". It originally referred to the management of a household, but over time it has come to refer more broadly to the management of resources, wealth, and production in a society or country.",
         partOfSpeech: "noun",
     },
     {
@@ -251,6 +284,7 @@ export const WORD_LIST: WordData[] = [
         answer: "cryptology",
         roots: [{ english: "secret", languageName: "Greek", languageWord: "kryptos" }, { english: "study", languageName: "Greek", languageWord: "logia" }],
         definition: "study of codes and secret communication",
+        explanation: "The word \"cryptology\" comes from the Greek \"kryptos\", meaning \"secret\", and \"logia\", meaning \"study\". It refers to the study of codes, ciphers, and secret communication, including both the creation of secure communication methods (cryptography) and the breaking of those methods (cryptanalysis).",
         partOfSpeech: "noun",
     },
     {
@@ -258,6 +292,7 @@ export const WORD_LIST: WordData[] = [
         answer: "chrysanthemum",
         roots: [{ english: "gold", languageName: "Greek", languageWord: "khrysos"}, { english: "flower", languageName: "Greek", languageWord: "anthemon"}],
         definition: "a variety of golden flower",
+        explanation: "The word \"chrysanthemum\" comes from the Greek \"khrysos\", meaning \"gold\", and \"anthemon\", meaning \"flower\". It refers to a genus of flowering plants that includes many species with bright, golden blooms.",
         partOfSpeech: "noun",
     },
     {
@@ -265,6 +300,7 @@ export const WORD_LIST: WordData[] = [
         answer: "alkaline",
         roots: [{ english: "the", languageName: "Arabic", languageWord: "al"},{ english: "ashes of saltwort", languageName: "Arabic", languageWord: "qaly" }],
         definition: "having a high pH",
+        explanation: "The word \"alkaline\" comes from the Arabic word \"al-qaly\", meaning \"ashes of saltwort\". It refers to substances that have a high pH and are basic or neutral in nature. The term was originally used in chemistry to describe substances that were derived from the ashes of certain plants, which were found to have basic properties.",
         partOfSpeech: "adjective",
     },
     // new week
@@ -273,6 +309,7 @@ export const WORD_LIST: WordData[] = [
         answer: "centipede",
         roots: [{ english: "hundred", languageName: "Latin", languageWord: "centum" }, { english: "foot", languageName: "Latin", languageWord: "ped" }],
         definition: "insect with many legs",
+        explanation: "The word \"centipede\" comes from the Latin \"centum\", meaning \"hundred\", and \"ped\", meaning \"foot\". It refers to a type of arthropod that has a long, segmented body with many legs, often giving the appearance of having a hundred feet.",
         partOfSpeech: "noun",
     },
     {
@@ -280,6 +317,7 @@ export const WORD_LIST: WordData[] = [
         answer: "psychiatrist",
         roots: [{ english: "mind", languageName: "Greek", languageWord: "psyche" }, { english: "healing, care", languageName: "Greek", languageWord: "iatreia" }],
         definition: "a doctor specializing in mental health",
+        explanation: "The word \"psychiatrist\" comes from the Greek \"psyche\", meaning \"mind\", and \"iatreia\", meaning \"healing\" or \"care\". It refers to a medical doctor who specializes in the diagnosis, treatment, and prevention of mental health disorders.",
         partOfSpeech: "noun",
     },
     {
@@ -288,6 +326,7 @@ export const WORD_LIST: WordData[] = [
         roots: [{ english: "sun", languageName: "Latin", languageWord: "sol" }, { english: "stand still", languageName: "Latin", languageWord: "sistere" }],
         definition: "when the sun reaches its highest or lowest point",
         partOfSpeech: "noun",
+        explanation: "The word \"solstice\" comes from the Latin \"sol\", meaning \"sun\", and \"sistere\", meaning \"to stand still\". It refers to the two times of the year when the sun reaches its highest or lowest point in the sky at noon, resulting in the longest and shortest days of the year.",
         authorsNote: "This root meaning is so cool."
     }, 
     {
@@ -295,6 +334,7 @@ export const WORD_LIST: WordData[] = [
         answer: "checkmate",
         roots: [{ english: "king", languageName: "Persian", languageWord: "shah"}, { english: "helpless, astonished", languageName: "Persian", languageWord: "mat"}],
         definition: "a losing position in chess",
+        explanation: "The word \"checkmate\" comes from the Persian words \"shah\", meaning \"king\", and \"mat\", meaning \"helpless\" or \"astonished\". It refers to a position in the game of chess where a player's king is in a position to be captured (in check) and there is no legal move to escape the threat, resulting in a loss for that player.",
         partOfSpeech: "noun",
     },
     {
@@ -302,6 +342,7 @@ export const WORD_LIST: WordData[] = [
         answer: "hieroglyphics",
         roots: [{ english: "sacred", languageName: "Greek", languageWord: "hieros"}, { english: "carving", languageName: "Greek", languageWord: "glyph"}],
         definition: "ancient Egyptian writing",
+        explanation: "The word \"hieroglyphics\" comes from the Greek \"hieros\", meaning \"sacred\", and \"glyph\", meaning \"carving\". It refers to the system of writing used in ancient Egypt, which consisted of pictorial symbols that were often carved into stone or written on papyrus. The term was originally used by the Greeks to describe the sacred carvings they saw in Egyptian temples.",
         partOfSpeech: "noun",
     },
     {
@@ -309,14 +350,15 @@ export const WORD_LIST: WordData[] = [
         answer: "kahuna",
         roots: [{ english: "master, sorcerer, doctor", languageName: "Hawaiian", languageWord: "kahuna"}],
         definition: "a very important person",
+        explanation: "The word \"kahuna\" comes from the Hawaiian language, where it can refer to a master of any profession, a sorcerer, or a doctor. In English, it has come to be used more generally to refer to a very important person or an expert in a particular field.",
         partOfSpeech: "noun",
-        authorsNote: "This word has many definitions, but all attribute to word to referencing some form of expert."
     },
     {
         clue: "fart goblin",
         answer: "pumpernickel",
         roots: [{ english: "fart", languageName: "German", languageWord: "pumper"}, { english: "goblin, devil", languageName: "German", languageWord: "nickel"}],
         definition: "type of dark rye bread",
+        explanation: "The word \"pumpernickel\" comes from the German words \"pumper\", meaning \"fart\", and \"nickel\", meaning \"goblin\" or \"devil\". The name is thought to have originated as a humorous term for the bread, which was considered to be of low quality and difficult to digest, hence the association with flatulence and mischievous spirits.",
         partOfSpeech: "noun",
         authorsNote: "I know this is a difficult one... but I saw \"fart goblin\" and knew I had to include it."
     },
@@ -326,6 +368,7 @@ export const WORD_LIST: WordData[] = [
         answer: "democracy",
         roots: [{ english: "people", languageName: "Greek", languageWord: "demos" }, { english: "power", languageName: "Greek", languageWord: "kratia" }],
         definition: "government ruled by the people",
+        explanation: "The word \"democracy\" comes from the Greek \"demos\", meaning \"people\", and \"kratia\", meaning \"power\". It refers to a system of government where power is vested in the people, either directly or through elected representatives.",
         partOfSpeech: "noun",
     },
     {
@@ -333,6 +376,7 @@ export const WORD_LIST: WordData[] = [
         answer: "geothermal",
         roots: [{ english: "earth", languageName: "Greek", languageWord: "geo" }, { english: "heat", languageName: "Greek", languageWord: "therme" }],
         definition: "pertaining to heat from the earth",
+        explanation: "The word \"geothermal\" comes from the Greek \"geo\", meaning \"earth\", and \"therme\", meaning \"heat\". It refers to the heat that is generated and stored within the Earth, which can be harnessed for various uses such as electricity generation and heating.",
         partOfSpeech: "adjective",
     },
     {
@@ -340,6 +384,7 @@ export const WORD_LIST: WordData[] = [
         answer: "panorama",
         roots: [{ english: "all", languageName: "Greek", languageWord: "pan" }, { english: "view", languageName: "Greek", languageWord: "horama" }],
         definition: "a wide view of a surrounding area",
+        explanation: "The word \"panorama\" comes from the Greek \"pan\", meaning \"all\", and \"horama\", meaning \"view\". It refers to an unbroken view of the entire surrounding area, often used to describe wide-angle photographs or paintings that capture a broad scene.",
         partOfSpeech: "noun",
     },
     {
@@ -347,6 +392,7 @@ export const WORD_LIST: WordData[] = [
         answer: "abscond",
         roots: [{ english: "away from", languageName: "Latin", languageWord: "ab" }, { english: "hide", languageName: "Latin", languageWord: "condere" }],
         definition: "depart suddenly",
+        explanation: "The word \"abscond\" comes from the Latin \"ab\", meaning \"away from\", and \"condere\", meaning \"to hide\". It refers to the act of leaving hurriedly and secretly, typically to avoid detection or arrest.",
         partOfSpeech: "verb",
     },
     {
@@ -354,6 +400,7 @@ export const WORD_LIST: WordData[] = [
         answer: "chipotle",
         roots: [{ english: "chili", languageName: "Nahuatl", languageWord: "chilli"}, { english: "smoke", languageName: "Nahuatl", languageWord: "poctli"}],
         definition: "a smoke-dried chili pepper",
+        explanation: "The word \"chipotle\" comes from the Nahuatl words \"chilli\", meaning \"chili pepper\", and \"poctli\", meaning \"smoke\". It refers to a type of chili pepper that has been dried and smoked, giving it a distinctive flavor that is commonly used in Mexican cuisine.",
         partOfSpeech: "noun",
     },
     {
@@ -361,6 +408,7 @@ export const WORD_LIST: WordData[] = [
         answer: "berserker",
         roots: [{ english: "bear", languageName: "Old Norse", languageWord: "ber"}, { english: "shirt", languageName: "Old Norse", languageWord: "serkr"}],
         definition: "a Norse warrior",
+        explanation: "Berserkers were said to wear bearskin shirts and go into battle in a trance-like fury, which is where we get the modern term \"berserk\" to mean out of control.",
         partOfSpeech: "noun",
     },
     {
@@ -368,6 +416,7 @@ export const WORD_LIST: WordData[] = [
         answer: "monsoon",
         roots: [{ english: "season", languageName: "Arabic", languageWord: "mausim" }],
         definition: "seasonal heavy rains",
+        explanation: "The word \"monsoon\" comes from the Arabic word \"mausim\", meaning \"season\". It refers to a seasonal prevailing wind in the region of South and Southeast Asia, which brings heavy rains during certain times of the year.",
         partOfSpeech: "noun",
     },
     // new week
@@ -376,6 +425,7 @@ export const WORD_LIST: WordData[] = [
         answer: "origami", 
         roots: [{ english: "folding", languageName: "Japanese", languageWord: "ori" }, { english: "paper", languageName: "Japanese", languageWord: "kami" }],
         definition: "the art of paper folding",
+        explanation: "The word \"origami\" comes from the Japanese words \"ori\", meaning \"folding\", and \"kami\", meaning \"paper\". It refers to the traditional Japanese art of folding paper into various shapes and figures, often without cutting or gluing.",
         partOfSpeech: "noun",
     },
     {
@@ -383,6 +433,7 @@ export const WORD_LIST: WordData[] = [
         answer: "tornado",
         roots: [{ english: "to turn", languageName: "Spanish", languageWord: "tornar"}],
         definition: "a rotating storm",
+        explanation: "The word \"tornado\" comes from the Spanish word \"tornar\", meaning \"to turn\". It refers to a violently rotating column of air that extends from a thunderstorm to the ground, often causing significant damage.",
         partOfSpeech: "noun",
     },
     {
@@ -390,6 +441,7 @@ export const WORD_LIST: WordData[] = [
         answer: "sonogram",
         roots: [{ english: "sound", languageName: "Latin", languageWord: "sonus"}, { english: "picture", languageName: "Latin", languageWord: "-gram"}],
         definition: "medical imaging using sound",
+        explanation: "The word \"sonogram\" comes from the Latin \"sonus\", meaning \"sound\", and the Greek suffix \"-gram\", meaning \"something written\" or \"a record\". It refers to a type of medical imaging that uses high-frequency sound waves to create images of the inside of the body, such as during pregnancy to visualize the fetus.",
         partOfSpeech: "noun",
     },
     {
@@ -397,6 +449,7 @@ export const WORD_LIST: WordData[] = [
         answer: "planet",
         roots: [{ english: "wanderer", languageName: "Greek", languageWord: "planetos"}],
         definition: "celestial body that orbits a star",
+        explanation: "The ancient Greeks observed that the planets moved differently than the stars, so they called them \"wanderers\".",
         partOfSpeech: "noun",
         authorsNote: "This may be my favorite word origin; thinking of a planet as something that wanders is so poetic to me."
     },
@@ -405,6 +458,7 @@ export const WORD_LIST: WordData[] = [
         answer: "bagel",
         roots: [{ english: "ring", languageName: "Yiddish", languageWord: "beygl"}],
         definition: "a ring-shaped bread roll",
+        explanation: "The word \"bagel\" comes from the Yiddish word \"beygl\", which is derived from the German word \"beugel\", meaning \"ring\" or \"bracelet\". It refers to a type of bread roll that is shaped like a ring and typically boiled before being baked, giving it a chewy texture.",
         partOfSpeech: "noun",
     },
     {
@@ -412,16 +466,16 @@ export const WORD_LIST: WordData[] = [
         answer: "cantaloupe",
         roots: [{ english: "sing", languageName: "Latin", languageWord: "canta"}, { english: "wolf", languageName: "Latin", languageWord: "lupus"}],
         definition: "a small melon",
+        explanation: "Cantaloupe is named after the region where it was first grown, Cantalupo, which means \"singing wolf\" in Latin. It's not entirely clear why the region was named that, but one theory is that it was named after a noble family crest that featured a singing wolf.",
         partOfSpeech: "noun",
-        authorsNote: "Cantaloupe is named after the region where it was first grown, Cantalupo." 
     },
     {
         clue: "with a key",
         answer: "conclave",
         roots: [{ english: "with", languageName: "Latin", languageWord: "con" }, { english: "key", languageName: "Latin", languageWord: "clavis" }],
         definition: "where cardinals elect a new pope",
+        explanation: "The word \"conclave\" comes from the Latin words \"con\" (with) and \"clavis\" (key). It refers to a meeting of cardinals in the Vatican to elect a new pope, where they are locked in the room until a new pope is chosen.",
         partOfSpeech: "noun",
-        authorsNote: "\"With a key\" refers to the fact that the cardinals are locked in the room."
     },
     // new week
     {
@@ -429,6 +483,7 @@ export const WORD_LIST: WordData[] = [
         answer: "escalate",
         roots: [{ english: "ladder", languageName: "Latin", languageWord: "scala" }],
         definition: "to increase in intensity",
+        explanation: "The word \"escalate\" comes from the Latin word \"scala\", meaning \"ladder\". It originally referred to the act of climbing a ladder, but over time it has come to refer more generally to any situation that increases in intensity or severity, as if climbing a ladder to higher levels.",
         partOfSpeech: "verb",
     },
     {
@@ -436,6 +491,7 @@ export const WORD_LIST: WordData[] = [
         answer: "coyote",
         roots: [{ english: "little wolf", languageName: "Nahuatl", languageWord: "coyotl" }],
         definition: "a wild dog of North America",
+        explanation: "The word \"coyote\" comes from the Nahuatl word \"coyotl\", which means \"little wolf\". It refers to a species of wild dog that is native to North America and is known for its adaptability and cunning behavior.",
         partOfSpeech: "noun",
     },
     {
@@ -443,6 +499,7 @@ export const WORD_LIST: WordData[] = [
         answer: "dandelion",
         roots: [{ english: "lion", languageName: "French", languageWord: "lion" }, { english: "tooth", languageName: "French", languageWord: "dent" }],
         definition: "a yellow flowering weed",
+        explanation: "The name \"dandelion\" comes from the French \"dent-de-lion\", which means \"lion's tooth\", referring to the jagged shape of the leaves.",
         partOfSpeech: "noun",
     },
     {
@@ -450,6 +507,7 @@ export const WORD_LIST: WordData[] = [
         answer: "khaki",
         roots: [{ english: "dust colored", languageName: "Urdu", languageWord: "khaki" }],
         definition: "a tan or brown color",
+        explanation: "The word \"khaki\" comes from the Urdu word \"khaki\", which means \"dust colored\". It refers to a light brown or tan color that is often used in military uniforms and casual clothing.",
         partOfSpeech: "noun, adjective",
     },
     {
@@ -458,6 +516,7 @@ export const WORD_LIST: WordData[] = [
         roots: [{ english: "spirit of a dead person", languageName: "Kikongo", languageWord: "nzambi" }],
         definition: "an undead creature",
         authorsNote: "This term appears in other West African languages besides Kikongo.",
+        explanation: "The word \"zombie\" comes from the Kikongo word \"nzambi\", which refers to the spirit of a dead person. In popular culture, it has come to refer to an undead creature that is often depicted as mindless and driven by a hunger for human flesh.",
         partOfSpeech: "noun",
     },
     {
@@ -465,6 +524,7 @@ export const WORD_LIST: WordData[] = [
         answer: "malapropism",
         roots: [{ english: "badly", languageName: "French", languageWord: "mal" }, { english: "suited", languageName: "French", languageWord: "à propos" }],
         definition: "misuse of a word",
+        explanation: "The word \"malapropism\" comes from the French \"mal\", meaning \"badly\", and \"à propos\", meaning \"suited\". It refers to the misuse of a word in place of a similar-sounding one, often with unintentionally amusing effect. The term is named after Mrs. Malaprop, a character in Richard Brinsley Sheridan's play \"The Rivals\", who was known for her humorous misuse of words.",
         partOfSpeech: "noun",
     },
     {
@@ -472,6 +532,7 @@ export const WORD_LIST: WordData[] = [
         answer: "tycoon",
         roots: [{ english: "great", languageName: "Japanese", languageWord: "tai" }, { english: "lord", languageName: "Japanese", languageWord: "kun" }],
         definition: "a wealthy business leader",
+        explanation: "The word \"tycoon\" comes from the Japanese words \"tai\", meaning \"great\", and \"kun\", meaning \"lord\". It was originally used to refer to the shogun, the military dictator of Japan, but in English it has come to refer more generally to a wealthy and powerful business leader.",
         partOfSpeech: "noun",
     },
     // new week
@@ -480,6 +541,7 @@ export const WORD_LIST: WordData[] = [
         answer: "alphabet",
         roots: [{ english: "alpha", languageName: "Greek", languageWord: "alpha" }, { english: "beta", languageName: "Greek", languageWord: "beta" }],
         definition: "letters of a language",
+        explanation: "The word \"alphabet\" comes from the first two letters of the Greek alphabet, alpha and beta.",
         partOfSpeech: "noun",
     },
     {
@@ -487,6 +549,7 @@ export const WORD_LIST: WordData[] = [
         answer: "admiral",
         roots: [{ english: "commander", languageName: "Arabic", languageWord: "amir" }, { english: "sea", languageName: "Arabic", languageWord: "al-bahr" }],
         definition: "high-ranking naval officer",
+        explanation: "The word \"admiral\" comes from the Arabic \"amir al-bahr\", meaning \"commander of the sea\". It refers to a high-ranking naval officer who is in charge of a fleet or a group of ships.",
         partOfSpeech: "noun",
     },
     {
@@ -494,6 +557,7 @@ export const WORD_LIST: WordData[] = [
         answer: "nightmare",
         roots: [{ english: "night", languageName: "Old English", languageWord: "niht" }, { english: "demon", languageName: "Old English", languageWord: "mare" }],
         definition: "a frightening dream",
+        explanation: "The word \"nightmare\" comes from the Old English words \"niht\", meaning \"night\", and \"mare\", meaning \"demon\" or \"goblin\". It originally referred to a mythical creature that was believed to sit on people's chests while they slept, causing bad dreams and feelings of suffocation. Over time, it came to refer more generally to any frightening or unpleasant dream.",
         partOfSpeech: "noun",
     },
     {
@@ -501,13 +565,15 @@ export const WORD_LIST: WordData[] = [
         answer: "zero",
         roots: [{ english: "empty", languageName: "Arabic", languageWord: "sifr" }],
         definition: "a quantity of nothing",
+        explanation: "The word \"zero\" comes from the Arabic word \"sifr\", meaning \"empty\". It refers to the numerical value of nothing, and is a fundamental concept in mathematics and science.",
         partOfSpeech: "noun",
     },
     {
         clue: "of Pan",
         answer: "panic",
-        roots: [{ english: "of Pan", languageName: "Greek", languageWord: "panikos" }],
+        roots: [{ english: "Pan", languageName: "Greek", languageWord: "panikos" }],
         definition: "sudden overwhelming fear",
+        explanation: "The word \"panic\" comes from the Greek god Pan, who was said to cause sudden fear in people.",
         partOfSpeech: "noun",
     },
     {
@@ -515,6 +581,7 @@ export const WORD_LIST: WordData[] = [
         answer: "squirrel",
         roots: [{ english: "shadow", languageName: "Greek", languageWord: "skia" }, { english: "tail", languageName: "Greek", languageWord: "oura" }],
         definition: "a tree-climbing rodent",
+        explanation: "The word \"squirrel\" comes from the Greek words \"skia\", meaning \"shadow\", and \"oura\", meaning \"tail\". It refers to a small rodent that is known for its bushy tail, which can cast a shadow as it moves through the trees.",
         partOfSpeech: "noun",
     },
     {
@@ -522,6 +589,7 @@ export const WORD_LIST: WordData[] = [
         answer: "algebra",
         roots: [{ english: "the", languageName: "Arabic", languageWord: "al" }, { english: "restoration", languageName: "Arabic", languageWord: "jabr" }],
         definition: "branch of mathematics",
+        explanation: "The word \"algebra\" comes from the Arabic \"al-jabr\", which means \"the restoration\". It refers to the process of moving terms from one side of an equation to the other to restore balance.",
         partOfSpeech: "noun",
     },
     // new week
@@ -530,6 +598,7 @@ export const WORD_LIST: WordData[] = [
         answer: "malaria",
         roots: [{ english: "bad", languageName: "Italian", languageWord: "mala" }, { english: "air", languageName: "Italian", languageWord: "aria" }],
         definition: "a mosquito-borne disease",
+        explanation: "The word \"malaria\" comes from the Italian \"mala aria\", which means \"bad air\". It was believed that the disease was caused by the foul air in marshy areas.",
         partOfSpeech: "noun",
     },
     {
@@ -537,6 +606,7 @@ export const WORD_LIST: WordData[] = [
         answer: "pundit",
         roots: [{ english: "learned/skilled", languageName: "Sanskrit", languageWord: "pandita" }],
         definition: "an expert commentator",
+        explanation: "The word \"pundit\" comes from the Sanskrit word \"pandita\", which means \"learned\" or \"skilled\". It refers to an expert in a particular field who is often called upon to provide commentary or analysis.",
         partOfSpeech: "noun",
     },
     {
@@ -544,6 +614,7 @@ export const WORD_LIST: WordData[] = [
         answer: "vinegar",
         roots: [{ english: "wine", languageName: "French", languageWord: "vin" }, { english: "sour", languageName: "French", languageWord: "aigre" }],
         definition: "acidic liquid used in cooking",
+        explanation: "The word \"vinegar\" comes from the French words \"vin\", meaning \"wine\", and \"aigre\", meaning \"sour\". It refers to a liquid that is made by fermenting wine or other alcoholic beverages, resulting in a sour taste that is commonly used in cooking and as a condiment.",
         partOfSpeech: "noun",
     },
     {
@@ -551,6 +622,7 @@ export const WORD_LIST: WordData[] = [
         answer: "avocado",
         roots: [{ english: "testicle", languageName: "Nahuatl", languageWord: "ahuacatl" }],
         definition: "a green fruit",
+        explanation: "The word \"avocado\" comes from the Nahuatl word \"ahuacatl\", which means \"testicle\". This is likely due to the shape of the avocado fruit.",
         authorsNote: "You'll never be able to unsee this now.",
         partOfSpeech: "noun",
     },
@@ -559,6 +631,7 @@ export const WORD_LIST: WordData[] = [
         answer: "mercy",
         roots: [{ english: "thanks/grace", languageName: "Old French", languageWord: "mercit" }],
         definition: "kindness and grace",
+        explanation: "The word \"mercy\" comes from the Old French word \"mercit\", which means \"thanks\" or \"grace\". It refers to compassion or forgiveness shown towards someone whom it is within one's power to punish or harm.",
         authorsNote: "This comes from the same Latin as \"merchant\", meaning closer to \"reward\" as wages",
         partOfSpeech: "noun",
     },
@@ -567,6 +640,7 @@ export const WORD_LIST: WordData[] = [
         answer: "window",
         roots: [{ english: "wind", languageName: "Old Norse", languageWord: "vindr" }, { english: "eye", languageName: "Old Norse", languageWord: "auga" }],
         definition: "an opening in a wall",
+        explanation: "The word \"window\" comes from the Old Norse \"vindauga\", which means \"wind eye\". It refers to the opening (a.k.a. an eye) in a wall that allows wind to enter.",
         partOfSpeech: "noun",
     },
     {
@@ -574,6 +648,7 @@ export const WORD_LIST: WordData[] = [
         answer: "shampoo",
         roots: [{ english: "press/massage", languageName: "Hindi", languageWord: "champo" }],
         definition: "hair cleaning product",
+        explanation: "The word \"shampoo\" comes from the Hindi word \"champo\", which means \"to press or massage\". It originally referred to a type of head massage, but over time it came to refer to the hair cleaning product we know today.",
         partOfSpeech: "noun",
     },
     // new week
@@ -582,6 +657,7 @@ export const WORD_LIST: WordData[] = [
         answer: "galaxy",
         roots: [{ english: "milk", languageName: "Greek", languageWord: "gala" }, { english: "circle", languageName: "Greek", languageWord: "kyklos" }],
         definition: "a system of stars",
+        explanation: "The word \"galaxy\" comes from the Greek \"galaxias kyklos\", which means \"milky circle\". It refers to the appearance of the Milky Way, which looks like a milky band of light in the night sky.",
         partOfSpeech: "noun",
     },
     {
@@ -589,6 +665,7 @@ export const WORD_LIST: WordData[] = [
         answer: "bungalow",
         roots: [{ english: "Bengali", languageName: "Hindi", languageWord: "bangla" }],
         definition: "a single-story house",
+        explanation: "The word \"bungalow\" comes from the Hindi word \"bangla\", which means \"Bengali\". It originally referred to a type of house built in the Bengali style, which was typically a single-story structure with a thatched roof.",
         partOfSpeech: "noun",
     },
     {
@@ -596,14 +673,15 @@ export const WORD_LIST: WordData[] = [
         answer: "mortgage",
         roots: [{ english: "death", languageName: "French", languageWord: "mort" }, { english: "pledge", languageName: "French", languageWord: "gage" }],
         definition: "a loan to buy property",
+        explanation: "The word \"mortgage\" comes from the Old French \"mort gage\", which means \"death pledge\". It refers to the fact that the loan is a pledge that will end (or \"die\") when the property is fully paid off.",
         partOfSpeech: "noun",
     },
     {
-        clue: "nonsense (onomatopoeia)",
+        clue: "nonsense (person)",
         answer: "barbarian",
-        roots: [{ english: "(nonsense)", languageName: "Greek", languageWord: "bar-bar" }],
+        roots: [{ english: "[nonsense]", languageName: "Greek", languageWord: "bar-bar" }],
         definition: "an uncivilized person",
-        authorsNote: "The Greeks thought foreign language just sounded like \"bar-bar\", so they called them barbarians.",
+        explanation: "The Greeks thought foreign language just sounded like \"bar-bar\", so they called them barbarians.",
         partOfSpeech: "noun",
     },
     {
@@ -611,6 +689,7 @@ export const WORD_LIST: WordData[] = [
         answer: "tattoo",
         roots: [{ english: "to strike", languageName: "Tahitian", languageWord: "tatau" }],
         definition: "permanent ink design on skin",
+        explanation: "The word \"tattoo\" comes from the Tahitian word \"tatau\", which means \"to strike\". It refers to the traditional method of creating tattoos by striking a needle into the skin.",
         partOfSpeech: "noun",
     },
     {
@@ -618,6 +697,7 @@ export const WORD_LIST: WordData[] = [
         answer: "chutney",
         roots: [{ english: "to lick", languageName: "Hindi", languageWord: "chatni" }],
         definition: "a spicy condiment",
+        explanation: "The word \"chutney\" comes from the Hindi word \"chatni\", which means \"to lick\". It refers to a type of spicy condiment that is often used in Indian cuisine. The name likely comes from the idea that the condiment is so flavorful that it makes you want to lick your fingers after eating it.",
         partOfSpeech: "noun",
     },
     {
@@ -625,6 +705,7 @@ export const WORD_LIST: WordData[] = [
         answer: "sycophant",
         roots: [{ english: "fig", languageName: "Greek", languageWord: "sykon" }, { english: "shower", languageName: "Greek", languageWord: "phainein" }],
         definition: "a person who flatters",
+        explanation: "The word \"sycophant\" comes from the Greek words \"sykon\", meaning \"fig\", and \"phainein\", meaning \"to show\" or \"to shower\". It refers to a vulgar gesture of showing a fig, which was used in ancient Greece as an obscene gesture. The term was later used to describe people who were seen as insincere flatterers or sycophants, as if they were figuratively showing a fig to others in order to gain favor.",
         partOfSpeech: "noun",
     },
     // new week
@@ -633,6 +714,7 @@ export const WORD_LIST: WordData[] = [
         answer: "hurricane",
         roots: [{ english: "god of wind", languageName: "Taino", languageWord: "huracan" }],
         definition: "a powerful storm",
+        explanation: "The word \"hurricane\" comes from the Taino word \"huracan\", which refers to a god of wind and storms. It is used to describe a powerful tropical storm that can cause significant damage.",
         partOfSpeech: "noun",
     },
     {
@@ -640,6 +722,7 @@ export const WORD_LIST: WordData[] = [
         answer: "phantom",
         roots: [{ english: "apparition", languageName: "Greek", languageWord: "phantazein" }],
         definition: "a ghost or apparition",
+        explanation: "The word \"phantom\" comes from the Greek word \"phantazein\", which means \"to make visible\" or \"to show\". It refers to a ghostly apparition or a figment of the imagination that is often associated with fear or mystery.",
         partOfSpeech: "noun",
     },
     {
@@ -647,6 +730,7 @@ export const WORD_LIST: WordData[] = [
         answer: "thug",
         roots: [{ english: "deceiver/conman", languageName: "Hindi", languageWord: "thag" }],
         definition: "a violent criminal",
+        explanation: "The word \"thug\" comes from the Hindi word \"thag\", which means \"deceiver\" or \"conman\". It originally referred to a member of a group of professional criminals in India who were known for their violent and deceptive tactics. In English, it has come to refer more generally to any violent criminal or bully.",
         partOfSpeech: "noun",
     },
     {
@@ -654,6 +738,7 @@ export const WORD_LIST: WordData[] = [
         answer: "disaster",
         roots: [{ english: "ill", languageName: "Latin", languageWord: "dis" }, { english: "star", languageName: "Latin", languageWord: "astrum" }],
         definition: "a catastrophic event",
+        explanation: "The word \"disaster\" comes from the Latin words \"dis\", meaning \"ill\", and \"astrum\", meaning \"star\". It originally referred to an unfavorable position of a star or planet, which was believed to be an omen of bad luck or misfortune. Over time, it has come to refer more generally to any catastrophic event that causes significant damage or loss.",
         partOfSpeech: "noun",
     },
     {
@@ -661,6 +746,7 @@ export const WORD_LIST: WordData[] = [
         answer: "curmudgeon",
         roots: [{ english: "very (intensifier)", languageName: "Middle English", languageWord: "ker-" }, { english: "disagreeable person", languageName: "Middle English", languageWord: "muigean" }],
         definition: "a bad-tempered person",
+        explanation: "The word \"curmudgeon\" comes from the Middle English words \"ker-\", which is an intensifier meaning \"very\", and \"muigean\", which means \"disagreeable person\". It refers to a person who is bad-tempered, grouchy, or difficult to get along with.",
         partOfSpeech: "noun",
     },
     {
@@ -668,6 +754,7 @@ export const WORD_LIST: WordData[] = [
         answer: "lemur",
         roots: [{ english: "ghost", languageName: "Latin", languageWord: "lemures" }],
         definition: "a primate from Madagascar",
+        explanation: "The word \"lemur\" comes from the Latin word \"lemures\", which means \"ghosts\" or \"spirits of the dead\". It refers to a type of primate that is native to Madagascar and is known for its large eyes and nocturnal habits, which may have contributed to the association with ghosts.",
         partOfSpeech: "noun",
     },
     {
@@ -675,6 +762,7 @@ export const WORD_LIST: WordData[] = [
         answer: "jenga",
         roots: [{ english: "to build", languageName: "Swahili", languageWord: "jenga" }],
         definition: "a block-stacking game",
+        explanation: "The word \"jenga\" comes from the Swahili word \"jenga\", which means \"to build\". It refers to a popular game where players take turns removing blocks from a tower and placing them on top, trying to avoid causing the tower to collapse.",
         partOfSpeech: "noun",
     },
     // new week
@@ -683,6 +771,7 @@ export const WORD_LIST: WordData[] = [
         answer: "aioli",
         roots: [{ english: "garlic", languageName: "Provençal", languageWord: "ai" }, { english: "oil", languageName: "Provençal", languageWord: "oli" }],
         definition: "a garlic mayonnaise",
+        explanation: "The word \"aioli\" comes from the Provençal (a language of southern France) words \"ai\", meaning \"garlic\", and \"oli\", meaning \"oil\". It refers to a sauce made from garlic and olive oil, often used as a condiment or dip.",
         partOfSpeech: "noun",
     },
     {
@@ -690,6 +779,7 @@ export const WORD_LIST: WordData[] = [
         answer: "cosmopolitan",
         roots: [{ english: "world", languageName: "Greek", languageWord: "kosmos" }, { english: "citizen", languageName: "Greek", languageWord: "polites" }],
         definition: "worldly and sophisticated",
+        explanation: "The word \"cosmopolitan\" comes from the Greek words \"kosmos\", meaning \"world\", and \"polites\", meaning \"citizen\". It refers to a person who is worldly, sophisticated, and at ease in many different cultures and settings.",
         partOfSpeech: "adjective",
     },
     {
@@ -698,6 +788,7 @@ export const WORD_LIST: WordData[] = [
         roots: [{ english: "leg", languageName: "Persian", languageWord: "pa" }, { english: "garment", languageName: "Persian", languageWord: "jama" }],
         definition: "sleepwear",
         authorsNote: "Similar roots appear in Hindi as well.",
+        explanation: "The word \"pajamas\" comes from the Persian words \"pa\", meaning \"leg\", and \"jama\", meaning \"garment\". It refers to a type of clothing that is worn for sleeping or lounging, typically consisting of loose-fitting pants and a matching top.",
         partOfSpeech: "noun",
     },
     {
@@ -705,6 +796,7 @@ export const WORD_LIST: WordData[] = [
         answer: "umbrella",
         roots: [{ english: "shade", languageName: "Latin", languageWord: "umbra" }],
         definition: "a portable shade device",
+        explanation: "The word \"umbrella\" comes from the Latin word \"umbra\", meaning \"shade\". It refers to a portable device that is used to provide shade or protection from the rain.",
         partOfSpeech: "noun",
     },
     {
@@ -712,7 +804,7 @@ export const WORD_LIST: WordData[] = [
         answer: "lethargy",
         roots: [{ english: "forgetfulness", languageName: "Greek", languageWord: "lethe" }],
         definition: "lack of energy",
-        authorsNote: "In Greek mythology, the river Lethe was where you lost your memory.",
+        explanation: "The word \"lethargy\" comes from the Greek word \"lethe\", which means \"forgetfulness\". It refers to a state of physical or mental inactivity, often accompanied by a lack of energy or enthusiasm. The term is derived from the mythological Lethe, a river in the underworld that caused forgetfulness in those who drank from it.",
         partOfSpeech: "noun",
     },
     {
@@ -720,6 +812,7 @@ export const WORD_LIST: WordData[] = [
         answer: "whiskey",
         roots: [{ english: "water", languageName: "Gaelic", languageWord: "uisce" }, { english: "life", languageName: "Gaelic", languageWord: "beatha" }],
         definition: "an alcoholic spirit",
+        explanation: "The word \"whiskey\" comes from the Gaelic words \"uisce\", meaning \"water\", and \"beatha\", meaning \"life\". It refers to a distilled alcoholic beverage made from fermented grain mash, and is often associated with Ireland and Scotland.",
         partOfSpeech: "noun",
     },
     {
@@ -727,6 +820,7 @@ export const WORD_LIST: WordData[] = [
         answer: "robot",
         roots: [{ english: "forced labor", languageName: "Czech", languageWord: "robota" }],
         definition: "an automated machine",
+        explanation: "The word \"robot\" comes from the Czech word \"robota\", which means \"forced labor\" or \"drudgery\". It was first used in a 1920 play by Karel Čapek called \"R.U.R.\" (Rossum's Universal Robots), where it referred to artificial workers created to serve humans. The term has since come to refer more generally to any automated machine that can perform tasks.",
         partOfSpeech: "noun",
     },
     // new week
@@ -735,6 +829,7 @@ export const WORD_LIST: WordData[] = [
         answer: "companion",
         roots: [{ english: "with", languageName: "Latin", languageWord: "com" }, { english: "bread", languageName: "Latin", languageWord: "panis" }],
         definition: "a friend or partner",
+        explanation: "The word \"companion\" comes from the Latin words \"com\", meaning \"with\", and \"panis\", meaning \"bread\". It originally referred to someone with whom one shared bread, symbolizing a close relationship or friendship. Over time, it has come to refer more generally to any friend or partner.",
         partOfSpeech: "noun",
     },
     {
@@ -742,6 +837,7 @@ export const WORD_LIST: WordData[] = [
         answer: "caveat",
         roots: [{ english: "let him beware", languageName: "Latin", languageWord: "caveat" }],
         definition: "a warning",
+        explanation: "The word \"caveat\" comes from the Latin word \"caveat\", which is a form of the verb \"cavere\", meaning \"to beware\". It refers to a warning or cautionary statement, often used in legal or formal contexts to indicate that there may be limitations or conditions to be aware of.",
         partOfSpeech: "noun",
     },
     {
@@ -749,6 +845,7 @@ export const WORD_LIST: WordData[] = [
         answer: "comet",
         roots: [{ english: "long hair", languageName: "Greek", languageWord: "kometes" }],
         definition: "a celestial body with a tail",
+        explanation: "The word \"comet\" comes from the Greek word \"kometes\", which means \"long-haired\". It refers to a celestial body that consists of a nucleus of ice and dust, and when it comes close to the sun, it develops a visible tail that can stretch for millions of miles.",
         partOfSpeech: "noun",
     },
     {
@@ -756,6 +853,7 @@ export const WORD_LIST: WordData[] = [
         answer: "ketchup",
         roots: [{ english: "fish sauce", languageName: "Hokkien", languageWord: "kê-tsiap" }],
         definition: "a tomato-based condiment",
+        explanation: "The word \"ketchup\" comes from the Hokkien (a Chinese dialect) word \"kê-tsiap\", which refers to a type of fermented fish sauce. When the sauce was introduced to the West, it was adapted to include tomatoes and other ingredients, resulting in the ketchup we know today.",
         authorsNote: "There are competing theories on the exact origin of this word, but most have a similar definition and are in this region.",
         partOfSpeech: "noun",
     },
@@ -764,6 +862,7 @@ export const WORD_LIST: WordData[] = [
         answer: "trivia",
         roots: [{ english: "three", languageName: "Latin", languageWord: "tri" }, { english: "roads", languageName: "Latin", languageWord: "via" }],
         definition: "unimportant facts",
+        explanation: "The word \"trivia\" comes from the Latin words \"tri\", meaning \"three\", and \"via\", meaning \"roads\". It originally referred to the place where three roads met, which was considered a common or ordinary place. Over time, it has come to refer more generally to any information that is considered unimportant or insignificant.",
         partOfSpeech: "noun",
     },
     {
@@ -771,6 +870,7 @@ export const WORD_LIST: WordData[] = [
         answer: "penguin",
         roots: [{ english: "white", languageName: "Welsh", languageWord: "pen" }, { english: "head", languageName: "Welsh", languageWord: "gwyn" }],
         definition: "a flightless seabird",
+        explanation: "The word \"penguin\" comes from the Welsh words \"pen\", meaning \"head\", and \"gwyn\", meaning \"white\". It refers to a type of flightless seabird that is known for its distinctive black and white plumage, which gives it the appearance of having a white head.",
         partOfSpeech: "noun",
     },
     {
@@ -778,6 +878,7 @@ export const WORD_LIST: WordData[] = [
         answer: "despot",
         roots: [{ english: "master", languageName: "Greek", languageWord: "despotes" }, { english: "house", languageName: "Greek", languageWord: "oikos" }],
         definition: "an absolute ruler",
+        explanation: "The word \"despot\" comes from the Greek word \"despotes\", which means \"master of the house\". It originally referred to a ruler who had absolute power over his household, but over time it has come to refer more generally to any ruler who exercises absolute power in a tyrannical or oppressive manner.",
         partOfSpeech: "noun",
     },
     // new week
@@ -786,6 +887,7 @@ export const WORD_LIST: WordData[] = [
         answer: "nostalgia",
         roots: [{ english: "return home", languageName: "Greek", languageWord: "nostos" }, { english: "pain", languageName: "Greek", languageWord: "algos" }],
         definition: "longing for the past",
+        explanation: "The word \"nostalgia\" comes from the Greek words \"nostos\", meaning \"return home\", and \"algos\", meaning \"pain\". It refers to a sentimental longing or wistful affection for the past, often for a period or place with happy personal associations.",
         partOfSpeech: "noun",
     },
     {
@@ -793,6 +895,7 @@ export const WORD_LIST: WordData[] = [
         answer: "guru",
         roots: [{ english: "teacher", languageName: "Sanskrit", languageWord: "guru" }],
         definition: "a spiritual teacher",
+        explanation: "The word \"guru\" comes from the Sanskrit word \"guru\", which means \"teacher\" or \"master\". It refers to a spiritual teacher or guide who is respected for their wisdom and knowledge.",
         partOfSpeech: "noun",
     },
     {
@@ -800,6 +903,7 @@ export const WORD_LIST: WordData[] = [
         answer: "hippopotamus",
         roots: [{ english: "horse", languageName: "Greek", languageWord: "hippos" }, { english: "river", languageName: "Greek", languageWord: "potamos" }],
         definition: "a large African mammal",
+        explanation: "The word \"hippopotamus\" comes from the Greek words \"hippos\", meaning \"horse\", and \"potamos\", meaning \"river\". It refers to a large, mostly herbivorous mammal that is native to sub-Saharan Africa and is known for its barrel-shaped body, large mouth, and amphibious lifestyle.",
         partOfSpeech: "noun",
     },
     {
@@ -807,7 +911,7 @@ export const WORD_LIST: WordData[] = [
         answer: "quarantine",
         roots: [{ english: "forty", languageName: "Italian", languageWord: "quaranta" }],
         definition: "isolation to prevent disease",
-        authorsNote: "\"Forty days\" referred to the length of the quarantine for ships in the harbor",
+        explanation: "The word \"quarantine\" comes from the Italian word \"quaranta\", which means \"forty\". It refers to the practice of isolating individuals or groups for a period of time to prevent the spread of disease. The term originated during the Black Death in the 14th century, when ships arriving in Venice were required to anchor for 40 days before landing to ensure that they were not carrying the plague.",
         partOfSpeech: "noun",
     },
     {
@@ -815,6 +919,7 @@ export const WORD_LIST: WordData[] = [
         answer: "canvas",
         roots: [{ english: "hemp", languageName: "Greek", languageWord: "kannabis" }],
         definition: "a strong cloth material",
+        explanation: "The word \"canvas\" comes from the Greek word \"kannabis\", which means \"hemp\". It refers to a strong, durable fabric that is traditionally made from hemp fibers, and is commonly used for making sails, tents, and artist's painting surfaces. And yes, the word \"cannabis\" also comes from the same Greek root, referring to the plant that is used for both industrial hemp and marijuana.",
         partOfSpeech: "noun",
     },
     {
@@ -822,6 +927,7 @@ export const WORD_LIST: WordData[] = [
         answer: "precipice",
         roots: [{ english: "headlong", languageName: "Latin", languageWord: "praeceps" }],
         definition: "a steep cliff",
+        explanation: "The word \"precipice\" comes from the Latin word \"praeceps\", which means \"headlong\" or \"steep\". It refers to a very steep or vertical cliff or rock face, often with a significant drop below. The \"headlong\" aspect of the original Latin word emphasizes the danger and suddenness of falling from such a height.",
         partOfSpeech: "noun",
     },
     {
@@ -829,6 +935,7 @@ export const WORD_LIST: WordData[] = [
         answer: "amok",
         roots: [{ english: "running wild", languageName: "Malay", languageWord: "amuk" }],
         definition: "in a frenzy",
+        explanation: "The word \"amok\" comes from the Malay word \"amuk\", which means \"to run wild\" or \"to go on a frenzy\". It refers to a state of uncontrolled behavior, often characterized by violent or frenzied actions. ",
         partOfSpeech: "adverb",
     },
     // new week
@@ -837,6 +944,7 @@ export const WORD_LIST: WordData[] = [
         answer: "breakfast",
         roots: [{ english: "break", languageName: "English", languageWord: "break" }, { english: "fast", languageName: "English", languageWord: "fast" }],
         definition: "the first meal of the day",
+        explanation: "The word \"breakfast\" comes from the English words \"break\" and \"fast\", meaning \"to abstain from food\". It is literally the meal where you are breaking your fast from the night.",
         partOfSpeech: "noun",
     },
     {
@@ -844,6 +952,7 @@ export const WORD_LIST: WordData[] = [
         answer: "tomato",
         roots: [{ english: "swelling fruit", languageName: "Nahuatl", languageWord: "tomatl" }],
         definition: "a red edible fruit",
+        explanation: "The word \"tomato\" comes from the Nahuatl word \"tomatl\", which means \"swelling fruit\". It refers to a red, edible fruit that is commonly used in cooking.",
         partOfSpeech: "noun",
     },
     {
@@ -851,6 +960,7 @@ export const WORD_LIST: WordData[] = [
         answer: "denizen",
         roots: [{ english: "one within", languageName: "Old French", languageWord: "deinzein" }],
         definition: "an inhabitant or resident",
+        explanation: "The word \"denizen\" comes from the Old French word \"deinzein\", which means \"one within\". It refers to an inhabitant or resident of a particular place, often with the connotation of being well-established or familiar with the area.",
         partOfSpeech: "noun",
     },
     {
@@ -858,6 +968,7 @@ export const WORD_LIST: WordData[] = [
         answer: "jaguar",
         roots: [{ english: "beast that catches its prey at a bound", languageName: "Tupi-Guarani", languageWord: "yaguara" }],
         definition: "a large New World cat",
+        explanation: "The word \"jaguar\" comes from the Tupi-Guarani word \"yaguara\", which means \"beast that catches its prey at a bound\". It refers to a large, powerful cat that is native to the Americas and is known for its agility and strength.",
         partOfSpeech: "noun",
     },
     {
@@ -865,6 +976,7 @@ export const WORD_LIST: WordData[] = [
         answer: "strategy",
         roots: [{ english: "command of a general", languageName: "Greek", languageWord: "strategia" }],
         definition: "a plan of action",
+        explanation: "The word \"strategy\" comes from the Greek word \"strategia\", which means \"the command of a general\". It refers to a plan of action designed to achieve a long-term or overall aim, often in the context of military operations but also applicable to business, sports, and other fields.",
         partOfSpeech: "noun",
     },
     {
@@ -872,6 +984,7 @@ export const WORD_LIST: WordData[] = [
         answer: "poltergeist",
         roots: [{ english: "to make noise", languageName: "German", languageWord: "poltern" }, { english: "ghost", languageName: "German", languageWord: "geist" }],
         definition: "a noisy, mischievous ghost",
+        explanation: "The word \"poltergeist\" comes from the German words \"poltern\", meaning \"to make noise\", and \"geist\", meaning \"ghost\". It refers to a type of ghost or spirit that is believed to cause physical disturbances, such as loud noises, moving objects, or even physical attacks on people. Poltergeists are often associated with mischievous or malevolent behavior.",
         partOfSpeech: "noun",
     },
     {
@@ -879,7 +992,7 @@ export const WORD_LIST: WordData[] = [
         answer: "paparazzi",
         roots: [{ english: "freelance photographer character", languageName: "Italian (movie character)", languageWord: "paparazzo" }],
         definition: "persistent celebrity photographers",
-        authorsNote: "The term comes from a character named Paparazzo in the Italian film 'La Dolce Vita.'",
+        explanation: "The word \"paparazzi\" comes from the name of a character, Paparazzo, in the Italian film \"La Dolce Vita\" directed by Federico Fellini. In the film, Paparazzo is a persistent and intrusive photographer who chases celebrities to capture candid photos. The term has since come to refer to any freelance photographers who aggressively pursue celebrities for photographs.",
         partOfSpeech: "noun",
     },
     // new week
@@ -888,6 +1001,7 @@ export const WORD_LIST: WordData[] = [
         answer: "paper",
         roots: [{ english: "paper", languageName: "Latin", languageWord: "papyrus" }],
         definition: "material used for writing",
+        explanation: "The word \"paper\" comes from the Latin word \"papyrus\", which refers to the papyrus plant that was used in ancient times to create a writing material. The papyrus plant grows in marshy areas and its stalks were processed to create sheets of paper for writing and drawing.",
         partOfSpeech: "noun",
     },
     {
@@ -895,6 +1009,7 @@ export const WORD_LIST: WordData[] = [
         answer: "kindergarten",
         roots: [{ english: "children", languageName: "German", languageWord: "kinder" }, { english: "garden", languageName: "German", languageWord: "garten" }],
         definition: "a preschool educational approach",
+        explanation: "The word \"kindergarten\" comes from the German words \"kinder\", meaning \"children\", and \"garten\", meaning \"garden\". It refers to a preschool educational approach that emphasizes play, creativity, and social interaction as a way to prepare children for primary school. The term was coined by Friedrich Fröbel, a German educator, who believed that children should be nurtured and allowed to grow in a supportive environment, much like plants in a garden.",
         partOfSpeech: "noun",
     },
     {
@@ -902,6 +1017,7 @@ export const WORD_LIST: WordData[] = [
         answer: "caribou",
         roots: [{ english: "pawer/scratcher", languageName: "Algonquian", languageWord: "qalipu" }],
         definition: "a large North American deer",
+        explanation: "The word \"caribou\" comes from the Algonquian word \"qalipu\", which means \"pawer\" or \"scratcher\". It refers to a species of deer that is native to North America and is known for its distinctive antlers and migratory behavior. The name likely comes from the caribou's habit of pawing at the ground to find food, especially in snowy conditions.",
         partOfSpeech: "noun",
     },
     {
@@ -909,7 +1025,7 @@ export const WORD_LIST: WordData[] = [
         answer: "curfew",
         roots: [{ english: "cover fire", languageName: "Old French", languageWord: "couvre-feu" }],
         definition: "a regulation requiring people to remain indoors at designated times",
-        authorsNote: "Originally, this referred to a time when people had to cover their hearth fires for safety.",
+        explanation: "The word \"curfew\" comes from the Old French phrase \"couvre-feu\", which means \"cover fire\". It originally referred to a regulation in medieval England that required people to cover their fires at a certain time in the evening to prevent accidental fires. Over time, the term has come to refer more generally to any regulation that requires people to remain indoors during certain hours, often for safety or security reasons.",
         partOfSpeech: "noun",
     },
     {
@@ -917,6 +1033,7 @@ export const WORD_LIST: WordData[] = [
         answer: "labyrinth",
         roots: [{ english: "maze", languageName: "Greek", languageWord: "labyrinthos" }],
         definition: "a complex maze",
+        explanation: "The word \"labyrinth\" comes from the Greek word \"labyrinthos\", which refers to a complex maze or structure with many winding passages. In Greek mythology, the Labyrinth was an elaborate maze designed by the architect Daedalus to hold the Minotaur.",
         partOfSpeech: "noun",
     },
     {
@@ -924,6 +1041,7 @@ export const WORD_LIST: WordData[] = [
         answer: "kowtow",
         roots: [{ english: "knock", languageName: "Chinese", languageWord: "kòu" }, { english: "head", languageName: "Chinese", languageWord: "tóu" }],
         definition: "to kneel and touch the ground with the forehead as a sign of respect",
+        explanation: "The word \"kowtow\" comes from the Chinese words \"kòu\", meaning \"to knock\", and \"tóu\", meaning \"head\". It refers to the traditional Chinese act of kneeling and touching the ground with the forehead as a sign of deep respect or submission, often in the presence of an authority figure.",
         partOfSpeech: "verb",
     },
     {
@@ -931,7 +1049,7 @@ export const WORD_LIST: WordData[] = [
         answer: "clue",
         roots: [{ english: "ball of thread", languageName: "Old English", languageWord: "cleow" }],
         definition: "a hint or piece of evidence",
-        authorsNote: "This word originates from the myth of Theseus and the Minotaur, where Ariadne gives Theseus a ball of thread to navigate the labyrinth (callback to earlier this week).",
+        explanation: "The word \"clue\" comes from the Old English word \"cleow\", which means \"ball of thread\". It refers to a hint or piece of evidence that helps to solve a problem or unravel a mystery, much like how a ball of thread can be used to find one's way through a maze, especially in the context of the myth of Theseus and the Minotaur, where Theseus used a ball of thread to navigate the Labyrinth (a callback to earlier this week!).",
         partOfSpeech: "noun",
     },
     // new week
@@ -940,7 +1058,7 @@ export const WORD_LIST: WordData[] = [
         answer: "denim",
         roots: [{ english: "of", languageName: "French", languageWord: "de" }, { english: "Nîmes", languageName: "French", languageWord: "Nîmes" }],
         definition: "a sturdy cotton twill fabric",
-        authorsNote: "Denim fabric originated in the city of Nîmes, France.",
+        explanation: "The word \"denim\" comes from the French phrase \"de Nîmes\", which means \"from Nîmes\". It refers to a sturdy cotton twill fabric that was originally produced in the city of Nîmes in France. The fabric became popular for workwear and later evolved into the denim jeans we know today.",
         partOfSpeech: "noun",
     },
     {
@@ -948,6 +1066,7 @@ export const WORD_LIST: WordData[] = [
         answer: "fathom",
         roots: [{ english: "outstretched arms", languageName: "Old English", languageWord: "fæthm" }],
         definition: "a unit of depth in water",
+        explanation: "The word \"fathom\" comes from the Old English word \"fæthm\", which means \"outstretched arms\". It refers to a unit of depth in water, traditionally defined as the distance between a person's outstretched arms. One fathom is equal to six feet or approximately 1.83 meters.",
         partOfSpeech: "noun",
     },
     {
@@ -955,6 +1074,7 @@ export const WORD_LIST: WordData[] = [
         answer: "bazaar",
         roots: [{ english: "market", languageName: "Persian", languageWord: "bāzār" }],
         definition: "a marketplace",
+        explanation: "The word \"bazaar\" comes from the Persian word \"bāzār\", which means \"market\". It refers to a marketplace, often found in Middle Eastern and South Asian countries, where a variety of goods are sold, including food, clothing, and crafts.",
         partOfSpeech: "noun",
     },
     {
@@ -962,6 +1082,7 @@ export const WORD_LIST: WordData[] = [
         answer: "amnesty",
         roots: [{ english: "forgetfulness", languageName: "Greek", languageWord: "amnēstia" }],
         definition: "an official pardon for past offenses",
+        explanation: "The word \"amnesty\" comes from the Greek word \"amnēstia\", which means \"forgetfulness\". It refers to an official pardon for past offenses, often granted by a government or authority, which allows individuals to be forgiven for their actions and avoid punishment.",
         partOfSpeech: "noun",
     },
     {
@@ -969,6 +1090,7 @@ export const WORD_LIST: WordData[] = [
         answer: "intelligentsia",
         roots: [{ english: "intellectuals", languageName: "Russian", languageWord: "intelligentsiya" }],
         definition: "the intellectual elite of a society",
+        explanation: "The word \"intelligentsia\" comes from the Russian word \"intelligentsiya\", which refers to the intellectual elite of a society. It encompasses individuals who are engaged in critical thinking, cultural pursuits, and the dissemination of knowledge, often playing a significant role in shaping public opinion and cultural trends.",
         partOfSpeech: "noun",
     },
     {
@@ -976,7 +1098,7 @@ export const WORD_LIST: WordData[] = [
         answer: "muscle",
         roots: [{ english: "little mouse", languageName: "Latin", languageWord: "musculus" }],
         definition: "tissue used for movement",
-        authorsNote: "The Romans thought muscles looked like little mice moving under the skin.",
+        explanation: "The word \"muscle\" comes from the Latin word \"musculus\", which means \"little mouse\". It refers to a type of tissue in the body that is responsible for movement. The name likely comes from the appearance of muscles under the skin, which can resemble small mice moving around.",
         partOfSpeech: "noun",
     },
     {
@@ -984,6 +1106,7 @@ export const WORD_LIST: WordData[] = [
         answer: "kielbasa",
         roots: [{ english: "sausage", languageName: "Polish", languageWord: "kiełbasa" }],
         definition: "a type of Polish sausage",
+        explanation: "The word \"kielbasa\" comes from the Polish word \"kiełbasa\", which means \"sausage\". It refers to a type of sausage that is popular in Polish cuisine, often made from pork and seasoned with garlic and other spices.",
         partOfSpeech: "noun",
     },
     // new week
@@ -992,6 +1115,7 @@ export const WORD_LIST: WordData[] = [
         answer: "zebra",
         roots: [{ english: "wild horse", languageName: "Latin", languageWord: "equiferus" }],
         definition: "a black-and-white striped African animal",
+        explanation: "The word \"zebra\" comes from the Latin word \"equiferus\", which means \"wild horse\". It refers to a species of African equid that is known for its distinctive black-and-white striped coat. The name likely originated from the Portuguese word \"zebra\", which was used to describe the animal when it was first encountered by European explorers in Africa.",
         partOfSpeech: "noun",
     },
     {
@@ -999,7 +1123,7 @@ export const WORD_LIST: WordData[] = [
         answer: "candidate",
         roots: [{ english: "white-robed", languageName: "Latin", languageWord: "candidatus" }],
         definition: "a person who applies for a position or is nominated for election",
-        authorsNote: "In ancient Rome, those seeking office wore white togas to signify their aspirations.",
+        explanation: "The word \"candidate\" comes from the Latin word \"candidatus\", which means \"white-robed\". It originally referred to a person who was seeking public office in ancient Rome and would wear a white toga to signify their candidacy. Over time, the term has come to refer more generally to any person who applies for a position or is nominated for election.",
         partOfSpeech: "noun",
     },
     {
@@ -1007,6 +1131,7 @@ export const WORD_LIST: WordData[] = [
         answer: "utopia",
         roots: [{ english: "not", languageName: "Greek", languageWord: "ou" }, { english: "place", languageName: "Greek", languageWord: "topos" }],
         definition: "an idealized perfect society",
+        explanation: "The word \"utopia\" comes from the Greek words \"ou\", meaning \"not\", and \"topos\", meaning \"place\". It was coined by Sir Thomas More in his 1516 book \"Utopia\", where he described an imaginary island society that was perfect in every way. The term has since come to refer more generally to any idealized or perfect society, often one that is unrealistic or unattainable.",
         partOfSpeech: "noun",
     },
     {
@@ -1014,6 +1139,7 @@ export const WORD_LIST: WordData[] = [
         answer: "vigilante",
         roots: [{ english: "watchful", languageName: "Spanish", languageWord: "vigilante" }],
         definition: "a person who takes law enforcement into their own hands",
+        explanation: "The word \"vigilante\" comes from the Spanish word \"vigilante\", which means \"watchful\". It refers to a person who takes law enforcement into their own hands, often without legal authority, in order to protect their community or seek justice.",
         partOfSpeech: "noun",
     },
     {
@@ -1021,6 +1147,7 @@ export const WORD_LIST: WordData[] = [
         answer: "isobaric",
         roots: [{ english: "equal", languageName: "Greek", languageWord: "iso" }, { english: "pressure", languageName: "Greek", languageWord: "baros" }],
         definition: "having equal atmospheric pressure",
+        explanation: "The word \"isobaric\" comes from the Greek words \"iso\", meaning \"equal\", and \"baros\", meaning \"pressure\". It refers to a condition or process that occurs at constant atmospheric pressure, often used in the context of thermodynamics and meteorology.",
         partOfSpeech: "adjective",
     },
     {
@@ -1028,6 +1155,7 @@ export const WORD_LIST: WordData[] = [
         answer: "fervent",
         roots: [{ english: "to boil", languageName: "Latin", languageWord: "fervere" }],
         definition: "showing intense feeling or enthusiasm",
+        explanation: "The word \"fervent\" comes from the Latin word \"fervere\", which means \"to boil\". It refers to showing intense feeling or enthusiasm, as if one's emotions are boiling over.",
         partOfSpeech: "adjective",
     },
     {
@@ -1036,6 +1164,7 @@ export const WORD_LIST: WordData[] = [
         roots: [{ english: "redemption from damnation", languageName: "Old French", languageWord: "rançon" }],
         definition: "payment made to secure someone's release",
         partOfSpeech: "noun",
+        explanation: "The word \"ransom\" comes from the Old French word \"rançon\", which means \"redemption from damnation\". It refers to a payment made to secure the release of someone who has been captured or held hostage. The term has its roots in the idea of redeeming someone from a dire situation, much like how one might seek redemption from damnation.",
     },
     // new week
     {
@@ -1043,6 +1172,7 @@ export const WORD_LIST: WordData[] = [
         answer: "loiter",
         roots: [{ english: "lurk", languageName: "Middle English", languageWord: "loiteren" }],
         definition: "to stand or wait around without apparent purpose",
+        explanation: "The word \"loiter\" comes from the Middle English word \"loiteren\", which means \"to lurk\" or \"to linger aimlessly\". It refers to the act of standing or waiting around without any apparent purpose, often in a public place. Loitering can sometimes be associated with suspicious behavior, but it can also simply refer to someone who is taking their time or enjoying their surroundings.",
         partOfSpeech: "verb",
     },
     {
@@ -1050,6 +1180,7 @@ export const WORD_LIST: WordData[] = [
         answer: "sherbet",
         roots: [{ english: "fruit drink", languageName: "Persian", languageWord: "sharbat" }],
         definition: "a frozen sweet dessert",
+        explanation: "The word \"sherbet\" comes from the Persian word \"sharbat\", which means \"fruit drink\". It refers to a frozen sweet dessert that is typically made from fruit juice, sugar, and water, and is often flavored with various fruits or other ingredients. It was originally a beverage meant to be consumed as a drink!",
         partOfSpeech: "noun",
     },
     {
@@ -1057,6 +1188,7 @@ export const WORD_LIST: WordData[] = [
         answer: "sinister",
         roots: [{ english: "contrary, false, unfavorable", languageName: "French", languageWord: "senestre" }],
         definition: "giving the impression that something harmful or evil is happening",
+        explanation: "The word \"sinister\" comes from the Old French word \"senestre\", which means \"contrary\", \"false\", or \"unfavorable\". It refers to giving the impression that something harmful or evil is happening or will happen. The term has evolved to be associated with a sense of foreboding or malevolence. Interestingly, the original Latin word \"sinister\" simply meant \"left\" (as in the left hand), and it was considered unlucky or unfavorable in many cultures, which is how it came to have its negative connotations.",
         partOfSpeech: "adjective",
     },
     {
@@ -1064,6 +1196,7 @@ export const WORD_LIST: WordData[] = [
         answer: "cosmetic",
         roots: [{ english: "order", languageName: "Greek", languageWord: "kosmos" }],
         definition: "relating to improving appearance",
+        explanation: "The word \"cosmetic\" comes from the Greek word \"kosmos\", which means \"order\" or \"arrangement\". It refers to products or procedures that are designed to improve or enhance a person's appearance, often by creating a sense of order or harmony in their features.",
         partOfSpeech: "adjective",
     },
     {
@@ -1071,6 +1204,7 @@ export const WORD_LIST: WordData[] = [
         answer: "ecstasy",
         roots: [{ english: "to stand", languageName: "Greek", languageWord: "stasis" }, { english: "outside", languageName: "Greek", languageWord: "ek" }],
         definition: "an intense feeling of joy or rapture",
+        explanation: "The word \"ecstasy\" comes from the Greek words \"stasis\", meaning \"to stand\", and \"ek\", meaning \"outside\". It refers to an intense feeling of joy, rapture, or bliss that can make a person feel as though they are standing outside of themselves, often in a state of overwhelming emotion or spiritual experience.",
         partOfSpeech: "noun",
     },
     {
@@ -1078,6 +1212,7 @@ export const WORD_LIST: WordData[] = [
         answer: "taxidermy",
         roots: [{ english: "arrangement", languageName: "Greek", languageWord: "taxis" }, { english: "skin", languageName: "Greek", languageWord: "derma" }],
         definition: "the art of preparing and mounting skins of animals",
+        explanation: "The word \"taxidermy\" comes from the Greek words \"taxis\", meaning \"arrangement\", and \"derma\", meaning \"skin\". It refers to the art of preparing, stuffing, and mounting the skins of animals for display or study. The term emphasizes the arrangement of the skin to create a lifelike representation of the animal.",
         partOfSpeech: "noun",
     },
     {
@@ -1085,7 +1220,42 @@ export const WORD_LIST: WordData[] = [
         answer: "pedigree",
         roots: [{ english: "foot", languageName: "Old French", languageWord: "pied" }, { english: "of a crane", languageName: "Old French", languageWord: "de gru" }],
         definition: "a record of ancestry",
-        authorsNote: "The term comes from the resemblance of the lines in a pedigree chart to the footprints of a crane.",
+        explanation: "The word \"pedigree\" comes from the Old French phrase \"pied de gru\", which means \"foot of a crane\". It refers to a record of ancestry or lineage, often used in the context of animals, particularly horses and dogs, to indicate their breeding and heritage. The term likely originated from the way genealogical charts were drawn, with lines branching out like the foot of a crane.",
         partOfSpeech: "noun",
     },
 ];
+
+/* Suggested additional words (for future weeks):
+ - kangaroo — Guugu Yimidhirr (Australian Aboriginal): from "gangurru", the local name for the animal.
+ - chocolate — Nahuatl: from "xocolātl", the bitter/cocoa drink.
+ - quinoa — Quechua: from "kinwa", an Andean grain.
+ - hammock — Taíno (Arawakan): from "hamaca", the suspended bed used in the Caribbean.
+ - curry — Tamil: from "kari", originally a spiced sauce or relish.
+ - yogurt — Turkish: from "yoğurt", from the verb meaning to thicken/ferment.
+ - mango — Malayalam/Tamil: from words like "māṅṅa" for the fruit (spread via trade).
+ - orangutan — Malay: from "orang hutan", literally "person of the forest." 
+ - algorithm — from the name Al-Khwārizmī (Arabic/Persian mathematician); personal-name origin.
+ - sabotage — French: from "sabot" (wooden shoe); linked to workers disrupting machinery.
+ - vodka — Slavic: from "voda" (water), with a diminutive/derivative form.
+ - marmalade — Portuguese: from "marmelada" (from "marmelo", quince); a quince preserve.
+
+ Additional suggestions:
+ - tobacco — Taíno: "tabaco", the rolled leaf used for smoking.
+ - barbecue — Taíno: "barbacoa", a wooden framework for cooking meat.
+ - emoji — Japanese: from "e" (picture) + "moji" (character).
+ - avatar — Sanskrit: "avatāra", meaning a descent or incarnation (often divine).
+ - veranda — Hindi/Portuguese: from "varanda", meaning a long balcony or porch.
+ - canoe — Arawakan/Taíno: "canoa"/"kanoe", a small boat.
+ - sushi — Japanese: from "su" (vinegar) + "shi" (rice); originally rice preserved with vinegar.
+ - coconut — Portuguese: from "coco" (meaning a grinning face or head), applied to the shell.
+ - moccasin — Algonquian: from "makasin", a soft leather shoe used by Indigenous peoples of North America.
+ - orange — from Sanskrit "nāraṅga" via Persian/Arabic; a fruit and a color.
+ - sugar — from Sanskrit "śarkarā" via Persian/Arabic; the sweet crystalline substance.
+ - cobalt — from German "kobold" (goblin); miners named the troublesome ore after mythic spirits.
+ - dollar — from German/Czech "thaler" (from Joachimsthal), a silver coin name that became a currency unit.
+ - coffee — from Arabic "qahwa" via Turkish "kahve", originally a name for the beverage and its beans.
+ - sherry — from Spanish place-name "Jerez", the fortified wine produced around that city.
+ - paprika — from Hungarian/Slavic for the ground red pepper used as a spice.
+ - misconception
+ - frustrated
+*/

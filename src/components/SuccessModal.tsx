@@ -58,17 +58,7 @@ export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: Suc
   const seconds = String(Math.floor((diffMs % (1000 * 60)) / 1000)).padStart(2, "0");
 
   const shareText = formatShareText(hintsUsed, puzzleNumber.toString(), isComplete, now, streak);
-
-  const languagesOfOriginList = puzzleConfig.roots
-  .map((root) => root.languageName)
-  .reduce<string[]>((acc, item) => {
-      if (!acc.includes(item)) acc.push(item);
-      return acc;
-  }, []);
-  const rootLanguages = formatAsList(languagesOfOriginList);
   const shouldShowExplanationSection = isComplete;
-  const rootHints = formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root)));
-  const longExplanation = `The word "${puzzleConfig.answer}" comes from the ${rootLanguages} for "${puzzleConfig.clue}", since ${rootHints}`
 
   const [isClosing, setIsClosing] = useState(false);
     
@@ -94,7 +84,7 @@ export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: Suc
         {shouldShowExplanationSection && (
           <div className="successModalBoxes">
             <div className="helpModalText">
-              {longExplanation}
+              {puzzleConfig.explanation}
             </div>
           </div>
         )}
