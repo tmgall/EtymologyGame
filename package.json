@@ -15,7 +15,7 @@
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "next": "^16.1.6",
+    "next": "^16.1.7",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-icons": "^5.5.0",
@@ -38,6 +38,8 @@
   "overrides": {
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
+    "flatted": "^3.4.2",
+    "picomatch": "^4.0.4",
     "rollup": "^4.59.0",
     "eslint": {
       "minimatch": "^3.1.3"
