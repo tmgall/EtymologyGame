@@ -1216,7 +1216,7 @@ export const WORD_LIST: WordData[] = [
         partOfSpeech: "noun",
     },
     {
-        clue: "line of descent",
+        clue: "(shaped like a) foot of a crane",
         answer: "pedigree",
         roots: [{ english: "foot", languageName: "Old French", languageWord: "pied" }, { english: "of a crane", languageName: "Old French", languageWord: "de gru" }],
         definition: "a record of ancestry",
