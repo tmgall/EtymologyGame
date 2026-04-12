@@ -653,7 +653,7 @@ export const WORD_LIST: WordData[] = [
     },
     // new week
     {
-        clue: "milk circle (visually)",
+        clue: "milk circle",
         answer: "galaxy",
         roots: [{ english: "milk", languageName: "Greek", languageWord: "gala" }, { english: "circle", languageName: "Greek", languageWord: "kyklos" }],
         definition: "a system of stars",
@@ -677,7 +677,7 @@ export const WORD_LIST: WordData[] = [
         partOfSpeech: "noun",
     },
     {
-        clue: "nonsense (person)",
+        clue: "nonsense",
         answer: "barbarian",
         roots: [{ english: "[nonsense]", languageName: "Greek", languageWord: "bar-bar" }],
         definition: "an uncivilized person",
@@ -1346,6 +1346,22 @@ export const WORD_LIST: WordData[] = [
         explanation: "The word \"dozen\" comes from the Old French \"dozeine\", derived from the Latin \"duodecim\", which combines \"duo\" (two) and \"decem\" (ten) — literally \"two and ten\", meaning twelve. The duodecimal counting system (base 12) was once common in trade and measurement, which is why we still buy eggs and donuts by the dozen.",
         partOfSpeech: "noun",
     },
+    {
+        clue: "to hurl against",
+        answer: "catapult",
+        roots: [{ english: "against", languageName: "Greek", languageWord: "kata" }, { english: "to hurl", languageName: "Greek", languageWord: "pallein" }],
+        definition: "a device for launching projectiles",
+        explanation: "The word \"catapult\" comes from the Greek \"katapeltēs\", combining \"kata\" (against) and \"pallein\" (to hurl). It referred to the ancient siege engines used to launch large projectiles at enemy fortifications. Today the word is used both for these historical weapons and more generally for any mechanism that launches something with force.",
+        partOfSpeech: "noun, verb",
+    },
+    {
+        clue: "bean curd",
+        answer: "tofu",
+        roots: [{ english: "bean", languageName: "Chinese", languageWord: "dòu" }, { english: "curdled", languageName: "Chinese", languageWord: "fǔ" }],
+        definition: "a soft white food made from soybeans",
+        explanation: "The word \"tofu\" comes from the Chinese \"dòufǔ\", combining \"dòu\" (bean) and \"fǔ\" (curdled or fermented). It entered English via the Japanese pronunciation \"tōfu\". The food itself has been a protein staple in East Asian cuisines for over two thousand years, made by curdling fresh soy milk and pressing the curds into blocks.",
+        partOfSpeech: "noun",
+    },
     // New week
     // {
     //     clue: "bitter water",
@@ -1446,23 +1462,6 @@ export const WORD_LIST: WordData[] = [
     //     partOfSpeech: "noun",
     // },
     // {
-    //     clue: "pepper",
-    //     answer: "paprika",
-    //     roots: [{ english: "pepper", languageName: "Hungarian", languageWord: "paprika" }],
-    //     definition: "a red spice made from ground peppers",
-    //     explanation: "The word \"paprika\" comes from Hungarian, where it refers to the spice made from dried and ground peppers. The Hungarian word itself derives from the Serbian/Croatian \"paprìka\", which ultimately traces back through Turkish to the Latin \"piper\" (pepper). Paprika became central to Hungarian cuisine and is the defining ingredient in dishes like goulash.",
-    //     authorsNote: "The word traveled from Latin through South Slavic languages to Hungarian and then to English.",
-    //     partOfSpeech: "noun",
-    // },
-    // {
-    //     clue: "to hurl downward",
-    //     answer: "catapult",
-    //     roots: [{ english: "down, against", languageName: "Greek", languageWord: "kata" }, { english: "to hurl", languageName: "Greek", languageWord: "pallein" }],
-    //     definition: "a device for launching projectiles",
-    //     explanation: "The word \"catapult\" comes from the Greek \"katapeltēs\", combining \"kata\" (down or against) and \"pallein\" (to hurl). It referred to the ancient siege engines used to launch large projectiles at enemy fortifications. Today the word is used both for these historical weapons and more generally for any mechanism that launches something with force.",
-    //     partOfSpeech: "noun, verb",
-    // },
-    // {
     //     clue: "out of the window",
     //     answer: "defenestration",
     //     roots: [{ english: "from, out of", languageName: "Latin", languageWord: "de" }, { english: "window", languageName: "Latin", languageWord: "fenestra" }],
@@ -1471,14 +1470,6 @@ export const WORD_LIST: WordData[] = [
     //     partOfSpeech: "noun",
     // },
     // // New week
-    // {
-    //     clue: "bean curd",
-    //     answer: "tofu",
-    //     roots: [{ english: "bean", languageName: "Chinese", languageWord: "dòu" }, { english: "curdled", languageName: "Chinese", languageWord: "fǔ" }],
-    //     definition: "a soft white food made from soybeans",
-    //     explanation: "The word \"tofu\" comes from the Chinese \"dòufǔ\", combining \"dòu\" (bean) and \"fǔ\" (curdled or fermented). It entered English via the Japanese pronunciation \"tōfu\". The food itself has been a protein staple in East Asian cuisines for over two thousand years, made by curdling fresh soy milk and pressing the curds into blocks.",
-    //     partOfSpeech: "noun",
-    // },
     // {
     //     clue: "fruit from Sanskrit",
     //     answer: "orange",

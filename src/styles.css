@@ -38,15 +38,16 @@
     width: 100%;
     margin-inline: auto;
     height: calc(var(--vh, 1vh) * 100);
+    max-height: 900px;
 }
 
 .puzzle {
     display: flex;
-    min-height: 100%;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     max-width: 100vw;
-    padding: 16px;
+    padding: 12px 16px;
     box-sizing: border-box;
 }
 
@@ -138,14 +139,14 @@
 
 .clueSection {
     background-color: var(--paper);
-    background-image: 
+    background-image:
         radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.02) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(139, 69, 19, 0.01) 0%, transparent 50%);
     border: 2px solid var(--typewriter-key-shadow);
     border-radius: 8px;
-    padding: 16px;
-    margin: 8px 0;
+    padding: 12px 16px;
+    margin: 6px 0;
     box-shadow: 0 2px 0 var(--typewriter-key-shadow);
     position: relative;
     width: 100%;
@@ -285,7 +286,8 @@
     display: flex;
     width: 100%;
     gap: 8px;
-    margin-top: 6px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 
@@ -296,12 +298,10 @@
     border-radius: 4px;
     width: 100%;
     margin-top: 6px;
-    flex-grow: 1;
     justify-content: center;
     text-align: center;
     align-items: center;
-    min-height: 80px;
-    max-height: 18px;
+    min-height: 60px;
     padding: 8px;
 }
 
@@ -337,13 +337,18 @@
     border-color: var(--ink-lighter);
 }
 
+.puzzleSpacer {
+    flex: 1;
+    max-height: 40px;
+}
+
 .keyboard {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
     width: 100%;
     margin-inline: auto;
-    margin-top: 10px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .keyboardRow {
@@ -724,6 +729,69 @@
 .archiveTile.solved {
     background-color: var(--typewriter-key-pressed);
     border-color: var(--ink-light);
+}
+
+/* Small screen adjustments */
+@media (max-height: 700px) {
+    .puzzle {
+        padding: 8px 12px;
+    }
+
+    .headerName {
+        font-size: 36px;
+    }
+
+    .clueSection {
+        padding: 8px 12px;
+        margin: 4px 0;
+    }
+
+    .dictionaryEntry {
+        gap: 6px;
+    }
+
+    .letterSlot, .cursorSlot {
+        height: 40px;
+        width: 18px;
+    }
+
+    .userInput {
+        font-size: 28px;
+    }
+
+    .etymologyValue, .definitionValue {
+        font-size: 17px;
+    }
+
+    .hintButtonBase {
+        min-height: 50px;
+        margin-top: 2px;
+        font-size: 11px;
+        padding: 6px;
+    }
+
+    .hintsRow {
+        gap: 6px;
+        margin-top: 2px;
+    }
+
+    .keyboardButton {
+        height: 45px;
+        font-size: 17px;
+    }
+
+    .keyboardButtonSubmit {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .keyboard {
+        gap: 4px;
+    }
+
+    .puzzleSpacer {
+        max-height: 10px;
+    }
 }
 
 /* Divider styling */

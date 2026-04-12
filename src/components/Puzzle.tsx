@@ -238,8 +238,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                     {showRevealAnswer ? formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root))) : "reveal answer"}
                 </div>
 
-                <div style={{ flex: 1 }}></div>
-
+                <div className="puzzleSpacer" />
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
                 {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}
