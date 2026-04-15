@@ -476,18 +476,19 @@
 
 .helpModalOverlay {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0); 
+    background: rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    padding: 16px;
+    box-sizing: border-box;
 }
-  
+
 .helpModalBox {
     background-color: var(--paper);
     color: var(--ink);
@@ -496,8 +497,58 @@
     border: 1px solid var(--ink);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
-    width: 300px;
+    width: min(92vw, 340px);
+    max-height: calc(100vh - 32px);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Scrollable explanation region inside the success modal. Lets long
+   etymology paragraphs scroll internally so Stats/Share stay visible. */
+.successExplanationScroll {
+    background-color: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    max-height: 38vh;
+    overflow-y: auto;
+    text-align: left;
+    flex-shrink: 1;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.successExplanationText {
+    font-size: 14px;
+    line-height: 1.55;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.successExplanationText + .successAuthorsNoteHeader {
+    margin-top: 10px;
+}
+
+.successAuthorsNoteHeader {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink-light);
+    background-color: var(--paper);
+    margin-bottom: 4px;
+    text-align: left;
+}
+
+/* Let the modal box's non-scrolling sections shrink naturally without
+   forcing them to compete with the explanation for space. */
+.helpModalBox > .successModalBoxes,
+.helpModalBox > .streakBox,
+.helpModalBox > .statsBox {
+    flex-shrink: 0;
 }
 
 .successModalBoxes {
@@ -624,33 +675,56 @@
     animation: shake 0.4s ease;
 }
 
-@keyframes swipeUp {
-    from {
-        transform: translate(-50%, -20%);
-        opacity: 0;
-    } to {
-      transform: translate(-50%, -50%);
-      opacity: 1;
-    }
+/* The overlay (backdrop) fades in/out on its own, so the dark tint
+   doesn't slide with the modal box. */
+@keyframes backdropFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.modalEnter {
-    animation: swipeUp 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+@keyframes backdropFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
-  
-@keyframes swipeDown {
+
+.helpModalOverlay.modalEnter {
+    animation: backdropFadeIn 0.15s ease;
+}
+
+.helpModalOverlay.modalExit {
+    animation: backdropFadeOut 0.2s ease forwards;
+}
+
+/* The modal box itself slides up and fades in. Since the overlay
+   flex-centers its child, we only need a simple translateY. */
+@keyframes modalBoxEnter {
     from {
-      transform: translate(-50%, -50%);
-      opacity: 1;
+        transform: translateY(-24px);
+        opacity: 0;
     }
     to {
-      transform: translate(-50%, -20%);
-      opacity: 0;
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
-.modalExit {
-    animation: swipeDown 0.2s cubic-bezier(0.25, 1, 0.22, 1) forwards;
+@keyframes modalBoxExit {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-24px);
+        opacity: 0;
+    }
+}
+
+.helpModalOverlay.modalEnter .helpModalBox {
+    animation: modalBoxEnter 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.helpModalOverlay.modalExit .helpModalBox {
+    animation: modalBoxExit 0.2s cubic-bezier(0.25, 1, 0.22, 1) forwards;
 }
 
 .support {
@@ -665,86 +739,245 @@
     gap: 20px; 
 }
 
-/* The list container */
-.archiveList {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 12px; 
+/* Archive: stats + legend */
+.archiveStats {
+    font-size: 14px;
+    color: var(--ink-light);
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
-/* Individual Puzzle Tile */
-.archiveTile {
+.archiveLegend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 16px;
+    font-size: 12px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.archiveLegendItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.archiveLegendSwatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1.5px solid var(--ink);
     background-color: var(--typewriter-key);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.archiveLegendSwatch.solved {
+    background-color: var(--typewriter-key-pressed);
+}
+
+.archiveLegendSwatch.solved::after {
+    content: "✓";
+    position: absolute;
+    top: -3px;
+    right: 0;
+    font-size: 9px;
+    font-weight: bold;
+    color: var(--ink);
+    line-height: 1;
+}
+
+.archiveLegendSwatch.started::after {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--ink);
+}
+
+.archiveLegendSwatch.today {
+    border-width: 2px;
+    box-shadow: 0 0 0 1.5px var(--ink);
+}
+
+/* Calendar container */
+.archiveCalendar {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.archiveMonth {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.archiveMonthHeader {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--ink);
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--ink);
+    letter-spacing: 0.5px;
+}
+
+.archiveWeekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+    font-weight: bold;
+}
+
+.archiveWeekday {
+    text-align: center;
+    padding: 2px 0;
+}
+
+.archiveMonthGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+/* Day cells */
+.archiveDayCell {
+    aspect-ratio: 1 / 1;
     border: 2px solid var(--ink);
     border-radius: 6px;
-    padding: 16px;
+    background-color: var(--typewriter-key);
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    box-shadow: 0 4px 0 var(--typewriter-key-shadow);
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-    cursor: pointer;
-    text-align: left;
-    text-decoration: none;
-    color: var(--ink);
-}
-
-/* Fixes issue where child elements inherit the global paper background */
-.archiveTile * {
-    background-color: transparent;
-    text-align: left;
-}
-
-/* Optional: Hover effect to indicate interactivity */
-.archiveTile:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 var(--typewriter-key-shadow);
-    background-color: var(--typewriter-key-pressed);
-}
-
-/* Header inside the tile (Puzzle Title) */
-.archiveTileTitle {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--ink);
-    line-height: 1.1;
-}
-
-.archiveTileSubHeader {
-    display: flex;
-    gap: 12px;
-    font-size: 15px;
-    color: var(--ink-light);
-    font-weight: 500;
-    width: 100%;
-}
-
-/* Footer inside the tile (Difficulty and Status) */
-.archiveTileFooter {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
+    justify-content: center;
+    position: relative;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+    min-height: 44px;
+    overflow: hidden;
+}
+
+/* Neutralize the global `* { background-color: var(--paper) }` rule
+   so inner spans don't show a paper-colored rectangle on top of the cell. */
+.archiveDayCell * {
+    background-color: transparent;
+}
+
+.archiveDayCell.empty {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.archiveDayCell.preLaunch,
+.archiveDayCell.future {
+    background-color: transparent;
+    border-color: var(--ink-light);
+    border-style: dashed;
     color: var(--ink-light);
-    margin-top: 4px;
+    opacity: 0.45;
+    box-shadow: none;
+    pointer-events: none;
 }
 
-.archiveTileDifficulty {
-    font-style: italic;
+.archiveDayCell.available:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 var(--typewriter-key-shadow);
+    background-color: var(--typewriter-key-pressed);
 }
 
-.archiveTileSolved {
+.archiveDayCell.solved {
+    background-color: var(--typewriter-key-pressed);
+}
+
+.archiveDayCell.solved::after {
+    content: "✓";
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 10px;
     font-weight: bold;
     color: var(--ink);
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    line-height: 1;
 }
 
-.archiveTile.solved {
-    background-color: var(--typewriter-key-pressed);
-    border-color: var(--ink-light);
+.archiveDayCell.started::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--ink);
+}
+
+.archiveDayCell.today {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+}
+
+.archiveDayNumber {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.archiveDayPuzzle {
+    font-size: 9px;
+    color: var(--ink-light);
+    line-height: 1;
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 480px) {
+    .archiveCalendar {
+        gap: 22px;
+    }
+    .archiveMonthHeader {
+        font-size: 18px;
+    }
+    .archiveDayNumber {
+        font-size: 14px;
+    }
+    .archiveDayPuzzle {
+        font-size: 8px;
+        margin-top: 2px;
+    }
+    .archiveMonthGrid,
+    .archiveWeekdays {
+        gap: 4px;
+    }
+    .archiveDayCell {
+        border-width: 1.5px;
+        border-radius: 5px;
+    }
+    .archiveDayCell.solved::after {
+        font-size: 9px;
+        top: 1px;
+        right: 3px;
+    }
 }
 
 /* Small screen adjustments */
