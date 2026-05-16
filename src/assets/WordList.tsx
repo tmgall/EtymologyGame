@@ -1508,6 +1508,7 @@ export const WORD_LIST: WordData[] = [
         explanation: "The word \"magazine\" comes from the Arabic \"makhāzin\" (plural of \"makhzan\"), meaning \"storehouses\". It entered English through French and Italian. The word first referred to a physical storehouse for weapons or goods. By the 17th century, it also came to mean a publication — a \"storehouse\" of information, stories, and articles. Both meanings persist today.",
         partOfSpeech: "noun",
     },
+    // new week
     {
         clue: "little war",
         answer: "guerrilla",
@@ -1516,23 +1517,112 @@ export const WORD_LIST: WordData[] = [
         explanation: "The word \"guerrilla\" comes from the Spanish \"guerra\" (war) with the diminutive suffix \"-illa\", literally meaning \"little war\". The term emerged during the Peninsular War (1807-1814), when Spanish irregular fighters used hit-and-run tactics against Napoleon's occupying forces. These small bands waging their \"little war\" proved devastatingly effective, and the word entered English to describe any unconventional, small-scale combat.",
         partOfSpeech: "noun, adjective",
     },
+    {
+        clue: "wood sound",
+        answer: "xylophone",
+        roots: [{ english: "wood", languageName: "Greek", languageWord: "xylon" }, { english: "sound, voice", languageName: "Greek", languageWord: "phōnē" }],
+        definition: "a percussion instrument with wooden bars",
+        explanation: "The word \"xylophone\" comes from the Greek \"xylon\", meaning \"wood\", and \"phōnē\", meaning \"sound\" or \"voice\". It literally means \"wood sound\", describing exactly how the instrument works: a row of wooden bars of different lengths are struck with mallets to produce musical tones.",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "grain",
+        answer: "quinoa",
+        roots: [{ english: "grain, cereal", languageName: "Quechua", languageWord: "kinwa" }],
+        definition: "a high-protein seed crop from South America",
+        explanation: "The word \"quinoa\" comes from the Quechua word \"kinwa\" (sometimes spelled \"kinuwa\"), the name for this ancient grain crop cultivated in the Andes for thousands of years. The Incas considered it sacred, calling it \"the mother of all grains\". It entered Spanish as \"quinua\" and eventually English as \"quinoa\".",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "said",
+        answer: "ditto",
+        roots: [{ english: "said, spoken", languageName: "Italian", languageWord: "detto" }],
+        definition: "the same thing again; used to indicate repetition",
+        explanation: "The word \"ditto\" comes from the Italian \"detto\" (said), from the Latin \"dictum\" (something said). In Italian bookkeeping, \"detto\" was used to avoid rewriting the same word — meaning \"the aforesaid\". English adopted it as \"ditto\" in the 17th century. It was later represented by the ditto mark (〃) and is now used colloquially to mean \"same here\" or \"likewise\".",
+        partOfSpeech: "noun, adverb",
+    },
+    {
+        clue: "all demons",
+        answer: "pandemonium",
+        roots: [{ english: "all", languageName: "Greek", languageWord: "pan" }, { english: "demon", languageName: "Greek", languageWord: "daimonion" }],
+        definition: "wild, chaotic uproar",
+        explanation: "The word \"pandemonium\" was coined by John Milton in his 1667 epic poem \"Paradise Lost\", combining the Greek \"pan\" (all) and \"daimonion\" (demon). In the poem, Pandæmonium is literally the capital city of Hell — the place of all demons. The word quickly escaped its literary origins to describe any scene of wild disorder, noise, and confusion.",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "person of the forest",
+        answer: "orangutan",
+        roots: [{ english: "person", languageName: "Malay", languageWord: "orang" }, { english: "forest", languageName: "Malay", languageWord: "hutan" }],
+        definition: "a large red-haired ape",
+        explanation: "The word \"orangutan\" comes from the Malay words \"orang\", meaning \"person\", and \"hutan\", meaning \"forest\". It literally translates to \"person of the forest\", a fitting name for these intelligent, arboreal great apes native to the rainforests of Borneo and Sumatra.",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "pig rat",
+        answer: "bandicoot",
+        roots: [{ english: "pig", languageName: "Telugu", languageWord: "pandi" }, { english: "rat", languageName: "Telugu", languageWord: "kokku" }],
+        definition: "a small omnivorous marsupial",
+        explanation: "The word \"bandicoot\" comes from the Telugu word \"pandikokku\", combining \"pandi\" (pig) and \"kokku\" (rat). British colonizers in India encountered the large Indian bandicoot rat and adopted the local name. The word later traveled to Australia, where it was applied to a completely different animal — the small, long-nosed marsupial we know today — purely based on a superficial resemblance.",
+        partOfSpeech: "noun",
+    },
+    // new week 
+    {
+        clue: "(information) to be spread",
+        answer: "propaganda",
+        roots: [{ english: "to spread, to propagate", languageName: "Latin", languageWord: "propagare" }],
+        definition: "information used to promote a political cause",
+        explanation: "The word \"propaganda\" comes from the Latin \"propagare\" (to spread or propagate). It originated with the Catholic Church's \"Sacra Congregatio de Propaganda Fide\" (Sacred Congregation for Propagating the Faith), established in 1622 to spread Catholicism. The word was neutral at first — simply meaning information to be spread — but took on its negative connotation of biased or misleading information during the 20th century's world wars. Another word you might know with the same root is \"propagate\".",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "uterus",
+        answer: "hysteria",
+        roots: [{ english: "uterus, womb", languageName: "Greek", languageWord: "hystera" }],
+        definition: "exaggerated or uncontrollable emotion",
+        explanation: "The word \"hysteria\" comes from the Greek \"hystera\", meaning \"uterus\" or \"womb\". Ancient Greek physicians believed the condition was caused by a displaced or \"wandering\" uterus moving through the body and disrupting its normal function — making it, by definition, an exclusively female affliction. The diagnosis was used for centuries to dismiss women's emotions and medical complaints, and was only removed from the American psychiatric manual in 1980. Definitely a word that didn't age well.",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "tied wood (boat)",
+        answer: "catamaran",
+        roots: [{ english: "to tie, to bind", languageName: "Tamil", languageWord: "kattu" }, { english: "wood, tree", languageName: "Tamil", languageWord: "maram" }],
+        definition: "a boat with two parallel hulls",
+        explanation: "The word \"catamaran\" comes from the Tamil \"kattumaram\", combining \"kattu\" (to tie or bind) and \"maram\" (wood or tree). It originally referred to the simple log rafts used by fishermen along the southern coast of India — literally logs tied together. Portuguese sailors adopted the term, and it eventually broadened to describe any twin-hulled vessel.",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "little cake",
+        answer: "cookie",
+        roots: [{ english: "little cake", languageName: "Dutch", languageWord: "koekje" }],
+        definition: "a small, sweet baked treat",
+        explanation: "The word \"cookie\" comes from the Dutch \"koekje\", a diminutive of \"koek\" (cake), literally meaning \"little cake\". Dutch settlers brought the word to America in the 17th century, where it became the standard term for a small, sweet baked good. In Britain, the same treat is typically called a \"biscuit\" — showing how colonial settlement patterns shaped American English.",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "move like a winding river",
+        answer: "meander",
+        roots: [{ english: "the Maeander River", languageName: "Greek", languageWord: "Maiandros" }],
+        definition: "to follow a winding course",
+        explanation: "The word \"meander\" comes from the Greek \"Maiandros\", the ancient name for the Büyük Menderes River in western Turkey, famous for its extremely winding, looping course. The river's serpentine path was so distinctive that its name became a common word for any wandering, winding movement — whether a river's course, a person's walk, or a conversation's drift.",
+        partOfSpeech: "verb",
+    },
+    {
+        clue: "game of dice",
+        answer: "hazard",
+        roots: [{ english: "the die (for dice games)", languageName: "Arabic", languageWord: "az-zahr" }],
+        definition: "a danger or risk",
+        explanation: "The word \"hazard\" likely comes from the Arabic \"az-zahr\", meaning \"the die\" (as in dice), though this is debated. It entered Old French as \"hasard\", originally referring to a dice game of chance, and was borrowed into English during the Crusades. Since dice games involved risk and uncertainty, the word gradually broadened to mean any kind of danger or peril.",
+        partOfSpeech: "noun",
+    },
+    {
+        clue: "named after a dye discovered during a battle",
+        answer: "magenta",
+        roots: [{ english: "from the Battle of Magenta", languageName: "Italian", languageWord: "Magenta" }],
+        definition: "a vivid purplish-red color",
+        explanation: "The color \"magenta\" was named after the Battle of Magenta, fought in 1859 near the town of Magenta in northern Italy during the Second Italian War of Independence. A new synthetic aniline dye of this vivid purplish-red color was patented around the same time, and it was named to commemorate the French-Sardinian victory — linking a color forever to a moment in military history.",
+        partOfSpeech: "noun, adjective",
+    },
     // new week
-    // {
-    //     clue: "person of the forest",
-    //     answer: "orangutan",
-    //     roots: [{ english: "person", languageName: "Malay", languageWord: "orang" }, { english: "forest", languageName: "Malay", languageWord: "hutan" }],
-    //     definition: "a large red-haired ape",
-    //     explanation: "The word \"orangutan\" comes from the Malay words \"orang\", meaning \"person\", and \"hutan\", meaning \"forest\". It literally translates to \"person of the forest\", a fitting name for these intelligent, arboreal great apes native to the rainforests of Borneo and Sumatra.",
-    //     partOfSpeech: "noun",
-    // },
-    // {
-    //     clue: "quince",
-    //     answer: "marmalade",
-    //     roots: [{ english: "quince", languageName: "Portuguese", languageWord: "marmelo" }],
-    //     definition: "a citrus jam, especially from oranges",
-    //     explanation: "The word \"marmalade\" comes from the Portuguese \"marmelada\", a preserve made from \"marmelo\" (quince), which itself derives from the Latin \"melimelum\" and ultimately from the Greek \"melimēlon\" (honey apple). Originally a quince paste, the word shifted to describe citrus preserves, particularly orange jam, as the recipe evolved in Britain.",
-    //     partOfSpeech: "noun",
-    // },
     // {
     //     clue: "from a silver coin of a Bohemian valley",
     //     answer: "dollar",
@@ -1566,14 +1656,6 @@ export const WORD_LIST: WordData[] = [
     //     partOfSpeech: "noun",
     // },
     // {
-    //     clue: "an Andean grain",
-    //     answer: "quinoa",
-    //     roots: [{ english: "grain, cereal", languageName: "Quechua", languageWord: "kinwa" }],
-    //     definition: "a high-protein seed crop from South America",
-    //     explanation: "The word \"quinoa\" comes from the Quechua word \"kinwa\" (sometimes spelled \"kinuwa\"), the name for this ancient grain crop cultivated in the Andes for thousands of years. The Incas considered it sacred, calling it \"the mother of all grains\". It entered Spanish as \"quinua\" and eventually English as \"quinoa\".",
-    //     partOfSpeech: "noun",
-    // },
-    // {
     //     clue: "chief sea",
     //     answer: "archipelago",
     //     roots: [{ english: "chief, principal", languageName: "Greek", languageWord: "arkhi" }, { english: "sea", languageName: "Greek", languageWord: "pelagos" }],
@@ -1581,7 +1663,6 @@ export const WORD_LIST: WordData[] = [
     //     explanation: "The word \"archipelago\" comes from the Greek \"arkhi\" (chief) and \"pelagos\" (sea). It was originally the proper name for the Aegean Sea — the \"chief sea\" of the ancient Greek world, dotted with hundreds of islands. Over time, the word shifted from meaning the sea itself to meaning any group or chain of islands.",
     //     partOfSpeech: "noun",
     // },
-    // // New week
     // {
     //     clue: "tropical fruit",
     //     answer: "mango",
@@ -1591,22 +1672,6 @@ export const WORD_LIST: WordData[] = [
     //     partOfSpeech: "noun",
     // },
     // {
-    //     clue: "named after a winding Turkish river",
-    //     answer: "meander",
-    //     roots: [{ english: "the Maeander River", languageName: "Greek", languageWord: "Maiandros" }],
-    //     definition: "to follow a winding course",
-    //     explanation: "The word \"meander\" comes from the Greek \"Maiandros\", the ancient name for the Büyük Menderes River in western Turkey, famous for its extremely winding, looping course. The river's serpentine path was so distinctive that its name became a common word for any wandering, winding movement — whether a river's course, a person's walk, or a conversation's drift.",
-    //     partOfSpeech: "verb",
-    // },
-    // {
-    //     clue: "named after a dye discovered during a battle",
-    //     answer: "magenta",
-    //     roots: [{ english: "from the Battle of Magenta", languageName: "Italian", languageWord: "Magenta" }],
-    //     definition: "a vivid purplish-red color",
-    //     explanation: "The color \"magenta\" was named after the Battle of Magenta, fought in 1859 near the town of Magenta in northern Italy during the Second Italian War of Independence. A new synthetic aniline dye of this vivid purplish-red color was patented around the same time, and it was named to commemorate the French-Sardinian victory — linking a color forever to a moment in military history.",
-    //     partOfSpeech: "noun, adjective",
-    // },
-    // {
     //     clue: "of Sardinia — a bitter plant causing grimaces",
     //     answer: "sardonic",
     //     roots: [{ english: "of Sardinia", languageName: "Greek", languageWord: "sardonios" }],
@@ -1614,7 +1679,6 @@ export const WORD_LIST: WordData[] = [
     //     explanation: "The word \"sardonic\" comes from the Greek \"sardonios\", believed to reference a poisonous plant from Sardinia (\"herba sardonia\") that supposedly caused involuntary facial contortions resembling a bitter grin in those who ate it. The word thus came to describe a kind of grim, mocking laughter — a smile that has nothing to do with genuine amusement.",
     //     partOfSpeech: "adjective",
     // },
-    // // New week
     // {
     //     clue: "citrus fruit from Arabic",
     //     answer: "lemon",
@@ -1664,22 +1728,6 @@ export const WORD_LIST: WordData[] = [
     //     partOfSpeech: "noun",
     // },
     // {
-    //     clue: "things to be spread",
-    //     answer: "propaganda",
-    //     roots: [{ english: "to spread, to propagate", languageName: "Latin", languageWord: "propagare" }],
-    //     definition: "information used to promote a political cause",
-    //     explanation: "The word \"propaganda\" comes from the Latin \"propagare\" (to spread or propagate). It originated with the Catholic Church's \"Sacra Congregatio de Propaganda Fide\" (Sacred Congregation for Propagating the Faith), established in 1622 to spread Catholicism. The word was neutral at first — simply meaning information to be spread — but took on its negative connotation of biased or misleading information during the 20th century's world wars.",
-    //     partOfSpeech: "noun",
-    // },
-    // {
-    //     clue: "the die",
-    //     answer: "hazard",
-    //     roots: [{ english: "the die (for dice games)", languageName: "Arabic", languageWord: "az-zahr" }],
-    //     definition: "a danger or risk",
-    //     explanation: "The word \"hazard\" likely comes from the Arabic \"az-zahr\", meaning \"the die\" (as in dice). It entered Old French as \"hasard\", originally referring to a dice game of chance, and was borrowed into English during the Crusades. Since dice games involved risk and uncertainty, the word gradually broadened to mean any kind of danger or peril.",
-    //     partOfSpeech: "noun",
-    // },
-    // {
     //     clue: "meat smoker",
     //     answer: "buccaneer",
     //     roots: [{ english: "smoking frame for meat", languageName: "Tupi", languageWord: "mukem" }],
@@ -1704,14 +1752,7 @@ export const WORD_LIST: WordData[] = [
     //     partOfSpeech: "adjective",
     // },
     // // New week
-    // {
-    //     clue: "said",
-    //     answer: "ditto",
-    //     roots: [{ english: "said, spoken", languageName: "Italian", languageWord: "detto" }],
-    //     definition: "the same thing again; used to indicate repetition",
-    //     explanation: "The word \"ditto\" comes from the Italian \"detto\" (said), from the Latin \"dictum\" (something said). In Italian bookkeeping, \"detto\" was used to avoid rewriting the same word — meaning \"the aforesaid\". English adopted it as \"ditto\" in the 17th century. It was later represented by the ditto mark (〃) and is now used colloquially to mean \"same here\" or \"likewise\".",
-    //     partOfSpeech: "noun, adverb",
-    // },
+
     // {
     //     clue: "a type of grass",
     //     answer: "bamboo",
@@ -1752,15 +1793,7 @@ export const WORD_LIST: WordData[] = [
     //     explanation: "The word \"quixotic\" comes from Don Quixote, the protagonist of Miguel de Cervantes' 1605 novel. Don Quixote was a delusional nobleman who believed himself a knight-errant, famously charging at windmills he mistook for giants. From his name we get \"quixotic\" — describing someone whose noble ideals are hopelessly impractical, yet whose earnest spirit makes them endearing rather than merely foolish.",
     //     partOfSpeech: "adjective",
     // },
-    // // New week
-    // {
-    //     clue: "little cake",
-    //     answer: "cookie",
-    //     roots: [{ english: "little cake", languageName: "Dutch", languageWord: "koekje" }],
-    //     definition: "a small, sweet baked treat",
-    //     explanation: "The word \"cookie\" comes from the Dutch \"koekje\", a diminutive of \"koek\" (cake), literally meaning \"little cake\". Dutch settlers brought the word to America in the 17th century, where it became the standard term for a small, sweet baked good. In Britain, the same treat is typically called a \"biscuit\" — showing how colonial settlement patterns shaped American English.",
-    //     partOfSpeech: "noun",
-    // },
+
     // {
     //     clue: "scaffold",
     //     answer: "balcony",
@@ -1786,14 +1819,6 @@ export const WORD_LIST: WordData[] = [
     //     partOfSpeech: "noun",
     // },
     // {
-    //     clue: "all demons",
-    //     answer: "pandemonium",
-    //     roots: [{ english: "all", languageName: "Greek", languageWord: "pan" }, { english: "demon", languageName: "Greek", languageWord: "daimonion" }],
-    //     definition: "wild, chaotic uproar",
-    //     explanation: "The word \"pandemonium\" was coined by John Milton in his 1667 epic poem \"Paradise Lost\", combining the Greek \"pan\" (all) and \"daimonion\" (demon). In the poem, Pandæmonium is literally the capital city of Hell — the place of all demons. The word quickly escaped its literary origins to describe any scene of wild disorder, noise, and confusion.",
-    //     partOfSpeech: "noun",
-    // },
-    // {
     //     clue: "yoked together",
     //     answer: "syzygy",
     //     roots: [{ english: "together", languageName: "Greek", languageWord: "syn" }, { english: "yoke", languageName: "Greek", languageWord: "zygon" }],
@@ -1801,7 +1826,18 @@ export const WORD_LIST: WordData[] = [
     //     explanation: "The word \"syzygy\" comes from the Greek \"syzygos\", combining \"syn\" (together) and \"zygon\" (yoke). It means a yoking together, and in astronomy it describes the alignment of three celestial bodies — as when the Sun, Earth, and Moon line up during an eclipse. It is also beloved by word game enthusiasts as one of the few English words with no standard vowels.",
     //     partOfSpeech: "noun",
     // },
+// {
+//     clue: "bell play",
+//     answer: "glockenspiel",
+//     roots: [{ english: "bells", languageName: "German", languageWord: "Glocken" }, { english: "play, game", languageName: "German", languageWord: "Spiel" }],
+//     definition: "a percussion instrument with tuned metal bars",
+//     explanation: "The word \"glockenspiel\" comes from the German \"Glocken\", meaning \"bells\", and \"Spiel\", meaning \"play\" or \"game\". It literally means \"bell play\", which aptly describes the instrument — rows of tuned metal bars struck with small mallets to produce bright, bell-like tones.",
+//     partOfSpeech: "noun",
+// },
+
 ];
+
+// glockenspiel
 
 /* Suggested additional words (for future weeks):
  - sushi — Japanese: from "su" (vinegar) + "shi" (rice); originally rice preserved with vinegar.
