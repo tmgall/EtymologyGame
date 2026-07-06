@@ -1973,22 +1973,22 @@ export const WORD_LIST: WordData[] = [
         explanation: "The word \"sandwich\" comes from John Montagu, the 4th Earl of Sandwich, an 18th-century English nobleman. According to legend, he was such an avid gambler that he didn't want to leave the card table for meals, so he asked for meat served between two slices of bread that he could eat with one hand. His fellow gamblers began ordering \"the same as Sandwich\", and the name stuck.",
         partOfSpeech: "noun",
     },
-    {
-        clue: "named after an Italian port city",
-        answer: "jeans",
-        roots: [{ english: "from the city of Genoa", languageName: "Italian", languageWord: "Genova" }],
-        definition: "sturdy trousers made of denim",
-        explanation: "The word \"jeans\" comes from the Italian city of Genoa, known in French as \"Gênes\". Genoa was famous for producing a tough cotton fabric that its sailors wore, and the material became known by the city's name. (Fittingly, the word \"denim\" comes from another city — \"de Nîmes\", the French town of Nîmes.) The trousers took their name from the Genoese cloth.",
-        partOfSpeech: "noun",
-    },
-    {
-        clue: "named after a Greek battlefield",
-        answer: "marathon",
-        roots: [{ english: "from the town of Marathon", languageName: "Greek", languageWord: "Marathon" }],
-        definition: "a long-distance running race",
-        explanation: "The word \"marathon\" comes from the Battle of Marathon in 490 BC, where the Greeks defeated a Persian invasion. Legend says the messenger Pheidippides ran about 25 miles from the town of Marathon to Athens to announce the victory, then collapsed and died. When the modern Olympics were founded in 1896, a long-distance race was created to honor this run, taking the name of the battlefield.",
-        partOfSpeech: "noun",
-    },
+    // {
+    //     clue: "named after an Italian port city",
+    //     answer: "jeans",
+    //     roots: [{ english: "from the city of Genoa", languageName: "Italian", languageWord: "Genova" }],
+    //     definition: "sturdy trousers made of denim",
+    //     explanation: "The word \"jeans\" comes from the Italian city of Genoa, known in French as \"Gênes\". Genoa was famous for producing a tough cotton fabric that its sailors wore, and the material became known by the city's name. (Fittingly, the word \"denim\" comes from another city — \"de Nîmes\", the French town of Nîmes.) The trousers took their name from the Genoese cloth.",
+    //     partOfSpeech: "noun",
+    // },
+    // {
+    //     clue: "named after a Greek battlefield",
+    //     answer: "marathon",
+    //     roots: [{ english: "from the town of Marathon", languageName: "Greek", languageWord: "Marathon" }],
+    //     definition: "a long-distance running race",
+    //     explanation: "The word \"marathon\" comes from the Battle of Marathon in 490 BC, where the Greeks defeated a Persian invasion. Legend says the messenger Pheidippides ran about 25 miles from the town of Marathon to Athens to announce the victory, then collapsed and died. When the modern Olympics were founded in 1896, a long-distance race was created to honor this run, taking the name of the battlefield.",
+    //     partOfSpeech: "noun",
+    // },
     // // TBD
     // {
     //     clue: "the art of teaching children",
