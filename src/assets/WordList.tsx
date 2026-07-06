@@ -1941,7 +1941,7 @@ export const WORD_LIST: WordData[] = [
         partOfSpeech: "noun, verb",
     },
     {
-        clue: "by a pottery shard",
+        clue: "(banish) by a pottery shard",
         answer: "ostracize",
         roots: [{ english: "potsherd, tile", languageName: "Greek", languageWord: "ostrakon" }],
         definition: "to exclude someone from a group",
@@ -1959,7 +1959,7 @@ export const WORD_LIST: WordData[] = [
     {
         clue: "named after a rancher who left his cattle unbranded",
         answer: "maverick",
-        roots: [{ english: "from Samuel Maverick", languageName: "English", languageWord: "Maverick" }],
+        roots: [{ english: "Maverick", languageName: "English", languageWord: "Maverick" }],
         definition: "an independent-minded person who refuses to conform",
         explanation: "The word \"maverick\" comes from Samuel Maverick, a 19th-century Texas rancher who famously refused to brand his cattle. Unbranded calves on the open range thus came to be called \"mavericks\". Because they bore no owner's mark, the word came to describe anyone who refuses to follow the herd — an independent, unconventional thinker who goes their own way.",
         partOfSpeech: "noun, adjective",
