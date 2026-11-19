@@ -1,5 +1,13 @@
 export const SIMILARITY_THRESHOLD = 3;
 
+const stripAccents = (text: string) => text.normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+// Players only type letters; hyphens, spaces and apostrophes are pre-filled.
+export const isGuessableChar = (char: string) => /^[a-z]$/i.test(stripAccents(char));
+
+// Compares on letters alone, so "gung-ho" matches "GUNGHO" and "café" matches "CAFE".
+export const normalizeAnswer = (text: string) => stripAccents(text).toLowerCase().replace(/[^a-z]/g, "");
+
 // Levenstein distance, https://gist.github.com/keesey/e09d0af833476385b9ee13b6d26a2b84
 export function evaluateWordSimilarity(a: string, b: string): number {
     const an = a ? a.length : 0;
