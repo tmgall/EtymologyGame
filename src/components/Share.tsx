@@ -21,11 +21,12 @@ export default function ShareTextButtonProps({ text }: ShareTextButtonProps) {
   };
 
   return (
-    <div
+    <button
+      type="button"
       onClick={handleShare}
       className="shareButton"
     >
       Share!
-    </div>
+    </button>
   );
 };

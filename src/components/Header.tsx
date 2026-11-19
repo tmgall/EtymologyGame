@@ -1,28 +1,7 @@
 import { getFormattedDate } from "../util/Date";
 import { IoStatsChart, IoMoon, IoSunny, IoCalendarSharp } from "react-icons/io5";
-import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-
-type Theme = 'light' | 'dark';
-const THEME_KEY = 'theme';
-
-export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem(THEME_KEY);
-    return (saved as Theme) || 'light';
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(THEME_KEY, theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
-
-  return { theme, toggleTheme };
-};
+import { useTheme } from "../context/ThemeContext";
 
 export interface HeaderProps {
     setIsHelpModalOpen: (isModalOpen: boolean) => void;
@@ -34,25 +13,25 @@ const Header = ({ setIsHelpModalOpen, setIsSuccessModalOpen, puzzleNumber }: Hea
     const { toggleTheme, theme } = useTheme();
     const navigate = useNavigate();
     return (
-        <div className="header">
-            <div className="headerText">
+        <div className="header puzzleHeader">
+            <div className="headerTop">
                 <div className="headerName">lexicon</div>
-                <div className="headerPuzzleNumber">{getFormattedDate(puzzleNumber)}: Puzzle #{puzzleNumber}</div>
+                <div className="headerButtons">
+                    <button type="button" className="headerButton" aria-label="Stats" onClick={() => setIsSuccessModalOpen(true)}>
+                        <IoStatsChart className="headerIconButton"/>
+                    </button>
+                    <button type="button" className="headerButton" aria-label="How to play" onClick={() => setIsHelpModalOpen(true)}>?</button>
+                    <button type="button" className="headerButton" aria-label={theme == 'light' ? "Switch to dark mode" : "Switch to light mode"} onClick={() => toggleTheme()}>
+                        {theme == 'light'
+                            ? <IoMoon className="headerIconButton"/>
+                            : <IoSunny className="headerIconButton"/>}
+                    </button>
+                    <button type="button" className="headerButton" aria-label="Archive" onClick={() => navigate('/archive')}>
+                        <IoCalendarSharp className="headerIconButton" />
+                    </button>
+                </div>
             </div>
-            <div className="headerButtons">
-                <div className="headerButton" onClick={() => setIsSuccessModalOpen(true)}>
-                    <IoStatsChart className="headerIconButton"/>
-                </div>
-                <div className="headerButton" onClick={() => setIsHelpModalOpen(true)}>?</div>
-                <div className="headerButton" onClick={() => toggleTheme()}>
-                    {theme == 'light'
-                        ? <IoMoon className="headerIconButton"/>
-                        : <IoSunny className="headerIconButton"/>}
-                </div>
-                <div className="headerButton" onClick={() => navigate('/archive')}>
-                      <IoCalendarSharp className="headerIconButton" />
-                </div>
-            </div>
+            <div className="headerPuzzleNumber">{getFormattedDate(puzzleNumber)}: Puzzle #{puzzleNumber}</div>
         </div>
     );
 }

@@ -23,11 +23,11 @@ export default function HelpModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div className={modalClass} onClick={handleClose}>
-      <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
-        <div className="closeButton" onClick={handleClose}>
+      <div className="helpModalBox" role="dialog" aria-modal="true" aria-labelledby="helpModalTitle" onClick={(e) => e.stopPropagation()}>
+        <button type="button" className="closeButton" aria-label="Close" onClick={handleClose}>
             &times;
-        </div>
-        <h2 className="helpModalHeaderText">
+        </button>
+        <h2 className="helpModalHeaderText" id="helpModalTitle">
           Welcome to Lexicon!
         </h2>
         <p className="helpModalText">

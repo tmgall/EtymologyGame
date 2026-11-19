@@ -22,11 +22,11 @@ export default function SimilarityModal({ onClose, similarity }: { onClose: () =
 
   return (
     <div className={modalClass} onClick={handleClose}>
-      <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
-        <div className="closeButton" onClick={handleClose}>
+      <div className="helpModalBox" role="dialog" aria-modal="true" aria-labelledby="similarityModalTitle" onClick={(e) => e.stopPropagation()}>
+        <button type="button" className="closeButton" aria-label="Close" onClick={handleClose}>
             &times;
-        </div>
-        <h2 className="helpModalHeaderText">
+        </button>
+        <h2 className="helpModalHeaderText" id="similarityModalTitle">
             You're nearly there
         </h2>
         <p className="similarityModalText">   

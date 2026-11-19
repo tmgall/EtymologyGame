@@ -49,7 +49,13 @@ export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: Suc
 
   const maxValue = Math.max(...stats, 1);
 
-  const now = new Date();
+  // Re-render every second so the countdown to the next puzzle ticks.
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const interval = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const midnightTonight = new Date();
   midnightTonight.setHours(24, 0, 0, 0); 
   const diffMs = midnightTonight.getTime() - now.getTime();
@@ -71,8 +77,8 @@ export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: Suc
 
   return (
     <div className={modalClass} onClick={handleClose}>
-      <div className="helpModalBox" onClick={(e) => e.stopPropagation()}>
-        <div className="closeButton" onClick={handleClose}>&times;</div>
+      <div className="helpModalBox" role="dialog" aria-modal="true" aria-label="Stats" onClick={(e) => e.stopPropagation()}>
+        <button type="button" className="closeButton" aria-label="Close" onClick={handleClose}>&times;</button>
 
         {shouldShowExplanationSection && (
           <div className="successModalBoxes">
