@@ -22,14 +22,8 @@ export interface HintsUsed {
     reveal: string;
 }
 
-const isKeyboardFocusedControl = (target: EventTarget | null) => {
-    if (!(target instanceof HTMLElement)) return false;
-    try {
-        return target.matches("button:focus-visible, a:focus-visible");
-    } catch {
-        return false;
-    }
-};
+const isControl = (target: EventTarget | null) =>
+    target instanceof HTMLElement && target.closest("button, a") !== null;
 
 const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const puzzleConfig = WORD_LIST[puzzleNumber - 1];
@@ -48,6 +42,9 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const [similarity, setSimilarity] = useState(0);
 
     const ref = useRef<HTMLDivElement>(null);
+    // True while the player is navigating with Tab, so Enter activates the focused button.
+    // A click or typing a letter switches back to Enter submitting the guess.
+    const isTabbingRef = useRef(false);
 
     // The cursor only ever lands on letter slots; punctuation slots are skipped.
     const nextEditable = (index: number) => editableIndices.find((i) => i > index) ?? -1;
@@ -109,13 +106,18 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         if (e.ctrlKey || e.altKey || e.metaKey || puzzleCompleted) {
             return;
         }
-        // Let Enter/Space activate a button the player tabbed to, rather than submitting.
-        if ((e.key === "Enter" || e.key === " ") && isKeyboardFocusedControl(e.target)) {
+        if (e.key === "Tab") {
+            isTabbingRef.current = true;
+            return;
+        }
+        if ((e.key === "Enter" || e.key === " ") && isTabbingRef.current && isControl(e.target)) {
             return;
         }
         if (e.key.match(/^[a-zA-Z]$/)) {
+            isTabbingRef.current = false;
             handleKeyPress(e.key.toUpperCase());
         } else if (e.key === "Backspace") {
+            isTabbingRef.current = false;
             handleBackspace();
         } else if (e.key === "Enter") {
             handleSubmit();
@@ -135,6 +137,12 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [selectedIndex, guess, puzzleCompleted]);
+
+    useEffect(() => {
+        const stopTabbing = () => { isTabbingRef.current = false; };
+        window.addEventListener("pointerdown", stopTabbing, true);
+        return () => window.removeEventListener("pointerdown", stopTabbing, true);
+    }, []);
 
     // runs at puzzle load
     useEffect(() => {
