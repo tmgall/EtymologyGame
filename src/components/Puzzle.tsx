@@ -1,5 +1,4 @@
-import { useState, useRef, CSSProperties } from "react";
-import { IoLockClosed } from "react-icons/io5";
+import { useState, useRef } from "react";
 import Keyboard from "./Keyboard";
 import { WORD_LIST } from "../assets/WordList";
 import { useEffect } from "react";
@@ -7,7 +6,7 @@ import Header from "./Header";
 import HelpModal from "./HelpModal";
 import SuccessModal from "./SuccessModal";
 import { formatAsList, formatRootDefinition } from "../util/StringFormatting";
-import { evaluateWordSimilarity, isGuessableChar, normalizeAnswer, SIMILARITY_THRESHOLD } from "../util/Evaluation";
+import { evaluateWordSimilarity, SIMILARITY_THRESHOLD } from "../util/Evaluation";
 import SimilarityModal from "./SimilarityModal";
 import { blankPuzzleData, getPuzzle, getPuzzleCount, markPuzzleCompleted, savePuzzle, updateFirstHintField, updatePuzzleField, updateSecondHintField } from '../util/db.ts';
 import { resetStreak, getBestStreak, incrementStreak, getStreak } from "../util/Streak.tsx";
@@ -22,26 +21,14 @@ export interface HintsUsed {
     reveal: string;
 }
 
-const isKeyboardFocusedControl = (target: EventTarget | null) => {
-    if (!(target instanceof HTMLElement)) return false;
-    try {
-        return target.matches("button:focus-visible, a:focus-visible");
-    } catch {
-        return false;
-    }
-};
-
 const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const puzzleConfig = WORD_LIST[puzzleNumber - 1];
-    const answerChars = [...puzzleConfig.answer.toUpperCase()];
-    const isFixed = answerChars.map((char) => !isGuessableChar(char));
-    const editableIndices = answerChars.map((_, index) => index).filter((index) => !isFixed[index]);
     const [showOrigin, setShowOrigin] = useState(false);
     const [showExtraHint, setShowExtraHint] = useState<boolean>(false);
     const [showRevealAnswer, setShowRevealAnswer] = useState(false);
     const [puzzleCompleted, setPuzzleCompleted] = useState(false);
-    const [guess, setGuess] = useState<string[]>(() => answerChars.map((char, index) => isFixed[index] ? char : ""));
-    const [selectedIndex, setSelectedIndex] = useState<number>(editableIndices[0] ?? 0);
+    const [guess, setGuess] = useState<string[]>(Array(puzzleConfig.answer.length).fill(""));
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const [isSimilarityModalOpen, setIsSimilarityModalOpen] = useState(false);
@@ -49,38 +36,32 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
 
     const ref = useRef<HTMLDivElement>(null);
 
-    // The cursor only ever lands on letter slots; punctuation slots are skipped.
-    const nextEditable = (index: number) => editableIndices.find((i) => i > index) ?? -1;
-    const previousEditable = (index: number) => [...editableIndices].reverse().find((i) => i < index) ?? -1;
-
     const handleKeyPress = async (key: string) => {
         if (puzzleCompleted) return;
         const newGuess = [...guess];
         newGuess[selectedIndex] = key;
-        const next = nextEditable(selectedIndex);
-        if (next !== -1) setSelectedIndex(next);
+        setSelectedIndex(Math.min(selectedIndex + 1, puzzleConfig.answer.length - 1));
         setGuess(newGuess);
     };
 
     const handleBackspace = async () => {
         if (puzzleCompleted) return;
         const newGuess = [...guess];
-        if (guess[selectedIndex] !== "") {
-            newGuess[selectedIndex] = "";
+        if (selectedIndex === 0) {
+            newGuess[0] = "";
+        } else if (guess[selectedIndex] === "") {
+            setSelectedIndex(selectedIndex - 1);
+            newGuess[selectedIndex - 1] = "";
         } else {
-            const previous = previousEditable(selectedIndex);
-            if (previous !== -1) {
-                setSelectedIndex(previous);
-                newGuess[previous] = "";
-            }
+            newGuess[selectedIndex] = "";
         }
         setGuess(newGuess);
     };
 
     const handleSubmit = async () => {
         if (puzzleCompleted) return;
-        const submission = normalizeAnswer(guess.join(""));
-        const actualAnswer = normalizeAnswer(puzzleConfig.answer);
+        const submission = guess.join("").toLocaleLowerCase();
+        const actualAnswer = puzzleConfig.answer.toLocaleLowerCase();
         if (submission === actualAnswer) {
             setPuzzleCompleted(true);
             await markPuzzleCompleted(puzzleNumber);
@@ -109,32 +90,26 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         if (e.ctrlKey || e.altKey || e.metaKey || puzzleCompleted) {
             return;
         }
-        // Let Enter/Space activate a button the player tabbed to, rather than submitting.
-        if ((e.key === "Enter" || e.key === " ") && isKeyboardFocusedControl(e.target)) {
-            return;
-        }
         if (e.key.match(/^[a-zA-Z]$/)) {
             handleKeyPress(e.key.toUpperCase());
         } else if (e.key === "Backspace") {
             handleBackspace();
         } else if (e.key === "Enter") {
             handleSubmit();
-        } else {
-            return;
         }
         e.preventDefault();
     };
 
     const handleRevealAnswer = () => {
         setSelectedIndex(-1);
-        setGuess(answerChars);
+        setGuess(puzzleConfig.answer.toUpperCase().split(''));
         setIsSuccessModalOpen(true);
     }
 
     useEffect(() => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [selectedIndex, guess, puzzleCompleted]);
+    }, [selectedIndex, guess]);
 
     // runs at puzzle load
     useEffect(() => {
@@ -169,15 +144,12 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
       return () => clearInterval(interval);
     }, []);
 
-    const canRevealAnswer = showOrigin && showExtraHint;
     const revealButtonClass = "hintButtonBase " + (showRevealAnswer 
         ? "hintButtonRevealed" 
-        : canRevealAnswer
+        : (showOrigin && showExtraHint)
         ? "hintButton" : "hintButtonDisabled");
     
     const cursorIndex = guess.findIndex((char) => char === "") === -1 ? guess.length : selectedIndex;
-    // Letter slots shrink to fit long answers on narrow screens (one extra slot holds the end cursor).
-    const slotStyle = { "--slots": guess.length + 1 } as CSSProperties;
 
     const languagesOfOriginList = puzzleConfig.roots
         .map((root) => root.languageName)
@@ -198,9 +170,9 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 <div className="clueSection">
                     <div className="dictionaryEntry">
                         <div className="wordEntry">
-                            <div className="userInput" ref={ref} style={slotStyle}>
+                            <div className="userInput" ref={ref}>
                                 {[...guess, ""].map((char, index) => (
-                                    <div key={index} className={index === guess.length ? "cursorSlot" : isFixed[index] ? "letterSlot fixedSlot" : "letterSlot"}>
+                                    <div key={index} className={index === guess.length ? "cursorSlot" : "letterSlot"}>
                                         {char}
                                         {!puzzleCompleted && index === cursorIndex && showCursor && <span className="cursor">|</span>}
                                     </div>
@@ -209,7 +181,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         </div>
                         
                         <div className="partOfSpeechLine">
-                            <span className="partOfSpeech">{puzzleConfig.partOfSpeech}, {editableIndices.length} letters; {formatAsList(languagesOfOriginList)} origin</span>
+                            <span className="partOfSpeech">{puzzleConfig.partOfSpeech}, {puzzleConfig.answer.length} letters; {formatAsList(languagesOfOriginList)} origin</span>
                         </div>
                         
                         <div className="etymologyContent">
@@ -220,8 +192,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 </div>
 
                 <div className="hintsRow">
-                    <button
-                        type="button"
+                    <div
                         className={"hintButtonBase " + (showOrigin ? "hintButtonRevealed" : "hintButton")}
                         onClick={async () => { 
                             if (!showOrigin) {
@@ -233,9 +204,8 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         }}
                     >
                         {showOrigin ? formatRootDefinition(puzzleConfig.roots[0]) : "reveal one root"}
-                    </button>
-                    <button
-                        type="button"
+                    </div>
+                    <div
                         className={"hintButtonBase " + (showExtraHint ? "hintButtonRevealed" : "hintButton")}
                         onClick={async () => {
                             if (!showExtraHint) {
@@ -247,15 +217,13 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         }}
                     >
                         {showExtraHint ? puzzleConfig.definition : "reveal actual meaning"}
-                    </button>
+                    </div>
                 </div>
 
-                <button
-                    type="button"
+                <div
                     className={revealButtonClass}
-                    disabled={!canRevealAnswer}
                     onClick={async () => { 
-                        if (canRevealAnswer) {
+                        if (showOrigin && showExtraHint) {
                             setShowRevealAnswer(true);
                             if (!puzzleCompleted) {
                                 await updatePuzzleField(puzzleNumber, 'puzzleRevealed', true);
@@ -267,17 +235,8 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                         }
                     }}
                 >
-                    {showRevealAnswer
-                        ? formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root)))
-                        : canRevealAnswer
-                        ? "reveal answer"
-                        : (
-                            <span className="lockedHint">
-                                <span className="lockedHintTitle"><IoLockClosed className="lockedHintIcon" aria-hidden="true" /> reveal answer</span>
-                                <span className="lockedHintSubtitle">unlocks after both hints</span>
-                            </span>
-                        )}
-                </button>
+                    {showRevealAnswer ? formatAsList(puzzleConfig.roots.map((root) => formatRootDefinition(root))) : "reveal answer"}
+                </div>
 
                 <div className="puzzleSpacer" />
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>

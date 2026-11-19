@@ -8,7 +8,6 @@
     --typewriter-key: #e8e0d6;
     --typewriter-key-shadow: #d4c4b0;
     --typewriter-key-pressed: #cfc0a8;
-    --typewriter-key-function: #d4c4b0;
     --max-width: min(420px, 100%);
     --font-standard: "Roboto Mono", monospace;
 }
@@ -23,7 +22,6 @@
     --typewriter-key: #2d2c2b;
     --typewriter-key-shadow: #0d0c0c;
     --typewriter-key-pressed: #3d3c3a;
-    --typewriter-key-function: #3d3c3a;
 }
 
 * {
@@ -33,27 +31,6 @@
     text-align: center;
     font-family: var(--font-standard);
     box-sizing: border-box;
-}
-
-button {
-    font: inherit;
-    margin: 0;
-    padding: 0;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
-
-button:disabled {
-    cursor: default;
-}
-
-button:focus-visible,
-a:focus-visible {
-    outline: 2px solid var(--typewriter-ribbon);
-    outline-offset: 2px;
 }
 
 .app {
@@ -103,28 +80,9 @@ a:focus-visible {
 
 .headerButtons {
     font-weight: bold;
-    display: flex;
-    gap: 8px;
-}
-
-/* Puzzle header: wordmark and buttons share one row, the date gets its own line. */
-.puzzleHeader {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-}
-
-.headerTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-}
-
-/* Sized so "lexicon" and the four buttons fit side by side, even at 320px wide. */
-.puzzleHeader .headerName {
-    width: auto;
-    font-size: clamp(28px, calc((100vw - 200px) / 4.2), 48px);
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
 }
 
 .headerButton {
@@ -132,7 +90,6 @@ a:focus-visible {
     font-size: 20px;
     width: 32px;
     height: 32px;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,10 +122,8 @@ a:focus-visible {
     background-color: inherit;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .headerButton:hover {
-        background-color: var(--typewriter-key-pressed);
-    }
+.headerButton:hover {
+    background-color: var(--typewriter-key-pressed);
 }
 
 .headerButton:active {
@@ -217,7 +172,6 @@ a:focus-visible {
     flex-direction: column;
     gap: 12px;
     text-align: left;
-    container-type: inline-size;
 }
 
 .wordEntry {
@@ -288,35 +242,21 @@ a:focus-visible {
 }
 
 .userInput {
-    --slot-max-width: 20px;
-    --slot-max-font: 36px;
-    --slot-height: 50px;
-    --slot-gap: 4px;
-    --slot-width: var(--slot-max-width);
     font-weight: 700;
-    font-size: var(--slot-max-font);
+    font-size: 36px;
     background-color: transparent;
     border: none;
-    gap: var(--slot-gap);
+    gap: 4px;
     display: flex;
     align-items: center;
     color: var(--ink);
     justify-content: center;
 }
 
-/* Shrink the slots (and letters) so long answers fit the card on narrow screens. */
-@supports (width: 1cqw) {
-    .userInput {
-        --slot-width: min(var(--slot-max-width), calc((100cqw - (var(--slots) - 1) * var(--slot-gap)) / var(--slots)));
-        font-size: min(var(--slot-max-font), calc(var(--slot-width) * 1.8));
-    }
-}
-
 .letterSlot {
     border-bottom: 3px solid var(--ink);
-    width: var(--slot-width);
-    height: var(--slot-height);
-    flex-shrink: 0;
+    width: 20px;
+    height: 50px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -324,14 +264,9 @@ a:focus-visible {
     position: relative;
 }
 
-.fixedSlot {
-    border-bottom-color: transparent;
-}
-
 .cursorSlot {
-    width: var(--slot-width);
-    height: var(--slot-height);
-    flex-shrink: 0;
+    width: 20px;
+    height: 50px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -384,10 +319,9 @@ a:focus-visible {
     transform: translateY(1px);
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .hintButton:hover {
-        background-color: var(--typewriter-key-pressed);
-    }
+.hintButton:hover {
+    cursor: pointer;
+    background-color: var(--typewriter-key-pressed);
 }
 
 .hintButtonRevealed {
@@ -403,53 +337,18 @@ a:focus-visible {
     border-color: var(--ink-lighter);
 }
 
-.lockedHint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    background-color: inherit;
-    color: inherit;
-}
-
-.lockedHintTitle {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background-color: inherit;
-    color: inherit;
-}
-
-.lockedHintIcon {
-    background-color: inherit;
-    color: inherit;
-}
-
-.lockedHintSubtitle {
-    font-size: 10px;
-    background-color: inherit;
-    color: inherit;
-}
-
 .puzzleSpacer {
     flex: 1;
     max-height: 40px;
 }
 
 .keyboard {
-    --key-height: 44px;
-    --key-row-gap: 11px;
-    --key-column-gap: 6px;
     display: flex;
     flex-direction: column;
-    gap: var(--key-row-gap);
+    gap: 5px;
     width: 100%;
     margin-inline: auto;
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    touch-action: manipulation;
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -458,86 +357,81 @@ a:focus-visible {
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 8px 4px calc(8px + env(safe-area-inset-bottom, 0px));
+        padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px));
         max-width: var(--max-width);
         margin-inline: auto;
     }
 
     .puzzle {
-        padding-bottom: calc(185px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: 190px;
     }
 }
 
-/* 20 half-key columns: letters span 2, the middle row starts one column in,
-   and Enter/Back span 3 — the same proportions as the iPhone keyboard. */
 .keyboardRow {
-    display: grid;
-    grid-template-columns: repeat(20, minmax(0, 1fr));
-    column-gap: var(--key-column-gap);
+    display: flex;
+    margin-inline: auto;
+    justify-content: space-between;
     width: 100%;
+    gap: 2px;
 }
 
-.keyboardRowIndented > :first-child {
-    grid-column-start: 2;
+.keyboardIconButton {
+    flex: 1;
+    height: 75%;
+    width: 75%;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.keyboardKey {
-    grid-column-end: span 2;
-    position: relative;
-    height: var(--key-height);
+.keyboardButton {
+    flex: 1;
+    height: 55px;
+    border-color: var(--typewriter-key-shadow);
+    border-style: solid;
+    border-width: 2px;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 20px;
+    background-color: var(--typewriter-key);
+    color: var(--ink);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--ink);
-    background-color: var(--typewriter-key);
-    border: 1px solid var(--typewriter-key-shadow);
-    border-radius: 6px;
     box-shadow: 0 2px 0 var(--typewriter-key-shadow);
 }
 
-.keyboardKeyWide {
-    grid-column-end: span 3;
-    font-size: clamp(11px, 3.5vw, 14px);
-    font-weight: 500;
-    background-color: var(--typewriter-key-function);
-}
-
-.keyboardKeyPressed {
+.keyboardButton:active {
     background-color: var(--typewriter-key-pressed);
     box-shadow: 0 1px 0 var(--typewriter-key-shadow);
     transform: translateY(1px);
 }
 
-.keyboardIconButton {
-    height: 60%;
-    width: 60%;
-    background-color: inherit;
-}
-
-.keyPopup {
-    position: absolute;
-    bottom: calc(100% + 4px);
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: 150%;
-    height: calc(var(--key-height) * 1.15);
+.keyboardButtonSubmit {
+    flex: 1;
+    height: 55px;
+    border-color: var(--typewriter-key-shadow);
+    border-style: solid;
+    border-width: 2px;
+    font-weight: 500;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
-    color: var(--ink);
+    font-size: 16px;
     background-color: var(--typewriter-key);
-    border: 1px solid var(--typewriter-key-shadow);
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-    z-index: 1;
+    color: var(--ink);
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .keyboardKey:hover {
+    .keyboardButton:hover {
+        cursor: pointer;
+        background-color: var(--typewriter-key-pressed);
+    }
+    .keyboardButtonSubmit:hover {
+        cursor: pointer;
         background-color: var(--typewriter-key-pressed);
     }
 }
@@ -1092,9 +986,8 @@ a:focus-visible {
         padding: 8px 12px;
     }
 
-    .headerName,
-    .puzzleHeader .headerName {
-        font-size: clamp(28px, calc((100vw - 200px) / 4.2), 36px);
+    .headerName {
+        font-size: 36px;
     }
 
     .clueSection {
@@ -1106,10 +999,13 @@ a:focus-visible {
         gap: 6px;
     }
 
+    .letterSlot, .cursorSlot {
+        height: 40px;
+        width: 18px;
+    }
+
     .userInput {
-        --slot-max-width: 18px;
-        --slot-max-font: 28px;
-        --slot-height: 40px;
+        font-size: 28px;
     }
 
     .etymologyValue, .definitionValue {
@@ -1128,9 +1024,18 @@ a:focus-visible {
         margin-top: 2px;
     }
 
+    .keyboardButton {
+        height: 45px;
+        font-size: 17px;
+    }
+
+    .keyboardButtonSubmit {
+        height: 45px;
+        font-size: 14px;
+    }
+
     .keyboard {
-        --key-height: 40px;
-        --key-row-gap: 9px;
+        gap: 4px;
     }
 
     .puzzleSpacer {
