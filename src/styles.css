@@ -611,31 +611,59 @@ a:focus-visible {
     overflow: hidden;
 }
 
-/* Scrollable explanation region inside the success modal. Lets long
-   etymology paragraphs scroll internally so Stats/Share stay visible. */
-.successExplanationScroll {
-    background-color: var(--paper);
+/* Results popup: one scrolling column on an 8/16/24px spacing scale.
+   On phones it becomes a bottom sheet (see the end of this file). */
+.successSheet {
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    gap: var(--space-3);
+    padding: var(--space-3) 20px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.successSheet > * {
+    flex-shrink: 0;
+}
+
+.successSheet * {
+    text-align: left;
+}
+
+.successHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 32px;
+}
+
+.successTitle {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.successResult {
+    font-size: 15px;
+    color: var(--ink-light);
+}
+
+.successExplanation {
     border: 1.5px solid var(--ink);
     border-radius: 6px;
     padding: 12px 14px;
-    margin-bottom: 12px;
-    max-height: 38vh;
-    overflow-y: auto;
-    text-align: left;
-    flex-shrink: 1;
-    min-height: 0;
-    -webkit-overflow-scrolling: touch;
 }
 
 .successExplanationText {
     font-size: 14px;
-    line-height: 1.55;
-    text-align: left;
-    margin-bottom: 0;
+    line-height: 1.6;
 }
 
 .successExplanationText + .successAuthorsNoteHeader {
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .successAuthorsNoteHeader {
@@ -646,45 +674,38 @@ a:focus-visible {
     color: var(--ink-light);
     background-color: var(--paper);
     margin-bottom: 4px;
-    text-align: left;
 }
 
-/* Let the modal box's non-scrolling sections shrink naturally without
-   forcing them to compete with the explanation for space. */
-.helpModalBox > .successModalBoxes,
-.helpModalBox > .streakBox,
-.helpModalBox > .statsBox {
-    flex-shrink: 0;
-}
-
-.successModalBoxes {
-    width: 100%;
+.successSection {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--paper);
-    margin-bottom: 12px;
+    flex-direction: column;
+    gap: var(--space-1);
 }
 
-.streakBox {
+.successSectionTitle {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink-light);
+}
+
+.successStreaks {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--paper);
-    margin-bottom: 16px;
+    gap: var(--space-3);
+    font-size: 14px;
 }
 
 .statsBox {
     width: 100%;
-    margin-bottom: 16px;
     background-color: var(--paper);
 }
 
 .statsRow {
     display: flex;
     align-items: center;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     background-color: var(--paper);
 }
 
@@ -717,18 +738,70 @@ a:focus-visible {
     border-radius: 4px;
 }
 
-.shareButton {
-    padding-inline: 16px;
-    padding-block: 8px;
-    border-radius: 8px;
-    background-color: var(--typewriter-key);
-    border: 2px solid var(--ink);
-    font-weight: 600;
+.successFooter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--typewriter-key-shadow);
 }
 
-.shareButton:hover {
-    cursor: pointer;
-    background-color: var(--typewriter-key-pressed);
+.successCountdown {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.successCountdownLabel {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink-light);
+}
+
+.successCountdownTime {
+    font-size: 22px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.shareButton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background-color: var(--ink);
+    color: var(--paper);
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 2px 0 var(--typewriter-key-shadow);
+}
+
+.shareButton * {
+    background-color: inherit;
+    color: inherit;
+}
+
+.shareIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.shareButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 var(--typewriter-key-shadow);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .shareButton:hover {
+        opacity: 0.9;
+    }
 }
 
 .footer {
@@ -1143,4 +1216,167 @@ a:focus-visible {
     width: 100%;
     border: 0;
     border-top: 1px solid var(--ink);
+}
+/* Bottom sheet for the results on phones. */
+@keyframes sheetEnter {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes sheetExit {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+}
+
+@media (max-width: 600px) {
+    .successSheetOverlay {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .successSheet {
+        width: 100%;
+        max-width: var(--max-width);
+        max-height: 88%;
+        border-width: 1px 1px 0;
+        border-radius: 16px 16px 0 0;
+        padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+    }
+
+    .helpModalOverlay.modalEnter .successSheet {
+        animation: sheetEnter 0.32s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .helpModalOverlay.modalExit .successSheet {
+        animation: sheetExit 0.2s ease-in forwards;
+    }
+}
+
+/* Win animation: the roots slide together into the answer. Timing lives in RootsVictory.tsx. */
+@keyframes victoryFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.victoryOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: var(--paper);
+    cursor: pointer;
+    animation: victoryFadeIn 0.2s ease;
+}
+
+.victoryStage {
+    position: relative;
+    width: 100%;
+    max-width: var(--max-width);
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.victoryRoots {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 12px;
+}
+
+.victoryRootGroup {
+    display: flex;
+    align-items: center;
+}
+
+.victoryPlus {
+    padding: 0 10px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink-light);
+    opacity: 0;
+}
+
+.victoryRoot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    max-width: 100%;
+    padding: 12px 16px;
+    background-color: var(--typewriter-key);
+    border: 2px solid var(--typewriter-key-shadow);
+    border-radius: 10px;
+    box-shadow: 0 3px 0 var(--typewriter-key-shadow);
+    opacity: 0;
+}
+
+.victoryRoot * {
+    background-color: inherit;
+}
+
+.victoryRootWord {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.victoryRootMeaning {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.victoryRootLanguage {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ink-light);
+}
+
+.victoryResult {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.victoryResult,
+.victoryResult * {
+    background-color: transparent;
+}
+
+.victoryWord {
+    display: flex;
+    font-size: min(48px, calc((min(100vw, 420px) - 48px) / (var(--letters) * 0.64)));
+    font-weight: 700;
+    opacity: 0;
+}
+
+.victoryMeaning {
+    padding: 0 8px;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-light);
+    opacity: 0;
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
