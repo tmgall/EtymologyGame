@@ -3,7 +3,8 @@ import { WordData } from "../assets/WordList";
 import { getBestStreak, getStreak } from "../util/Streak";
 import { getStats } from "../util/Stats";
 import ShareTextButtonProps from "./Share";
-import { formatShareText } from "../util/StringFormatting";
+import { formatResultLine, formatShareText } from "../util/StringFormatting";
+import { getPuzzleDate, getTodaysPuzzleNumber } from "../util/Date";
 import { getPuzzle } from "../util/db";
 
 export interface SuccessModalProps {
@@ -63,8 +64,10 @@ export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: Suc
   const minutes = String(Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
   const seconds = String(Math.floor((diffMs % (1000 * 60)) / 1000)).padStart(2, "0");
 
-  const shareText = formatShareText(hintsUsed, puzzleNumber.toString(), isComplete, now, streak);
+  const shareText = formatShareText(hintsUsed, puzzleNumber.toString(), isComplete, getPuzzleDate(puzzleNumber), streak);
   const shouldShowExplanationSection = isComplete;
+  // The countdown only means something on today's puzzle, not when replaying the archive.
+  const isTodaysPuzzle = puzzleNumber === getTodaysPuzzleNumber();
 
   const [isClosing, setIsClosing] = useState(false);
     
@@ -73,29 +76,28 @@ export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: Suc
       setTimeout(() => { onClose(); }, 150); 
   };
 
-  const modalClass = isClosing ? "helpModalOverlay modalExit" : "helpModalOverlay modalEnter";
+  const modalClass = (isClosing ? "helpModalOverlay modalExit" : "helpModalOverlay modalEnter") + " successSheetOverlay";
 
   return (
     <div className={modalClass} onClick={handleClose}>
-      <div className="helpModalBox" role="dialog" aria-modal="true" aria-label="Stats" onClick={(e) => e.stopPropagation()}>
+      <div className="helpModalBox successSheet" role="dialog" aria-modal="true" aria-labelledby="successSheetTitle" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="closeButton" aria-label="Close" onClick={handleClose}>&times;</button>
 
         {shouldShowExplanationSection && (
-          <div className="successModalBoxes">
-            <div className="helpModalHeaderText">
-              {hintMessage}
-            </div>
+          <div className="successHeader">
+            <h2 className="successTitle" id="successSheetTitle">{hintMessage}</h2>
+            <div className="successResult">{formatResultLine(hintsUsed)}</div>
           </div>
         )}
         {shouldShowExplanationSection && (
-          <div className="successExplanationScroll">
-            <div className="helpModalText successExplanationText">
+          <div className="successExplanation">
+            <div className="successExplanationText">
               {puzzleConfig.explanation}
             </div>
             {puzzleConfig.authorsNote && (
               <>
                 <div className="successAuthorsNoteHeader">Author's Note</div>
-                <div className="helpModalText successExplanationText">
+                <div className="successExplanationText">
                   {puzzleConfig.authorsNote}
                 </div>
               </>
@@ -103,36 +105,38 @@ export default function SuccessModal({ onClose, puzzleConfig, puzzleNumber}: Suc
           </div>
         )}
 
-        <div className="successModalBoxes">
-          <div className="helpModalHeaderText">Stats</div>
-        </div>
-
-        <div className="streakBox">
-          <div className="helpModalText">{"Streak: " + streak}</div>
-          <div className="helpModalText">{"Best streak: " + bestStreak}</div>
-        </div>
-
-        <div className="statsBox">
-          {stats.map((value, index) => {
-            const labels = ["No hints", "One hint", "Two hints", "Gave up"];
-            return (
-              <div key={index} className="statsRow">
-                <span className="statsIndex">{labels[index]}</span>
-                <div className="statsBar">
-                  <div className="statsBarBox" style={{ width: `${Math.max((value / maxValue) * 100, 7)}%` }}>
-                    {value}
+        <div className="successSection">
+          {shouldShowExplanationSection
+            ? <h3 className="successSectionTitle">Stats</h3>
+            : <h2 className="successSectionTitle" id="successSheetTitle">Stats</h2>}
+          <div className="successStreaks">
+            <div>{"Streak: " + streak}</div>
+            <div>{"Best streak: " + bestStreak}</div>
+          </div>
+          <div className="statsBox">
+            {stats.map((value, index) => {
+              const labels = ["No hints", "One hint", "Two hints", "Gave up"];
+              return (
+                <div key={index} className="statsRow">
+                  <span className="statsIndex">{labels[index]}</span>
+                  <div className="statsBar">
+                    <div className="statsBarBox" style={{ width: `${Math.max((value / maxValue) * 100, 7)}%` }}>
+                      {value}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
-        <div className="successModalBoxes">
-          <div className="helpModalText">{`Next puzzle in: ${hours}:${minutes}:${seconds}`}</div>
-        </div>
-
-        <div className="successModalBoxes">
+        <div className="successFooter">
+          {isTodaysPuzzle && (
+            <div className="successCountdown">
+              <span className="successCountdownLabel">Next puzzle</span>
+              <span className="successCountdownTime">{`${hours}:${minutes}:${seconds}`}</span>
+            </div>
+          )}
           <ShareTextButtonProps text={shareText}/>
         </div>
       </div>

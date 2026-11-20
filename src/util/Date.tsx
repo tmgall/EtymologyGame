@@ -11,6 +11,12 @@ export const getFormattedDate = (puzzleNumber: string) => {
     return dayOfWeek + ", " + month + " " + dayOfMonth;
 }
 
+export const getPuzzleDate = (puzzleNumber: number): Date => {
+    const puzzleDate = new Date(LAUNCH_DATE);
+    puzzleDate.setDate(LAUNCH_DATE.getDate() + (puzzleNumber - 1));
+    return puzzleDate;
+}
+
 export const getTodaysPuzzleNumber = () => {
     const today = new Date();
     const millisecondsPerDay = 1000 * 60 * 60 * 24;

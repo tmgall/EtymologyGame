@@ -1,8 +1,15 @@
+import { useEffect, useRef, useState } from "react";
+import { IoShareOutline } from "react-icons/io5";
+
 interface ShareTextButtonProps {
   text: string;
 }
 
 export default function ShareTextButtonProps({ text }: ShareTextButtonProps) {
+  const [copied, setCopied] = useState(false);
+  const copiedTimeout = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(copiedTimeout.current), []);
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -13,7 +20,9 @@ export default function ShareTextButtonProps({ text }: ShareTextButtonProps) {
     } else {
       try {
         await navigator.clipboard.writeText(text);
-        alert("Text copied to clipboard!");
+        setCopied(true);
+        window.clearTimeout(copiedTimeout.current);
+        copiedTimeout.current = window.setTimeout(() => setCopied(false), 2000);
       } catch (error) {
         console.error("Error copying:", error);
       }
@@ -25,8 +34,9 @@ export default function ShareTextButtonProps({ text }: ShareTextButtonProps) {
       type="button"
       onClick={handleShare}
       className="shareButton"
+      aria-live="polite"
     >
-      Share!
+      {copied ? "Copied!" : <><IoShareOutline className="shareIcon" aria-hidden="true" /> Share</>}
     </button>
   );
 };

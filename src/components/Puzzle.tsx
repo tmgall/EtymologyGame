@@ -9,6 +9,7 @@ import SuccessModal from "./SuccessModal";
 import { formatAsList, formatRootDefinition } from "../util/StringFormatting";
 import { evaluateWordSimilarity, isGuessableChar, normalizeAnswer, SIMILARITY_THRESHOLD } from "../util/Evaluation";
 import SimilarityModal from "./SimilarityModal";
+import RootsVictory from "./RootsVictory";
 import { blankPuzzleData, getPuzzle, getPuzzleCount, markPuzzleCompleted, savePuzzle, updateFirstHintField, updatePuzzleField, updateSecondHintField } from '../util/db.ts';
 import { resetStreak, getBestStreak, incrementStreak, getStreak } from "../util/Streak.tsx";
 
@@ -21,6 +22,8 @@ export interface HintsUsed {
     extra: string;
     reveal: string;
 }
+
+const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const isControl = (target: EventTarget | null) =>
     target instanceof HTMLElement && target.closest("button, a") !== null;
@@ -38,6 +41,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
     const [selectedIndex, setSelectedIndex] = useState<number>(editableIndices[0] ?? 0);
     const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const [isVictoryPlaying, setIsVictoryPlaying] = useState(false);
     const [isSimilarityModalOpen, setIsSimilarityModalOpen] = useState(false);
     const [similarity, setSimilarity] = useState(0);
 
@@ -82,7 +86,7 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
             setPuzzleCompleted(true);
             await markPuzzleCompleted(puzzleNumber);
             await incrementStreak(puzzleNumber);
-            handleRevealAnswer();
+            celebrateSolve();
         } else {
             if (ref.current) {
                 ref.current.classList.add('shake');
@@ -127,10 +131,24 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
         e.preventDefault();
     };
 
-    const handleRevealAnswer = () => {
+    const showAnswer = () => {
         setSelectedIndex(-1);
         setGuess(answerChars);
+    }
+
+    const handleRevealAnswer = () => {
+        showAnswer();
         setIsSuccessModalOpen(true);
+    }
+
+    // Only a fresh solve gets the roots animation; reloading a solved puzzle or giving up goes straight to results.
+    const celebrateSolve = () => {
+        showAnswer();
+        if (prefersReducedMotion()) {
+            setIsSuccessModalOpen(true);
+        } else {
+            setIsVictoryPlaying(true);
+        }
     }
 
     useEffect(() => {
@@ -290,6 +308,15 @@ const Puzzle = ({ puzzleNumber }: PuzzleProps) => {
                 <div className="puzzleSpacer" />
                 <Keyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onSubmit={handleSubmit}/>
 
+                {isVictoryPlaying &&
+                    <RootsVictory
+                        roots={puzzleConfig.roots}
+                        answer={puzzleConfig.answer}
+                        onDone={() => {
+                            setIsVictoryPlaying(false);
+                            setIsSuccessModalOpen(true);
+                        }}
+                />}
                 {isHelpModalOpen && <HelpModal onClose={() => setIsHelpModalOpen(false)} />}
                 {isSuccessModalOpen && 
                     <SuccessModal
